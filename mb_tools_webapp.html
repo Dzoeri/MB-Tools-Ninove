@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mercedes-Benz Speciaal Gereedschap Database Ninove">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MB Tools">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <title>MB Tools Ninove - Gereedschap Database</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(to bottom right, #f5f5f5, #e8e8e8);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(to right, #1a1a1a, #2d2d2d, #1a1a1a);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .mercedes-star {
+            width: 80px;
+            height: 80px;
+        }
+
+        .title-section h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .title-section p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+
+        .stats {
+            text-align: right;
+        }
+
+        .stats-label {
+            font-size: 0.875rem;
+            color: #b0b0b0;
+            margin-bottom: 0.25rem;
+        }
+
+        .stats-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Search Box */
+        .search-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .search-container h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            width: 20px;
+            height: 20px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            font-size: 1.125rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-hint {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+
+        /* Results */
+        .results-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .results-header {
+            background: #2d2d2d;
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .results-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .results-list {
+            divide-y divide-gray-200;
+        }
+
+        .result-item {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s;
+        }
+
+        .result-item:hover {
+            background-color: #eff6ff;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .gereedschap-nummer {
+            font-family: 'Courier New', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
+        }
+
+        .badges {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge-rek {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-schapnr {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .no-results {
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        .no-results-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            opacity: 0.5;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: #b0b0b0;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 0.875rem;
+            margin: 0.25rem 0;
+        }
+
+        .footer-admin {
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-section {
+                flex-direction: column;
+            }
+
+            .stats {
+                text-align: center;
+            }
+
+            .title-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <svg class="mercedes-star" viewBox="0 0 100 100" fill="currentColor">
+                    <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="3"/>
+                    <line x1="50" y1="4" x2="50" y2="50" stroke="currentColor" stroke-width="3"/>
+                    <line x1="50" y1="50" x2="93" y2="75" stroke="currentColor" stroke-width="3"/>
+                    <line x1="50" y1="50" x2="7" y2="75" stroke="currentColor" stroke-width="3"/>
+                </svg>
+                <div class="title-section">
+                    <h1>Mercedes-Benz</h1>
+                    <p>Speciaal Gereedschap Database Ninove</p>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stats-label">Totaal items</div>
+                <div class="stats-value" id="totalCount">603</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Search Box -->
+        <div class="search-container">
+            <h2>Zoek Gereedschap</h2>
+            <div class="search-input-wrapper">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Voer gereedschapsnummer in..."
+                    autocomplete="off"
+                >
+            </div>
+            <p class="search-hint">💡 Je mag het gereedschapsnummer ook zonder spaties invoeren</p>
+        </div>
+
+        <!-- Results -->
+        <div class="results-container">
+            <div class="results-header">
+                <h3><span id="resultCount">603</span> resultaten gevonden</h3>
+            </div>
+            <div class="results-list" id="resultsList">
+                <!-- Results will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Mercedes-Benz • Speciaal Gereedschap Database Ninove</p>
+        <p class="footer-admin">Voor intern gebruik • Beheerd door Joeri Van Melkebeke</p>
+    </footer>
+
+    <script>
+        // GEREEDSCHAP DATA
+        // ═══════════════════════════════════════════════════════════
+        // INSTRUCTIES: Om items toe te voegen/bewerken/verwijderen:
+        // 1. Ga naar GitHub repository
+        // 2. Klik op dit bestand (index.html)
+        // 3. Klik op potlood icoon (Edit)
+        // 4. Zoek deze data sectie hieronder
+        // 5. Voeg regel toe, bewerk of verwijder
+        // 6. Scroll naar beneden en klik "Commit changes"
+        // 7. Website update automatisch binnen 30-60 seconden!
+        // ═══════════════════════════════════════════════════════════
+
+        const gereedschapData = [
+            // Formaat: ["gereedschapnummer", "reknummer", "schapnummer"]
+            // ↓ VOEG NIEUWE ITEMS HIER TOE (kopieer een regel en pas aan)
+            
+            ["000 581 25 58", "1518", "0108"],
+            ["000 581 39 01", "1518", "0108"],
+            ["000 586 00 99 00", "1518", "0101"],
+            ["102 589 00 09 00", "1518", "0105"],
+            ["103 589 00 33 00", "1518", "0106"],
+            ["111 589 00 40 00", "1518", "0106"],
+            ["120 589 02 01 00", "1518", "0108"],
+            ["129 589 00 21 00", "1518", "0201"],
+            ["140 589 00 09 00", "1518", "0203"],
+            ["210 589 00 07 00", "1518", "0302"]
+            
+            // ↑ Dit zijn VOORBEELD items (10 stuks)
+            // Voeg hier jouw volledige lijst van 603 items toe!
+        ];
+
+        // ═══════════════════════════════════════════════════════════
+        // NIET BEWERKEN ONDER DEZE LIJN (tenzij je weet wat je doet)
+        // ═══════════════════════════════════════════════════════════
+
+        // State
+        let currentSearch = '';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            displayResults(gereedschapData);
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+        });
+
+        // Handle search
+        function handleSearch(e) {
+            currentSearch = e.target.value;
+            filterAndDisplay();
+        }
+
+        // Filter and display results
+        function filterAndDisplay() {
+            const searchNormalized = currentSearch.replace(/\s/g, '').toLowerCase();
+            
+            const filtered = gereedschapData.filter(item => {
+                const itemNormalized = item[0].replace(/\s/g, '').toLowerCase();
+                return searchNormalized === '' || itemNormalized.includes(searchNormalized);
+            });
+
+            displayResults(filtered);
+        }
+
+        // Display results
+        function displayResults(items) {
+            const resultsList = document.getElementById('resultsList');
+            const resultCount = document.getElementById('resultCount');
+            
+            resultCount.textContent = items.length;
+
+            if (items.length === 0) {
+                resultsList.innerHTML = `
+                    <div class="no-results">
+                        <svg class="no-results-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <p style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Geen resultaten gevonden</p>
+                        <p>Probeer een andere zoekopdracht</p>
+                    </div>
+                `;
+                return;
+            }
+
+            resultsList.innerHTML = items.map(item => `
+                <div class="result-item">
+                    <div class="gereedschap-nummer">${item[0]}</div>
+                    <div class="badges">
+                        <span class="badge badge-rek">Rek: ${item[1]}</span>
+                        <span class="badge badge-schapnr">Schapnr: ${item[2]}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
