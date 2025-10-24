@@ -1,665 +1,1446 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Mercedes-Benz Speciaal Gereedschap Database Ninove"
-    />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
-    <meta name="apple-mobile-web-app-title" content="MB Tools" />
-    <link rel="apple-touch-icon" href="icon-192.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
-    <link rel="manifest" href="manifest.json" />
-    <title>MB Tools Ninove - TEST VERSIE</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        background: linear-gradient(to bottom right, #f5f5f5, #e8e8e8);
-        min-height: 100vh;
-      }
-      .header {
-        background: linear-gradient(to right, #1a1a1a, #2d2d2d, #1a1a1a);
-        color: white;
-        padding: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      .header-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-      }
-      .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-      }
-      .mercedes-logo {
-        width: 80px;
-        height: 80px;
-        object-fit: contain;
-      }
-      .title-section h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-      }
-      .title-section p {
-        color: #b0b0b0;
-        font-size: 0.95rem;
-      }
-      .test-badge {
-        background: #fbbf24;
-        color: #78350f;
-        padding: 0.25rem 0.75rem;
-        border-radius: 4px;
-        font-size: 0.75rem;
-        font-weight: 700;
-      }
-      .stats {
-        text-align: right;
-      }
-      .stats-label {
-        font-size: 0.875rem;
-        color: #b0b0b0;
-        margin-bottom: 0.25rem;
-      }
-      .stats-value {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #60a5fa;
-      }
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-      }
-      .search-container {
-        background: white;
-        border-radius: 12px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      .search-container h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: #1a1a1a;
-      }
-      .search-input-wrapper {
-        position: relative;
-        margin-bottom: 0.75rem;
-      }
-      .search-icon {
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #9ca3af;
-        width: 20px;
-        height: 20px;
-      }
-      #searchInput {
-        width: 100%;
-        padding: 1rem 1rem 1rem 3rem;
-        font-size: 1.125rem;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        transition: all 0.3s;
-      }
-      #searchInput:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-      }
-      .search-hint {
-        font-size: 0.875rem;
-        color: #6b7280;
-        margin-top: 0.5rem;
-      }
-      .results-container {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      .results-header {
-        background: #2d2d2d;
-        color: white;
-        padding: 1.5rem 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .results-header h3 {
-        font-size: 1.25rem;
-        font-weight: 600;
-      }
-      .reset-btn {
-        padding: 0.5rem 1rem;
-        background: #ef4444;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.875rem;
-        font-weight: 600;
-      }
-      .reset-btn:hover {
-        background: #dc2626;
-      }
-      .result-item {
-        padding: 1.5rem 2rem;
-        border-bottom: 1px solid #e5e7eb;
-      }
-      .result-item:hover {
-        background-color: #eff6ff;
-      }
-      .result-item:last-child {
-        border-bottom: none;
-      }
-      .gereedschap-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 0.75rem;
-        flex-wrap: wrap;
-      }
-      .gereedschap-nummer {
-        font-family: "Courier New", monospace;
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #1a1a1a;
-        min-width: 200px;
-      }
-      .status-button {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .status-button.beschikbaar {
-        background: #d1fae5;
-        color: #065f46;
-      }
-      .status-button.beschikbaar:hover {
-        background: #a7f3d0;
-        transform: scale(1.02);
-        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
-      }
-      .status-button.ingebruik {
-        background: #fee2e2;
-        color: #991b1b;
-      }
-      .status-button.ingebruik:hover {
-        background: #fecaca;
-        transform: scale(1.02);
-        box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
-      }
-      .locatie-badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.5rem 0.75rem;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        gap: 0.5rem;
-        margin-bottom: 0.75rem;
-      }
-      .locatie-magazijn {
-        background: #e0e7ff;
-        color: #3730a3;
-        border-left: 3px solid #4f46e5;
-      }
-      .locatie-werkplaats {
-        background: #fef3c7;
-        color: #92400e;
-        border-left: 3px solid #f59e0b;
-      }
-      .detail-text {
-        font-size: 0.875rem;
-        color: #991b1b;
-        margin-bottom: 0.75rem;
-      }
-      .detail-text.beschikbaar {
-        color: #6b7280;
-      }
-      .geschiedenis-section {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #e5e7eb;
-      }
-      .geschiedenis-title {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #6b7280;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-      .geschiedenis-item {
-        font-size: 0.8rem;
-        color: #6b7280;
-        padding: 0.25rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .no-results {
-        padding: 4rem 2rem;
-        text-align: center;
-        color: #6b7280;
-      }
-      .footer {
-        background: #1a1a1a;
-        color: #b0b0b0;
-        padding: 2rem;
-        margin-top: 3rem;
-        text-align: center;
-      }
-      .footer p {
-        font-size: 0.875rem;
-        margin: 0.25rem 0;
-      }
-      @media (max-width: 768px) {
-        .header-content {
-          flex-direction: column;
-          text-align: center;
-        }
-        .logo-section {
-          flex-direction: column;
-        }
-        .stats {
-          text-align: center;
-        }
-        .container {
-          padding: 1rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="header">
-      <div class="header-content">
-        <div class="logo-section">
-          <img
-            src="mb-logo.png"
-            alt="Mercedes-Benz Logo"
-            class="mercedes-logo"
-          />
-          <div class="title-section">
-            <h1>Mercedes-Benz <span class="test-badge">TEST MODE</span></h1>
-            <p>Speciaal Gereedschap Database Ninove</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stats-label">Totaal items</div>
-          <div class="stats-value" id="totalCount">10</div>
-        </div>
-      </div>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Mercedes-Benz Speciaal Gereedschap Database Ninove" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="MB Tools" />
+        <link rel="apple-touch-icon" href="icon-192.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+        <link rel="manifest" href="manifest.json" />
+        <title>MB Tools Ninove - Gereedschap Database</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                background: linear-gradient(to bottom right, #f5f5f5, #e8e8e8);
+                min-height: 100vh;
+            }
+            .header {
+                background: linear-gradient(to right, #1a1a1a, #2d2d2d, #1a1a1a);
+                color: white;
+                padding: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .header-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            .logo-section {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+            }
+            .mercedes-logo {
+                width: 80px;
+                height: 80px;
+                object-fit: contain;
+            }
+            .title-section h1 {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 0.25rem;
+            }
+            .title-section p {
+                color: #b0b0b0;
+                font-size: 0.95rem;
+            }
+            .stats {
+                text-align: right;
+            }
+            .stats-label {
+                font-size: 0.875rem;
+                color: #b0b0b0;
+                margin-bottom: 0.25rem;
+            }
+            .stats-value {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #60a5fa;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+            .search-container {
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .search-container h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #1a1a1a;
+            }
+            .search-input-wrapper {
+                position: relative;
+                margin-bottom: 0.75rem;
+            }
+            .search-icon {
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #9ca3af;
+                width: 20px;
+                height: 20px;
+            }
+            #searchInput {
+                width: 100%;
+                padding: 1rem 1rem 1rem 3rem;
+                font-size: 1.125rem;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                transition: all 0.3s;
+            }
+            #searchInput:focus {
+                outline: none;
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+            .search-hint {
+                font-size: 0.875rem;
+                color: #6b7280;
+                margin-top: 0.5rem;
+            }
+            .results-container {
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .results-header {
+                background: #2d2d2d;
+                color: white;
+                padding: 1.5rem 2rem;
+            }
+            .results-header h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+            }
+            .result-item {
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid #e5e7eb;
+                transition: background-color 0.2s;
+            }
+            .result-item:hover {
+                background-color: #eff6ff;
+            }
+            .result-item:last-child {
+                border-bottom: none;
+            }
+            .gereedschap-nummer {
+                font-family: "Courier New", monospace;
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: #1a1a1a;
+                margin-bottom: 0.75rem;
+            }
+            .badges {
+                display: flex;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+            .badge {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.5rem 1rem;
+                border-radius: 9999px;
+                font-size: 0.875rem;
+                font-weight: 600;
+            }
+            .badge-rek {
+                background-color: #dbeafe;
+                color: #1e40af;
+            }
+            .badge-schapnr {
+                background-color: #d1fae5;
+                color: #065f46;
+            }
+            .no-results {
+                padding: 4rem 2rem;
+                text-align: center;
+                color: #6b7280;
+            }
+            .no-results-icon {
+                width: 64px;
+                height: 64px;
+                margin: 0 auto 1rem;
+                opacity: 0.5;
+            }
+            .footer {
+                background: #1a1a1a;
+                color: #b0b0b0;
+                padding: 2rem;
+                margin-top: 3rem;
+                text-align: center;
+            }
+            .footer p {
+                font-size: 0.875rem;
+                margin: 0.25rem 0;
+            }
+            .footer-admin {
+                color: #6b7280;
+                margin-top: 0.5rem;
+            }
+            @media (max-width: 768px) {
+                .header-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .logo-section {
+                    flex-direction: column;
+                }
+                .stats {
+                    text-align: center;
+                }
+                .title-section h1 {
+                    font-size: 1.5rem;
+                }
+                .container {
+                    padding: 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="mb-logo.png" alt="Mercedes-Benz Logo" class="mercedes-logo" />
+                    <div class="title-section">
+                        <h1>Mercedes-Benz</h1>
+                        <p>Speciaal Gereedschap Database Ninove</p>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stats-label">Totaal items</div>
+                    <div class="stats-value" id="totalCount">1117</div>
+                </div>
+            </div>
+        </header>
+        <main class="container">
+            <div class="search-container">
+                <h2>Zoek Gereedschap</h2>
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Voer gereedschapsnummer in..."
+                        autocomplete="off" />
+                </div>
+                <p class="search-hint">💡 Je mag het gereedschapsnummer ook zonder spaties invoeren</p>
+            </div>
+            <div class="results-container">
+                <div class="results-header">
+                    <h3><span id="resultCount">587</span> resultaten gevonden</h3>
+                </div>
+                <div class="results-list" id="resultsList"></div>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>© 2025 Mercedes-Benz • Speciaal Gereedschap Database Ninove</p>
+            <p class="footer-admin">Voor intern gebruik • Beheerd door Joeri Van Melkebeke</p>
+        </footer>
+        <script>
+            const gereedschapData = [
+                ["000 581 25 58 00", "1518", "0108"],
+                ["000 581 39 01 00", "1518", "0108"],
+                ["000 586 00 99 00", "1518", "0101"],
+                ["000 588 00 71 00", "1523", "0501"],
+                ["000 588 00 99 00", "1523", "0603"],
+                ["000 588 08 19 00", "1518", "0101"],
+                ["000 588 08 19 00", "1522", "0207"],
+                ["000 588 09 19 00", "1518", "0101"],
+                ["000 588 13 62 00", "1523", "0401"],
+                ["000 588 14 62 00", "1523", "0508"],
+                ["000 588 16 31 00", "1523", "0506"],
+                ["000 588 20 31 00", "1518", "0101"],
+                ["000 588 20 31 00", "1523", "0608"],
+                ["000 588 21 24 00", "1518", "0102"],
+                ["000 589 00 21 00", "1522", "0309"],
+                ["000 589 00 75 03", "1522", "0107"],
+                ["000 589 00 76 03", "1522", "0107"],
+                ["000 589 00 77 03", "1522", "0107"],
+                ["000 589 00 99 00", "1522", "0304"],
+                ["000 589 01 13 00", "1518", "0102"],
+                ["000 589 01 21 00", "1523", "0201"],
+                ["000 589 01 68 00", "1523", "0606"],
+                ["000 589 01 68 01", "1523", "0606"],
+                ["000 589 02 98 00", "1522", "0208"],
+                ["000 589 05 91 00", "1523", "0608"],
+                ["000 589 06 03 00", "1518", "0102"],
+                ["000 589 13 99 00", "1518", "0110"],
+                ["000 589 13 99 00", "1522", "0310"],
+                ["000 589 18 99 00", "1518", "0102"],
+                ["000 589 20 61 00", "1518", "0102"],
+                ["000 589 21 99 00", "1522", "0305"],
+                ["000 589 22 01 00", "1518", "0102"],
+                ["000 589 24 01 00", "1518", "0102"],
+                ["000 589 25 01 00", "1518", "0102"],
+                ["000 589 27 01 00", "1518", "0102"],
+                ["000 589 28 01 00", "1518", "0102"],
+                ["000 589 28 33 00", "1523", "0106"],
+                ["000 589 30 37 00", "1518", "0103"],
+                ["000 589 30 37 00", "1523", "0404"],
+                ["000 589 31 01 00", "1522", "0107"],
+                ["000 589 34 16 00", "1518", "0103"],
+                ["000 589 34 16 00", "1523", "0404"],
+                ["000 589 47 31 00", "1518", "0103"],
+                ["000 589 47 31 00", "1522", "0109"],
+                ["000 589 50 03 00", "1518", "0102"],
+                ["000 589 52 43 00", "1518", "0103"],
+                ["000 589 52 98 00", "1523", "0606"],
+                ["000 589 55 37 00", "1518", "0107"],
+                ["000 589 68 03 00", "1518", "0103"],
+                ["000 589 69 03 00", "1518", "0103"],
+                ["000 589 71 03 00", "1518", "0103"],
+                ["000 589 76 09 00", "1518", "0104"],
+                ["000 589 77 63 00", "1522", "0108"],
+                ["000 589 80 03 00", "1518", "0103"],
+                ["000 589 88 63 00", "1518", "0103"],
+                ["000 589 94 63 00", "1518", "0307"],
+                ["001 589 00 07 00", "1518", "0103"],
+                ["001 589 00 40 00", "1518", "0103"],
+                ["001 589 00 40 00", "1523", "0305"],
+                ["001 589 00 91 00", "1522", "0506"],
+                ["001 589 01 16 10", "1518", "0103"],
+                ["001 589 01 16 10", "1522", "0506"],
+                ["001 589 01 91 00", "1522", "0506"],
+                ["001 589 02 16 00", "1518", "0103"],
+                ["001 589 02 91 00", "1522", "0506"],
+                ["001 589 03 16 00", "1518", "0104"],
+                ["001 589 03 16 00", "1523", "0504"],
+                ["001 589 03 91 00", "1522", "0208"],
+                ["001 589 38 33 00", "1518", "0103"],
+                ["001 589 76 09 00", "1518", "0104"],
+                ["001 589 76 21 00", "1518", "0105"],
+                ["001 589 78 21 00", "1518", "0105"],
+                ["001 589 80 21 00", "1522", "0104"],
+                ["001 589 83 21 00", "1518", "0104"],
+                ["001 589 83 21 00", "1522", "0307"],
+                ["002 989 45 20 00", "1518", "0103"],
+                ["102 589 00 09 00", "1518", "0105"],
+                ["102 589 00 09 00", "1522", "0104"],
+                ["102 589 00 33 00", "1518", "0105"],
+                ["102 589 01 09 00", "1518", "0105"],
+                ["102 589 01 14 05", "1518", "0105"],
+                ["102 589 01 40 00", "1518", "0105"],
+                ["102 589 03 40 00", "1518", "0105"],
+                ["103 589 00 21 01", "1518", "0406"],
+                ["103 589 00 21 01", "1522", "0105"],
+                ["103 589 00 33 00", "1518", "0106"],
+                ["103 589 00 33 03", "1518", "0106"],
+                ["103 589 00 37 00", "1518", "0106"],
+                ["103 589 00 40 00", "1518", "0106"],
+                ["103 589 01 09 00", "1522", "0107"],
+                ["103 589 01 14 00", "1518", "0106"],
+                ["103 589 01 39 00", "1522", "0104"],
+                ["103 589 02 63 00", "1523", "0106"],
+                ["103 589 03 09 00", "1518", "0505"],
+                ["104 589 00 63 00", "1508", "0109"],
+                ["104 589 00 63 00", "1523", "0106"],
+                ["104 589 01 01 00", "1518", "0106"],
+                ["104 589 01 01 00", "1522", "0104"],
+                ["104 589 01 43 00", "1522", "0103"],
+                ["107 589 01 43 12", "1518", "0106"],
+                ["110 589 01 01 00", "1518", "0106"],
+                ["110 589 03 59 00", "1518", "0103"],
+                ["110 589 11 21 00", "1508", "0104"],
+                ["111 589 00 40 00", "1518", "0106"],
+                ["111 589 00 91 00", "1522", "0106"],
+                ["111 589 01 40 00", "1518", "0106"],
+                ["111 589 02 01 00", "1518", "0106"],
+                ["111 589 03 09 00", "1518", "0106"],
+                ["111 589 03 15 00", "1518", "0106"],
+                ["111 589 03 15 00", "1523", "0507"],
+                ["111 589 04 15 00", "1522", "0104"],
+                ["111 589 08 43 00", "1518", "0106"],
+                ["111 589 25 61 00", "1522", "0307"],
+                ["112 589 00 01 00", "1518", "0107"],
+                ["112 589 00 25 00", "1518", "0107"],
+                ["112 589 00 32 00", "1518", "0107"],
+                ["112 589 00 40 00", "1518", "0107"],
+                ["112 589 00 40 00", "1522", "0107"],
+                ["112 589 00 62 00", "1523", "0106"],
+                ["112 589 01 03 00", "1518", "0107"],
+                ["112 589 01 03 00", "1522", "0106"],
+                ["112 589 01 32 00", "1518", "0107"],
+                ["112 589 03 31 00", "1522", "0402"],
+                ["112 589 03 40 00", "1518", "0107"],
+                ["112 589 03 40 00", "1522", "0105"],
+                ["112 589 09 61 00", "1518", "0107"],
+                ["112 589 10 61 00", "1518", "0107"],
+                ["113 589 00 40 00", "1518", "0107"],
+                ["115 589 03 59 00", "1522", "0208"],
+                ["115 589 08 07 00", "1518", "0108"],
+                ["115 589 15 21 00", "1508", "0104"],
+                ["115 589 20 33 03", "1518", "0108"],
+                ["116 589 02 07 00", "1522", "0107"],
+                ["116 589 02 34 00", "1518", "0108"],
+                ["117 589 02 07 00", "1518", "0108"],
+                ["119 589 00 43 00", "1522", "0104"],
+                ["119 589 01 14 00", "1522", "0206"],
+                ["120 589 02 01 00", "1518", "0108"],
+                ["120 589 06 21 00", "1508", "0104"],
+                ["120 589 07 21 00", "1508", "0104"],
+                ["120 589 14 07 00", "1518", "0108"],
+                ["123 589 01 03 00", "1518", "0108"],
+                ["123 589 01 09 00", "1522", "0403"],
+                ["123 589 01 10 00", "1518", "0108"],
+                ["123 589 01 10 00", "1522", "0104"],
+                ["123 589 02 10 00", "1518", "0108"],
+                ["123 589 02 21 00", "1518", "0109"],
+                ["123 589 04 21 21", "1522", "0301"],
+                ["124 589 00 09 00", "1522", "0104"],
+                ["124 589 00 21 00", "1518", "0109"],
+                ["124 589 00 37 00", "1522", "0104"],
+                ["124 589 02 15 00", "1522", "0103"],
+                ["124 589 03 33 00", "1518", "0109"],
+                ["124 589 05 43 01", "1522", "0103"],
+                ["124 589 05 43 02", "1522", "0103"],
+                ["124 589 05 43 04", "1522", "0103"],
+                ["124 589 06 21 00", "1518", "0109"],
+                ["124 589 17 63 00", "1518", "0109"],
+                ["124 589 17 63 00", "1522", "0104"],
+                ["124 589 19 21 00", "1518", "0110"],
+                ["124 589 19 21 00", "1522", "0305"],
+                ["124 589 19 63 00", "1523", "0106"],
+                ["124 589 33 63 00", "1518", "0110"],
+                ["124 589 33 63 00", "1523", "0102"],
+                ["124 589 35 63 00", "1518", "0110"],
+                ["124 589 35 63 00", "1523", "0102"],
+                ["126 589 00 01 00", "1518", "0110"],
+                ["126 589 00 01 00", "1522", "0107"],
+                ["126 589 00 10 00", "1522", "0107"],
+                ["126 589 00 15 00", "1518", "0110"],
+                ["126 589 00 40 00", "1522", "0403"],
+                ["126 589 03 15 00", "1522", "0109"],
+                ["126 589 09 21 00", "1522", "0305"],
+                ["126 589 13 63 00", "1522", "0301"],
+                ["126 589 14 21 00", "1522", "0305"],
+                ["129 589 00 21 00", "1518", "0201"],
+                ["129 589 00 91 00", "1522", "0108"],
+                ["129 589 00 91 12", "1518", "0201"],
+                ["129 589 01 07 00", "1518", "0201"],
+                ["129 589 01 21 00", "1518", "0202"],
+                ["129 589 01 21 00", "1523", "0308"],
+                ["129 589 03 43 00", "1518", "0202"],
+                ["129 589 03 43 03", "1518", "0202"],
+                ["129 589 03 43 05", "1518", "0202"],
+                ["129 589 03 43 07", "1518", "0202"],
+                ["129 589 04 63 00", "1523", "0207"],
+                ["129 589 06 21 04", "1508", "0105"],
+                ["129 589 06 21 08", "1518", "0202"],
+                ["129 589 10 63 00", "1518", "0202"],
+                ["129 589 10 63 00", "1522", "0104"],
+                ["129 589 12 63 00", "1522", "0102"],
+                ["137 589 00 33 00", "1518", "0203"],
+                ["137 589 00 63 00", "1522", "0108"],
+                ["139 589 00 62 00", "1518", "0203"],
+                ["139 589 00 62 00", "1522", "0202"],
+                ["139 589 01 40 00", "1518", "0203"],
+                ["139 589 01 40 00", "1522", "0202"],
+                ["140 589 00 07 00", "1522", "0104"],
+                ["140 589 00 09 00", "1518", "0203"],
+                ["140 589 00 09 00", "1522", "0104"],
+                ["140 589 00 33 00", "1518", "0203"],
+                ["140 589 00 37 00", "1518", "0203"],
+                ["140 589 00 37 00", "1522", "0104"],
+                ["140 589 00 63 00", "1518", "0204"],
+                ["140 589 00 63 00", "1522", "0104"],
+                ["140 589 01 33 00", "1518", "0204"],
+                ["140 589 01 33 00", "1522", "0104"],
+                ["140 589 02 33 00", "1518", "0204"],
+                ["140 589 04 09 00", "1518", "0204"],
+                ["140 589 04 34 00", "1518", "0204"],
+                ["140 589 06 31 00", "1522", "0206"],
+                ["140 589 06 63 00", "1522", "0308"],
+                ["140 589 08 15 00", "1522", "0103"],
+                ["140 589 08 43 08", "1522", "0206"],
+                ["140 589 09 33 00", "1518", "0204"],
+                ["140 589 10 33 00", "1522", "0103"],
+                ["140 589 11 63 00", "1518", "0204"],
+                ["140 589 14 63 00", "1518", "0204"],
+                ["140 589 18 63 00", "1518", "0204"],
+                ["140 589 21 63 00", "1522", "0102"],
+                ["140 589 22 63 00", "1522", "0102"],
+                ["140 589 34 23 00", "1522", "0102"],
+                ["140 589 39 63 00", "1518", "0205"],
+                ["140 589 39 63 00", "1523", "0204"],
+                ["140 589 45 63 00", "1518", "0205"],
+                ["140 589 45 63 00", "1523", "0109"],
+                ["140 589 50 63 00", "1518", "0205"],
+                ["140 589 51 63 00", "1523", "0106"],
+                ["156 589 00 32 00", "1522", "0105"],
+                ["156 589 00 61 00", "1522", "0105"],
+                ["156 589 01 63 00", "1522", "0105"],
+                ["163 589 00 14 00", "1522", "0105"],
+                ["163 589 00 15 00", "1522", "0203"],
+                ["163 589 00 43 01", "1522", "0206"],
+                ["163 589 00 43 02", "1522", "0206"],
+                ["163 589 00 43 03", "1522", "0206"],
+                ["163 589 00 43 04", "1522", "0206"],
+                ["163 589 01 15 00", "1522", "0105"],
+                ["163 589 01 43 00", "1518", "0205"],
+                ["163 589 01 43 00", "1522", "0105"],
+                ["163 589 01 63 00", "1522", "0102"],
+                ["163 589 01 91 00", "1518", "0205"],
+                ["163 589 02 15 00", "1522", "0107"],
+                ["163 589 02 43 01", "1522", "0107"],
+                ["163 589 02 43 02", "1522", "0107"],
+                ["163 589 02 63 00", "1522", "0102"],
+                ["163 589 03 15 00", "1522", "0107"],
+                ["163 589 03 43 00", "1518", "0205"],
+                ["163 589 03 43 00", "1522", "0106"],
+                ["163 589 04 15 00", "1522", "0206"],
+                ["164 589 03 63 00", "1518", "0205"],
+                ["164 589 04 15 00", "1522", "0110"],
+                ["166 589 00 03 00", "1508", "0107"],
+                ["166 589 00 14 00", "1518", "0206"],
+                ["166 589 00 33 00", "1522", "0102"],
+                ["166 589 00 40 00", "1518", "0206"],
+                ["166 589 01 40 00", "1518", "0206"],
+                ["166 589 01 63 00", "1518", "0206"],
+                ["166 589 01 63 00", "1522", "0102"],
+                ["166 589 01 91 00", "1522", "0108"],
+                ["167 589 00 09 00", "1522", "0209"],
+                ["167 589 00 40 00", "1508", "0106"],
+                ["167 589 00 40 00", "1522", "0204"],
+                ["167 589 01 62 00", "1518", "0206"],
+                ["167 589 01 62 00", "1522", "0204"],
+                ["167 589 01 63 00", "1523", "0507"],
+                ["167 589 06 43 00", "1518", "0206"],
+                ["167 589 06 43 00", "1522", "0208"],
+                ["168 589 00 15 00", "1518", "0206"],
+                ["168 589 00 15 00", "1522", "0103"],
+                ["168 589 00 43 00", "1522", "0206"],
+                ["168 589 00 91 00", "1518", "0206"],
+                ["168 589 00 91 00", "1522", "0102"],
+                ["168 589 01 14 00", "1518", "0206"],
+                ["168 589 01 15 00", "1518", "0206"],
+                ["168 589 01 21 00", "1508", "0107"],
+                ["168 589 01 37 00", "1518", "0206"],
+                ["168 589 01 37 00", "1522", "0102"],
+                ["168 589 01 43 00", "1522", "0203"],
+                ["168 589 02 31 00", "1522", "0102"],
+                ["168 589 02 43 00", "1522", "0205"],
+                ["168 589 02 63 00", "1518", "0601"],
+                ["168 589 03 43 00", "1522", "0102"],
+                ["168 589 04 63 00", "1518", "0207"],
+                ["168 589 04 63 00", "1522", "0102"],
+                ["168 589 06 14 00", "1522", "0104"],
+                ["168 589 06 23 00", "1522", "0103"],
+                ["168 589 08 15 00", "1522", "0206"],
+                ["168 589 08 63 00", "1522", "0107"],
+                ["168 589 15 15 00", "1522", "0103"],
+                ["168 589 43 00 00", "1522", "0206"],
+                ["169 589 00 03 00", "1518", "0207"],
+                ["169 589 00 37 00", "1518", "0207"],
+                ["169 589 00 40 00", "1518", "0207"],
+                ["169 589 00 62 00", "1518", "0207"],
+                ["169 589 00 91 00", "1518", "0207"],
+                ["169 589 02 31 00", "1518", "0207"],
+                ["169 589 02 31 00", "1522", "0105"],
+                ["169 589 02 31 10", "1522", "0104"],
+                ["169 589 02 63 00", "1518", "0601"],
+                ["172 589 00 63 00", "1518", "0601"],
+                ["176 589 00 15 00", "1522", "0107"],
+                ["176 589 00 40 00", "1508", "0107"],
+                ["176 589 01 15 00", "1522", "0107"],
+                ["177 589 00 21 00", "1518", "0207"],
+                ["177 589 00 21 00", "1522", "0107"],
+                ["177 589 00 23 00", "1518", "0207"],
+                ["177 589 00 31 00", "1523", "0503"],
+                ["177 589 00 32 00", "1518", "0601"],
+                ["177 589 00 32 00", "1523", "0503"],
+                ["177 589 00 37 00", "1518", "0207"],
+                ["177 589 00 37 00", "1523", "0503"],
+                ["177 589 00 40 00", "1518", "0208"],
+                ["177 589 00 40 00", "1522", "0105"],
+                ["177 589 00 43 00", "1518", "0208"],
+                ["177 589 00 43 00", "1522", "0107"],
+                ["177 589 00 61 00", "1518", "0208"],
+                ["177 589 00 61 00", "1522", "0105"],
+                ["177 589 00 62 00", "1518", "0208"],
+                ["177 589 00 62 00", "1522", "0108"],
+                ["177 589 00 63 00", "1518", "0208"],
+                ["177 589 00 63 00", "1522", "0102"],
+                ["177 589 01 31 00", "1523", "0501"],
+                ["177 589 01 63 00", "1518", "0208"],
+                ["177 589 01 63 00", "1523", "0102"],
+                ["177 589 02 32 00", "1518", "0208"],
+                ["177 589 02 32 00", "1523", "0503"],
+                ["177 589 03 15 00", "1518", "0208"],
+                ["177 589 03 15 00", "1522", "0207"],
+                ["177 589 03 32 00", "1518", "0208"],
+                ["177 589 03 32 00", "1523", "0503"],
+                ["177 589 03 62 00", "1518", "0208"],
+                ["177 589 03 62 00", "1522", "0207"],
+                ["177 589 03 63 00", "1518", "0209"],
+                ["177 589 03 63 00", "1523", "0503"],
+                ["177 589 04 15 00", "1522", "0110"],
+                ["177 589 05 15 00", "1518", "0209"],
+                ["177 589 05 15 00", "1522", "0208"],
+                ["177 589 06 15 00", "1518", "0209"],
+                ["177 589 06 15 00", "1522", "0208"],
+                ["190 589 01 15 00", "1518", "0209"],
+                ["200 589 00 40 00", "1518", "0209"],
+                ["200 589 00 40 00", "1523", "0406"],
+                ["200 589 00 43 00", "1518", "0209"],
+                ["200 589 00 43 00", "1523", "0406"],
+                ["200 589 00 91 00", "1518", "0209"],
+                ["200 589 00 91 00", "1523", "0405"],
+                ["200 589 02 43 00", "1518", "0209"],
+                ["200 589 02 43 00", "1523", "0406"],
+                ["201 589 00 01 00", "1518", "0209"],
+                ["201 589 00 33 01", "1518", "0209"],
+                ["201 589 00 33 02", "1518", "0209"],
+                ["201 589 01 33 00", "1518", "0209"],
+                ["201 589 03 43 04", "1518", "0209"],
+                ["201 589 05 63 00", "1518", "0210"],
+                ["201 589 06 33 12", "1522", "0103"],
+                ["201 589 08 15 00", "1518", "0210"],
+                ["201 589 10 23 00", "1522", "0104"],
+                ["201 589 10 43 00", "1518", "0210"],
+                ["201 589 13 21 00", "1518", "0201"],
+                ["202 589 00 07 00", "1518", "0210"],
+                ["202 589 00 10 00", "1522", "0107"],
+                ["202 589 00 14 00", "1518", "0210"],
+                ["202 589 00 14 00", "1522", "0107"],
+                ["202 589 00 43 01", "1518", "0210"],
+                ["202 589 00 43 02", "1518", "0210"],
+                ["202 589 00 61 00", "1522", "0104"],
+                ["202 589 00 90 00", "1518", "0210"],
+                ["202 589 01 21 00", "1522", "0102"],
+                ["202 589 01 37 00", "1518", "0210"],
+                ["202 589 01 63 00", "1508", "0110"],
+                ["202 589 02 31 00", "1518", "0210"],
+                ["202 589 04 43 02", "1522", "0206"],
+                ["202 589 04 43 03", "1522", "0103"],
+                ["202 589 04 43 05", "1522", "0103"],
+                ["202 589 04 43 06", "1518", "0604"],
+                ["202 589 04 43 07", "1522", "0206"],
+                ["202 589 04 43 10", "1518", "0210"],
+                ["202 589 04 43 10", "1522", "0103"],
+                ["202 589 04 63 00", "1508", "0109"],
+                ["202 589 04 63 00", "1522", "0103"],
+                ["202 589 05 63 00", "1508", "0110"],
+                ["202 589 05 63 00", "1523", "0108"],
+                ["202 589 08 63 00", "1523", "0102"],
+                ["202 589 11 63 00", "1518", "0301"],
+                ["202 589 11 63 00", "1522", "0103"],
+                ["202 589 13 63 00", "1518", "0301"],
+                ["202 589 14 63 01", "1518", "0301"],
+                ["202 589 15 63 00", "1508", "0109"],
+                ["202 589 15 63 00", "1523", "0104"],
+                ["203 589 00 07 00", "1518", "0301"],
+                ["203 589 00 07 00", "1522", "0106"],
+                ["203 589 00 10 00", "1518", "0301"],
+                ["203 589 00 10 00", "1522", "0106"],
+                ["203 589 00 26 00", "1522", "0105"],
+                ["203 589 00 33 00", "1518", "0601"],
+                ["203 589 00 40 00", "1508", "0107"],
+                ["203 589 00 43 04", "1522", "0102"],
+                ["203 589 01 07 00", "1518", "0301"],
+                ["203 589 01 10 00", "1522", "0107"],
+                ["203 589 01 31 00", "1518", "0602"],
+                ["203 589 01 43 01", "1522", "0107"],
+                ["203 589 01 43 02", "1522", "0107"],
+                ["203 589 01 63 00", "1518", "0601"],
+                ["203 589 06 63 00", "1518", "0301"],
+                ["203 589 07 63 00", "1518", "0301"],
+                ["203 589 07 63 00", "1522", "0306"],
+                ["204 589 00 09 00", "1518", "0301"],
+                ["204 589 00 16 00", "1508", "0107"],
+                ["204 589 00 16 00", "1522", "0107"],
+                ["204 589 00 43 01", "1522", "0103"],
+                ["204 589 00 43 02", "1522", "0103"],
+                ["204 589 00 43 03", "1522", "0103"],
+                ["204 589 00 43 04", "1522", "0103"],
+                ["204 589 00 43 05", "1522", "0104"],
+                ["204 589 00 43 07", "1522", "0103"],
+                ["204 589 00 43 08", "1522", "0103"],
+                ["204 589 00 43 09", "1522", "0103"],
+                ["204 589 00 43 10", "1522", "0103"],
+                ["204 589 00 43 11", "1522", "0103"],
+                ["204 589 00 63 00", "1518", "0602"],
+                ["204 589 01 43 02", "1522", "0107"],
+                ["204 589 01 43 03", "1522", "0107"],
+                ["204 589 01 43 04", "1522", "0107"],
+                ["204 589 01 63 00", "1522", "0102"],
+                ["204 589 02 63 00", "1518", "0602"],
+                ["204 589 03 63 00", "1518", "0301"],
+                ["204 589 03 63 00", "1522", "0102"],
+                ["204 589 04 63 00", "1518", "0301"],
+                ["205 589 00 07 00", "1518", "0302"],
+                ["205 589 00 15 00", "1518", "0302"],
+                ["205 589 00 15 00", "1523", "0406"],
+                ["205 589 00 21 00", "1518", "0302"],
+                ["205 589 00 21 00", "1523", "0404"],
+                ["205 589 00 63 00", "1508", "0110"],
+                ["205 589 01 15 00", "1518", "0302"],
+                ["205 589 01 63 00", "1523", "0504"],
+                ["206 588 01 32 00", "1518", "0302"],
+                ["206 588 01 32 00", "1523", "0505"],
+                ["206 589 00 15 00", "1518", "0302"],
+                ["206 589 00 15 00", "1523", "0505"],
+                ["206 589 00 21 00", "1518", "0302"],
+                ["206 589 00 21 00", "1523", "0505"],
+                ["208 589 00 15 00", "1523", "0505"],
+                ["210 589 00 07 00", "1518", "0302"],
+                ["210 589 00 09 00", "1518", "0302"],
+                ["210 589 00 15 00", "1522", "0206"],
+                ["210 589 00 40 00", "1522", "0104"],
+                ["210 589 00 63 00", "1508", "0109"],
+                ["210 589 00 63 00", "1523", "0106"],
+                ["210 589 00 66 01", "1522", "0106"],
+                ["210 589 00 66 02", "1522", "0106"],
+                ["210 589 00 71 00", "1518", "0302"],
+                ["210 589 00 71 00", "1523", "0306"],
+                ["210 589 00 91 00", "1518", "0501"],
+                ["210 589 01 16 00", "1522", "0105"],
+                ["210 589 01 43 01", "1518", "0303"],
+                ["210 589 01 43 02", "1518", "0303"],
+                ["210 589 01 43 03", "1518", "0303"],
+                ["210 589 01 43 05", "1518", "0303"],
+                ["210 589 01 43 06", "1518", "0303"],
+                ["210 589 01 43 07", "1518", "0303"],
+                ["210 589 01 43 08", "1518", "0303"],
+                ["210 589 01 63 00", "1508", "0110"],
+                ["210 589 02 21 00", "1518", "0304"],
+                ["210 589 02 21 00", "1523", "0103"],
+                ["210 589 02 40 00", "1522", "0103"],
+                ["210 589 02 43 00", "1518", "0303"],
+                ["210 589 02 43 00", "1522", "0403"],
+                ["210 589 02 43 05", "1518", "0303"],
+                ["210 589 02 43 06", "1518", "0303"],
+                ["210 589 02 43 09", "1518", "0303"],
+                ["210 589 02 43 11", "1518", "0303"],
+                ["210 589 02 43 12", "1518", "0303"],
+                ["210 589 02 43 14", "1518", "0303"],
+                ["210 589 02 43 15", "1518", "0303"],
+                ["210 589 02 43 16", "1518", "0303"],
+                ["210 589 03 15 00", "1522", "0206"],
+                ["210 589 03 21 00", "1518", "0304"],
+                ["210 589 03 21 00", "1522", "0103"],
+                ["210 589 03 63 00", "1518", "0304"],
+                ["210 589 04 33 00", "1522", "0102"],
+                ["210 589 04 63 00", "1522", "0104"],
+                ["210 589 11 63 00", "1508", "0109"],
+                ["210 589 11 63 00", "1523", "0109"],
+                ["211 589 00 03 00", "1523", "0108"],
+                ["211 589 00 05 00", "1518", "0304"],
+                ["211 589 00 09 00", "1518", "0304"],
+                ["211 589 00 15 00", "1522", "0103"],
+                ["211 589 00 31 00", "1522", "0104"],
+                ["211 589 00 34 02", "1522", "0103"],
+                ["211 589 00 63 00", "1522", "0102"],
+                ["211 589 01 03 00", "1522", "0107"],
+                ["211 589 01 63 00", "1518", "0603"],
+                ["211 589 02 21 00", "1518", "0304"],
+                ["211 589 02 21 00", "1522", "0306"],
+                ["211 589 03 21 00", "1518", "0305"],
+                ["211 589 03 63 00", "1518", "0305"],
+                ["211 589 04 21 02", "1518", "0305"],
+                ["211 589 04 21 02", "1522", "0303"],
+                ["211 589 04 21 03", "1518", "0305"],
+                ["211 589 04 21 05", "1518", "0305"],
+                ["212 589 00 31 00", "1522", "0301"],
+                ["212 589 00 63 00", "1518", "0603"],
+                ["212 589 00 90 00", "1518", "0305"],
+                ["212 589 03 63 00", "1522", "0102"],
+                ["212 589 04 63 00", "1518", "0305"],
+                ["212 589 04 63 00", "1522", "0107"],
+                ["213 589 00 90 00", "1518", "0305"],
+                ["213 589 00 90 00", "1523", "0405"],
+                ["215 589 00 09 00", "1522", "0104"],
+                ["215 589 01 63 01", "1523", "0106"],
+                ["215 589 01 63 11", "1523", "0106"],
+                ["215 589 01 63 16", "1523", "0106"],
+                ["220 589 00 01 00", "1522", "0107"],
+                ["220 589 00 07 00", "1518", "0306"],
+                ["220 589 00 07 00", "1522", "0104"],
+                ["220 589 00 33 00", "1518", "0306"],
+                ["220 589 00 43 00", "1522", "0106"],
+                ["220 589 00 43 02", "1522", "0106"],
+                ["220 589 00 61 00", "1522", "0309"],
+                ["220 589 00 99 00", "1518", "0306"],
+                ["220 589 00 99 02", "1523", "0505"],
+                ["220 589 00 99 04", "1522", "0102"],
+                ["220 589 00 99 10", "1523", "0505"],
+                ["220 589 00 99 31", "1522", "0102"],
+                ["220 589 00 99 32", "1522", "0102"],
+                ["220 589 00 99 34", "1522", "0102"],
+                ["220 589 00 99 35", "1522", "0102"],
+                ["220 589 00 99 36", "1522", "0102"],
+                ["220 589 00 99 37", "1518", "0306"],
+                ["220 589 00 99 37", "1522", "0102"],
+                ["220 589 00 99 38", "1518", "0306"],
+                ["220 589 00 99 38", "1522", "0102"],
+                ["220 589 00 99 39", "1518", "0306"],
+                ["220 589 00 99 39", "1522", "0102"],
+                ["220 589 01 99 25", "1522", "0203"],
+                ["220 589 01 99 40", "1522", "0304"],
+                ["220 589 01 99 50", "1518", "0306"],
+                ["220 589 02 31 00", "1522", "0102"],
+                ["220 589 02 43 01", "1522", "0102"],
+                ["220 589 02 43 03", "1522", "0102"],
+                ["220 589 02 63 00", "1522", "0102"],
+                ["220 589 03 43 00", "1518", "0306"],
+                ["220 589 04 43 00", "1522", "0102"],
+                ["220 589 04 43 01", "1522", "0107"],
+                ["220 589 04 43 02", "1522", "0107"],
+                ["220 589 04 99 11", "1522", "0304"],
+                ["220 589 04 99 34", "1522", "0304"],
+                ["220 589 05 99 00", "1518", "0306"],
+                ["220 589 06 43 01", "1522", "0103"],
+                ["220 589 06 43 02", "1522", "0103"],
+                ["220 589 06 43 03", "1522", "0103"],
+                ["220 589 06 43 04", "1518", "0307"],
+                ["220 589 06 43 04", "1522", "0103"],
+                ["220 589 06 43 05", "1522", "0103"],
+                ["220 589 06 43 06", "1522", "0103"],
+                ["220 589 06 43 08", "1518", "0307"],
+                ["220 589 07 43 00", "1518", "0307"],
+                ["221 589 00 31 00", "1518", "0307"],
+                ["221 589 00 31 00", "1522", "0108"],
+                ["221 589 00 33 00", "1518", "0307"],
+                ["221 589 00 43 01", "1522", "0206"],
+                ["221 589 00 43 02", "1522", "0206"],
+                ["221 589 00 43 03", "1522", "0206"],
+                ["221 589 00 43 04", "1522", "0206"],
+                ["221 589 00 43 05", "1522", "0203"],
+                ["221 589 00 43 06", "1522", "0206"],
+                ["221 589 00 43 07", "1522", "0206"],
+                ["221 589 00 43 08", "1522", "0206"],
+                ["221 589 00 43 09", "1522", "0206"],
+                ["221 589 00 43 10", "1522", "0203"],
+                ["221 589 00 43 11", "1522", "0206"],
+                ["221 589 01 33 00", "1518", "0307"],
+                ["221 589 01 33 00", "1522", "0105"],
+                ["221 589 01 43 02", "1522", "0103"],
+                ["221 589 01 43 03", "1522", "0103"],
+                ["221 589 01 43 04", "1522", "0103"],
+                ["221 589 01 43 05", "1522", "0103"],
+                ["221 589 01 43 06", "1522", "0103"],
+                ["221 589 01 43 07", "1522", "0103"],
+                ["221 589 01 43 08", "1522", "0103"],
+                ["221 589 01 62 00", "1523", "0106"],
+                ["221 589 01 98 00", "1518", "0307"],
+                ["221 589 03 09 00", "1522", "0106"],
+                ["221 589 04 33 00", "1518", "0307"],
+                ["221 589 04 33 00", "1518", "0306"],
+                ["221 589 04 33 02", "1522", "0507"],
+                ["221 589 04 33 03", "1522", "0104"],
+                ["221 589 05 63 00", "1518", "0307"],
+                ["221 589 05 63 00", "1522", "0107"],
+                ["222 589 00 63 00", "1508", "0110"],
+                ["222 589 04 63 00", "1522", "0109"],
+                ["222 589 05 63 00", "1518", "0307"],
+                ["222 589 06 63 00", "1518", "0307"],
+                ["223 586 00 63 00", "1518", "0306"],
+                ["223 589 00 15 00", "1518", "0307"],
+                ["223 589 01 63 00", "1523", "0201"],
+                ["230 589 00 21 00", "1522", "0104"],
+                ["230 589 00 33 00", "1522", "0103"],
+                ["230 589 00 61 00", "1522", "0104"],
+                ["230 589 01 63 00", "1522", "0107"],
+                ["230 589 04 63 00", "1518", "0306"],
+                ["230 589 04 63 00", "1523", "0306"],
+                ["230 589 11 63 00", "1518", "0603"],
+                ["230 589 12 63 00", "1508", "0105"],
+                ["231 589 00 21 00", "1518", "0307"],
+                ["231 589 00 21 00", "1522", "0107"],
+                ["235 589 00 21 00", "1518", "0501"],
+                ["242 589 00 63 00", "1518", "0307"],
+                ["243 588 00 32 00", "1523", "0603"],
+                ["243 589 00 91 00", "1518", "0307"],
+                ["243 589 00 91 00", "1523", "0606"],
+                ["246 589 00 09 00", "1518", "0307"],
+                ["246 589 00 33 00", "1518", "0307"],
+                ["246 589 00 33 06", "1518", "0307"],
+                ["246 589 00 40 00", "1518", "0307"],
+                ["246 589 00 63 00", "1518", "0603"],
+                ["246 589 01 33 00", "1518", "0307"],
+                ["246 589 01 33 00", "1522", "0105"],
+                ["246 589 01 63 00", "1518", "0603"],
+                ["253 589 00 15 00", "1518", "0308"],
+                ["254 586 00 43 00", "1523", "0402"],
+                ["254 589 00 23 00", "1518", "0304"],
+                ["254 589 01 15 00", "1518", "0308"],
+                ["254 589 01 15 00", "1523", "0404"],
+                ["254 589 01 15 00", "1523", "0404"],
+                ["254 589 01 33 00", "1518", "0307"],
+                ["256 589 00 63 00", "1518", "0307"],
+                ["256 589 00 63 00", "1522", "0507"],
+                ["256 589 01 33 00", "1522", "0209"],
+                ["256 589 01 91 00", "1522", "0507"],
+                ["266 589 00 31 00", "1518", "0308"],
+                ["266 589 00 61 00", "1518", "0308"],
+                ["270 589 00 07 00", "1508", "0107"],
+                ["270 589 00 15 00", "1518", "0308"],
+                ["270 589 00 15 00", "1523", "0404"],
+                ["270 589 00 40 00", "1518", "0308"],
+                ["270 589 00 40 00", "1523", "0106"],
+                ["270 589 00 63 00", "1518", "0308"],
+                ["270 589 00 63 00", "1523", "0106"],
+                ["270 589 00 91 00", "1522", "0203"],
+                ["270 589 01 61 00", "1522", "0104"],
+                ["270 589 01 63 00", "1518", "0308"],
+                ["270 589 01 63 00", "1522", "0108"],
+                ["270 589 01 91 00", "1518", "0308"],
+                ["270 589 01 91 00", "1522", "0108"],
+                ["270 589 02 91 00", "1523", "0308"],
+                ["271 589 00 10 00", "1522", "0104"],
+                ["271 589 00 15 00", "1522", "0104"],
+                ["271 589 00 33 00", "1522", "0104"],
+                ["271 589 00 61 00", "1522", "0104"],
+                ["271 589 00 63 00", "1523", "0208"],
+                ["271 589 01 62 00", "1518", "0309"],
+                ["271 589 01 62 00", "1523", "0106"],
+                ["271 589 01 91 00", "1518", "0309"],
+                ["271 589 01 91 00", "1522", "0105"],
+                ["271 589 02 33 00", "1518", "0309"],
+                ["271 589 02 33 00", "1522", "0109"],
+                ["271 589 03 40 00", "1508", "0106"],
+                ["271 589 04 63 00", "1518", "0309"],
+                ["272 589 00 07 00", "1508", "0106"],
+                ["272 589 00 07 00", "1522", "0104"],
+                ["272 589 00 33 99", "1508", "0106"],
+                ["272 589 00 43 00", "1522", "0104"],
+                ["272 589 01 33 00", "1518", "0309"],
+                ["272 589 01 33 00", "1522", "0107"],
+                ["272 589 01 61 00", "1518", "0309"],
+                ["272 589 01 61 00", "1523", "0106"],
+                ["272 589 02 07 00", "1508", "0107"],
+                ["272 589 02 33 00", "1522", "0104"],
+                ["272 589 02 63 00", "1518", "0309"],
+                ["272 589 02 91 00", "1518", "0309"],
+                ["272 589 06 63 00", "1518", "0309"],
+                ["272 589 06 63 00", "1522", "0105"],
+                ["273 589 00 43 00", "1518", "0309"],
+                ["273 589 00 91 00", "1522", "0202"],
+                ["274 589 00 63 00", "1518", "0309"],
+                ["276 589 00 63 00", "1518", "0310"],
+                ["276 589 00 63 00", "1522", "0102"],
+                ["276 589 01 91 00", "1518", "0310"],
+                ["276 589 01 91 00", "1522", "0105"],
+                ["276 589 02 91 00", "1523", "0106"],
+                ["276 589 03 91 00", "1522", "0108"],
+                ["278 589 00 09 00", "1522", "0108"],
+                ["278 589 00 15 00", "1518", "0310"],
+                ["278 589 00 15 00", "1523", "0106"],
+                ["278 589 00 15 03", "1518", "0310"],
+                ["278 589 00 33 00", "1518", "0310"],
+                ["278 589 00 33 00", "1522", "0104"],
+                ["278 589 00 40 00", "1518", "0310"],
+                ["278 589 00 40 00", "1522", "0105"],
+                ["278 589 00 91 00", "1522", "0202"],
+                ["278 589 01 15 00", "1518", "0310"],
+                ["278 589 01 15 00", "1522", "0104"],
+                ["278 589 01 15 02", "1522", "0104"],
+                ["278 589 01 15 03", "1522", "0104"],
+                ["282 589 00 40 00", "1518", "0310"],
+                ["282 589 00 40 00", "1522", "0409"],
+                ["282 589 00 43 00", "1518", "0310"],
+                ["282 589 00 43 00", "1522", "0505"],
+                ["282 589 01 04 00", "1522", "0505"],
+                ["282 589 01 40 00", "1518", "0310"],
+                ["285 589 00 21 00", "1518", "0501"],
+                ["285 589 01 21 00", "1518", "0301"],
+                ["285 589 01 21 00", "1522", "0308"],
+                ["290 589 00 15 00", "1518", "0401"],
+                ["290 589 00 15 00", "1522", "0110"],
+                ["290 589 01 15 00", "1518", "0401"],
+                ["290 589 01 15 00", "1522", "0110"],
+                ["292 589 00 40 00", "1518", "0401"],
+                ["292 589 00 40 00", "1522", "0107"],
+                ["293 589 00 23 00", "1508", "0101"],
+                ["293 589 00 43 00", "1523", "0602"],
+                ["293 589 01 43 00", "1523", "0606"],
+                ["312 589 00 07 00", "1522", "0107"],
+                ["312 589 00 61 00", "1518", "0401"],
+                ["312 589 03 07 04", "1518", "0401"],
+                ["314 589 01 03 00", "1518", "0401"],
+                ["314 589 01 33 00", "1518", "0401"],
+                ["314 589 01 61 00", "1518", "0401"],
+                ["318 589 00 35 00", "1518", "0401"],
+                ["321 589 04 33 00", "1518", "0604"],
+                ["343 589 00 33 01", "1518", "0604"],
+                ["346 589 00 33 00", "1518", "0401"],
+                ["385 589 00 07 00", "1518", "0401"],
+                ["385 589 03 63 00", "1522", "0104"],
+                ["385 589 04 07 00", "1518", "0604"],
+                ["403 589 00 13 00", "1518", "0604"],
+                ["403 589 00 31 00", "1518", "0604"],
+                ["403 589 00 33 01", "1518", "0604"],
+                ["403 589 02 03 00", "1518", "0604"],
+                ["403 589 02 63 00", "1518", "0401"],
+                ["405 589 00 91 00", "1518", "0402"],
+                ["415 589 00 61 00", "1518", "0402"],
+                ["415 589 00 61 00", "1522", "0209"],
+                ["415 589 00 91 00", "1518", "0402"],
+                ["442 589 00 03 00", "1518", "0604"],
+                ["447 588 00 31 00", "1523", "0402"],
+                ["447 589 00 62 00", "1508", "0105"],
+                ["447 589 00 62 00", "1523", "0403"],
+                ["447 589 00 62 08", "1518", "0402"],
+                ["447 589 00 98 00", "1518", "0402"],
+                ["447 589 01 31 00", "1518", "0402"],
+                ["447 589 01 31 00", "1522", "0404"],
+                ["447 589 04 15 00", "1518", "0402"],
+                ["447 589 04 15 00", "1522", "0110"],
+                ["447 589 05 15 00", "1518", "0402"],
+                ["447 589 05 15 00", "1522", "0110"],
+                ["450 589 17 21 00", "1522", "0204"],
+                ["453 589 03 63 00", "1523", "0608"],
+                ["460 589 00 07 00", "1518", "0403"],
+                ["463 589 01 23 00", "1523", "0604"],
+                ["463 589 02 31 00", "1518", "0403"],
+                ["463 589 02 31 00", "1522", "0301"],
+                ["463 589 04 23 00", "1522", "0101"],
+                ["470 586 00 17 00", "1523", "0304"],
+                ["470 589 00 15 00", "1524", "0110"],
+                ["470 589 00 91 00", "1522", "0508"],
+                ["470 589 01 07 00", "1518", "0403"],
+                ["470 589 01 07 00", "1523", "0303"],
+                ["470 589 01 16 00", "1508", "0106"],
+                ["470 589 01 16 00", "1523", "0303"],
+                ["470 589 01 33 00", "1522", "0409"],
+                ["470 589 01 34 00", "1522", "0604"],
+                ["470 589 01 62 00", "1522", "0608"],
+                ["470 589 02 37 00", "1518", "0403"],
+                ["470 589 03 09 00", "1522", "0501"],
+                ["470 589 04 14 00", "1518", "0403"],
+                ["470 589 04 14 00", "1522", "0508"],
+                ["470 589 04 21 00", "1522", "0404"],
+                ["470 589 04 23 00", "1522", "0604"],
+                ["470 589 06 15 00", "1518", "0403"],
+                ["470 589 07 15 00", "1518", "0403"],
+                ["470 589 07 15 00", "1523", "0306"],
+                ["470 589 07 91 00", "1523", "0305"],
+                ["470 589 08 15 00", "1518", "0403"],
+                ["470 589 08 15 00", "1523", "0303"],
+                ["470 589 10 15 00", "1518", "0404"],
+                ["470 589 10 15 00", "1523", "0303"],
+                ["470 589 10 91 00", "1523", "0303"],
+                ["470 589 11 15 00", "1518", "0404"],
+                ["470 589 11 15 00", "1523", "0303"],
+                ["470 589 12 15 00", "1518", "0404"],
+                ["470 589 12 15 00", "1523", "0305"],
+                ["470 589 12 40 00", "1523", "0305"],
+                ["470 589 12 91 00", "1522", "0608"],
+                ["470 589 14 15 00", "1518", "0404"],
+                ["470 589 14 15 00", "1522", "0507"],
+                ["470 589 18 91 00", "1522", "0507"],
+                ["470 589 26 91 00", "1518", "0404"],
+                ["470 589 26 91 00", "1522", "0109"],
+                ["601 589 00 01 00", "1518", "0404"],
+                ["601 589 00 08 00", "1518", "0604"],
+                ["601 589 00 10 00", "1518", "0404"],
+                ["601 589 02 40 00", "1518", "0404"],
+                ["601 589 03 07 00", "1518", "0604"],
+                ["601 589 04 33 00", "1518", "0604"],
+                ["601 589 05 21 00", "1518", "0404"],
+                ["602 589 00 07 00", "1508", "0107"],
+                ["602 589 00 10 00", "1518", "0404"],
+                ["602 589 00 10 00", "1522", "0106"],
+                ["602 589 00 15 00", "1518", "0604"],
+                ["602 589 00 15 00", "1522", "0206"],
+                ["602 589 00 33 00", "1518", "0404"],
+                ["602 589 00 33 01", "1518", "0404"],
+                ["602 589 00 33 02", "1522", "0106"],
+                ["602 589 00 40 00", "1518", "0404"],
+                ["602 589 00 98 00", "1522", "0410"],
+                ["602 589 01 40 00", "1522", "0104"],
+                ["602 589 02 33 00", "1522", "0106"],
+                ["602 589 05 63 01", "1523", "0106"],
+                ["603 589 00 40 00", "1508", "0108"],
+                ["603 589 01 40 00", "1522", "0105"],
+                ["604 589 00 21 00", "1522", "0106"],
+                ["604 589 00 40 00", "1522", "0104"],
+                ["604 589 00 43 00", "1522", "0104"],
+                ["604 589 00 63 00", "1518", "0105"],
+                ["604 589 01 09 00", "1518", "0404"],
+                ["604 589 01 09 00", "1522", "0106"],
+                ["605 589 00 33 00", "1518", "0404"],
+                ["605 589 00 90 00", "1522", "0205"],
+                ["606 589 00 09 00", "1518", "0405"],
+                ["606 589 01 09 00", "1522", "0106"],
+                ["607 589 00 15 00", "1523", "0507"],
+                ["607 589 00 31 00", "1522", "0108"],
+                ["607 589 00 43 00", "1518", "0405"],
+                ["607 589 00 43 00", "1523", "0308"],
+                ["607 589 00 91 00", "1518", "0405"],
+                ["607 589 00 91 00", "1522", "0105"],
+                ["607 589 01 15 00", "1518", "0405"],
+                ["607 589 01 15 00", "1523", "0507"],
+                ["607 589 01 40 00", "1518", "0405"],
+                ["607 589 01 63 00", "1518", "0405"],
+                ["607 589 01 91 00", "1518", "0405"],
+                ["607 589 01 91 00", "1523", "0106"],
+                ["607 589 02 63 00", "1518", "0405"],
+                ["607 589 02 91 00", "1518", "0405"],
+                ["607 589 02 91 00", "1522", "0105"],
+                ["607 589 03 43 00", "1518", "0405"],
+                ["607 589 03 43 00", "1523", "0308"],
+                ["607 589 03 63 00", "1518", "0405"],
+                ["607 589 03 91 00", "1518", "0405"],
+                ["607 589 03 91 00", "1523", "0405"],
+                ["607 589 04 63 00", "1518", "0405"],
+                ["607 589 04 63 00", "1522", "0102"],
+                ["607 589 04 91 00", "1518", "0405"],
+                ["607 589 04 91 00", "1522", "0109"],
+                ["608 589 00 15 00", "1518", "0406"],
+                ["608 589 00 15 00", "1522", "0209"],
+                ["608 589 00 61 00", "1518", "0406"],
+                ["608 589 00 63 00", "1523", "0302"],
+                ["608 589 00 91 00", "1518", "0406"],
+                ["608 589 00 91 00", "1523", "0302"],
+                ["608 589 01 40 00", "1518", "0406"],
+                ["608 589 01 40 00", "1522", "0505"],
+                ["611 589 00 09 00", "1522", "0107"],
+                ["611 589 00 14 00", "1518", "0406"],
+                ["611 589 00 14 00", "1523", "0404"],
+                ["611 589 00 21 00", "1518", "0406"],
+                ["611 589 00 25 00", "1518", "0406"],
+                ["611 589 00 33 00", "1518", "0406"],
+                ["611 589 00 40 00", "1508", "0109"],
+                ["611 589 00 63 01", "1518", "0105"],
+                ["611 589 00 90 00", "1518", "0406"],
+                ["611 589 01 14 00", "1522", "0105"],
+                ["611 589 01 21 00", "1518", "0406"],
+                ["611 589 01 33 00", "1518", "0407"],
+                ["611 589 01 40 00", "1522", "0104"],
+                ["611 589 01 63 00", "1518", "0105"],
+                ["611 589 02 21 00", "1518", "0407"],
+                ["611 589 02 21 00", "1522", "0306"],
+                ["611 589 02 33 00", "1522", "0107"],
+                ["611 589 02 63 00", "1518", "0407"],
+                ["611 589 02 63 00", "1522", "0106"],
+                ["611 589 03 63 00", "1522", "0102"],
+                ["611 589 04 21 00", "1518", "0407"],
+                ["611 589 04 63 00", "1518", "0105"],
+                ["611 589 05 21 00", "1518", "0407"],
+                ["611 589 07 63 00", "1518", "0407"],
+                ["612 589 00 01 00", "1508", "0109"],
+                ["613 589 01 40 00", "1508", "0108"],
+                ["615 589 00 01 00", "1518", "0408"],
+                ["615 589 00 03 00", "1518", "0604"],
+                ["615 589 00 07 00", "1518", "0408"],
+                ["615 589 00 33 00", "1518", "0604"],
+                ["617 589 04 21 00", "1518", "0408"],
+                ["617 589 09 21 00", "1518", "0408"],
+                ["617 589 10 21 00", "1518", "0409"],
+                ["623 589 01 61 00", "1518", "0605"],
+                ["625 589 00 21 00", "1518", "0605"],
+                ["625 589 01 21 00", "1523", "0106"],
+                ["626 589 00 15 00", "1518", "0409"],
+                ["626 589 00 15 00", "1523", "0507"],
+                ["626 589 00 40 00", "1518", "0409"],
+                ["626 589 00 40 00", "1518", "0505"],
+                ["626 589 00 61 00", "1518", "0409"],
+                ["626 589 00 61 00", "1523", "0408"],
+                ["626 589 01 91 00", "1523", "0407"],
+                ["626 589 02 40 00", "1508", "0105"],
+                ["626 589 02 40 00", "1523", "0407"],
+                ["626 589 02 40 03", "1518", "0409"],
+                ["626 589 03 40 00", "1518", "0409"],
+                ["626 589 03 40 00", "1523", "0408"],
+                ["626 589 04 40 00", "1518", "0409"],
+                ["626 589 04 40 00", "1523", "0408"],
+                ["628 589 00 40 00", "1518", "0409"],
+                ["628 589 01 40 00", "1518", "0410"],
+                ["628 589 02 40 00", "1518", "0410"],
+                ["628 589 03 40 00", "1522", "0104"],
+                ["638 581 00 67 00", "1518", "0410"],
+                ["638 589 00 15 00", "1518", "0605"],
+                ["638 589 00 21 00", "1518", "0410"],
+                ["638 589 01 21 00", "1518", "0410"],
+                ["638 589 01 43 00", "1518", "0605"],
+                ["638 589 01 63 00", "1518", "0501"],
+                ["638 589 02 23 00", "1518", "0605"],
+                ["638 589 05 63 00", "1508", "0110"],
+                ["639 583 02 45 00", "1518", "0505"],
+                ["639 589 00 63 00", "1518", "0602"],
+                ["639 589 00 91 00", "1518", "0501"],
+                ["639 589 01 07 00", "1518", "0501"],
+                ["639 589 02 63 00", "1518", "0502"],
+                ["639 589 09 62 00", "1508", "0106"],
+                ["639 589 11 63 00", "1518", "0502"],
+                ["642 589 00 09 00", "1518", "0505"],
+                ["642 589 00 21 00", "1518", "0502"],
+                ["642 589 00 31 00", "1522", "0104"],
+                ["642 589 00 40 00", "1508", "0108"],
+                ["642 589 00 63 00", "1518", "0502"],
+                ["642 589 01 33 00", "1518", "0502"],
+                ["642 589 01 33 00", "1522", "0105"],
+                ["642 589 01 40 00", "1522", "0104"],
+                ["642 589 01 63 00", "1523", "0106"],
+                ["642 589 01 91 00", "1518", "0502"],
+                ["642 589 01 91 00", "1522", "0202"],
+                ["642 589 02 63 00", "1518", "0502"],
+                ["642 589 02 63 00", "1522", "0108"],
+                ["642 589 02 63 08", "1522", "0108"],
+                ["642 589 03 63 00", "1522", "0107"],
+                ["642 589 04 40 00", "1522", "0104"],
+                ["645 589 05 63 00", "1518", "0503"],
+                ["645 589 06 63 00", "1518", "0605"],
+                ["646 589 00 63 00", "1518", "0503"],
+                ["646 589 00 91 00", "1518", "0503"],
+                ["646 589 01 63 00", "1518", "0503"],
+                ["646 589 01 63 00", "1522", "0102"],
+                ["646 589 02 21 00", "1518", "0503"],
+                ["646 589 02 21 00", "1522", "0105"],
+                ["646 589 02 63 00", "1518", "0503"],
+                ["646 589 02 63 00", "1522", "0102"],
+                ["646 589 03 63 00", "1518", "0503"],
+                ["646 589 03 63 00", "1522", "0102"],
+                ["646 589 04 63 00", "1518", "0503"],
+                ["646 589 04 63 00", "1522", "0102"],
+                ["651 116 50 99 00", "1522", "0509"],
+                ["651 589 00 07 00", "1522", "0107"],
+                ["651 589 00 09 00", "1518", "0503"],
+                ["651 589 00 09 00", "1522", "0104"],
+                ["651 589 00 33 00", "1518", "0503"],
+                ["651 589 00 40 00", "1518", "0503"],
+                ["651 589 00 40 00", "1522", "0207"],
+                ["651 589 00 61 00", "1518", "0503"],
+                ["651 589 00 61 00", "1522", "0105"],
+                ["651 589 00 63 00", "1518", "0503"],
+                ["651 589 01 40 00", "1522", "0206"],
+                ["651 589 01 61 00", "1518", "0504"],
+                ["651 589 01 61 00", "1522", "0102"],
+                ["651 589 01 63 00", "1518", "0504"],
+                ["651 589 01 68 00", "1518", "0504"],
+                ["651 589 01 91 00", "1518", "0504"],
+                ["651 589 01 91 00", "1522", "0205"],
+                ["651 589 02 40 00", "1518", "0504"],
+                ["651 589 04 40 00", "1508", "0108"],
+                ["651 589 05 40 00", "1508", "0108"],
+                ["651 589 05 40 00", "1522", "0104"],
+                ["651 589 05 63 00", "1518", "0504"],
+                ["651 589 05 63 00", "1522", "0104"],
+                ["651 589 06 40 00", "1508", "0108"],
+                ["651 589 06 40 00", "1522", "0107"],
+                ["651 589 07 40 00", "1518", "0504"],
+                ["651 589 08 40 01", "1508", "0109"],
+                ["651 589 08 40 02", "1508", "0108"],
+                ["651 589 09 40 00", "1518", "0504"],
+                ["651 589 10 40 00", "1508", "0108"],
+                ["651 589 10 40 00", "1522", "0102"],
+                ["651 589 11 63 00", "1518", "0504"],
+                ["651 589 11 63 00", "1522", "0107"],
+                ["651 589 13 63 00", "1522", "0101"],
+                ["651 589 13 63 01", "1508", "0106"],
+                ["651 589 13 63 02", "1508", "0101"],
+                ["651 589 14 63 00", "1518", "0504"],
+                ["651 589 14 63 00", "1523", "0504"],
+                ["654 589 00 09 00", "1518", "0505"],
+                ["654 589 00 14 00", "1522", "0504"],
+                ["654 589 00 21 00", "1518", "0505"],
+                ["654 589 00 21 00", "1522", "0107"],
+                ["654 589 00 31 00", "1518", "0504"],
+                ["654 589 00 40 00", "1518", "0504"],
+                ["654 589 00 40 00", "1523", "0501"],
+                ["654 589 00 43 00", "1518", "0505"],
+                ["654 589 00 61 00", "1518", "0505"],
+                ["654 589 00 61 00", "1523", "0602"],
+                ["654 589 01 21 00", "1518", "0505"],
+                ["654 589 01 21 00", "1523", "0405"],
+                ["654 589 01 40 00", "1518", "0505"],
+                ["654 589 01 40 00", "1523", "0603"],
+                ["654 589 01 43 00", "1518", "0505"],
+                ["654 589 01 43 00", "1523", "0405"],
+                ["654 589 03 21 00", "1518", "0505"],
+                ["654 589 03 40 00", "1518", "0505"],
+                ["654 589 03 40 00", "1523", "0603"],
+                ["655 589 00 21 00", "1518", "0506"],
+                ["655 589 01 63 00", "1518", "0506"],
+                ["655 589 02 63 00", "1518", "0506"],
+                ["655 589 10 63 00", "1518", "0605"],
+                ["655 589 11 63 00", "1518", "0605"],
+                ["658 589 00 63 00", "1518", "0506"],
+                ["668 589 00 34 00", "1518", "0506"],
+                ["668 589 00 63 00", "1518", "0506"],
+                ["668 589 00 63 00", "1522", "0201"],
+                ["673 589 00 15 00", "1518", "0605"],
+                ["699 589 00 05 00", "1518", "0506"],
+                ["699 589 00 15 00", "1518", "0506"],
+                ["699 589 03 40 00", "1518", "0506"],
+                ["700 589 00 90 00", "1518", "0507"],
+                ["700 589 00 90 00", "1523", "0305"],
+                ["700 589 01 33 00", "1523", "0305"],
+                ["700 589 01 90 00", "1522", "0405"],
+                ["700 589 02 33 00", "1522", "0507"],
+                ["700 589 08 15 00", "1518", "0507"],
+                ["700 589 08 15 00", "1523", "0407"],
+                ["700 589 09 15 00", "1518", "0507"],
+                ["700 589 09 15 00", "1523", "0407"],
+                ["700 589 09 63 00", "1523", "0302"],
+                ["700 589 11 15 00", "1523", "0302"],
+                ["700 589 13 15 00", "1518", "0507"],
+                ["700 589 13 15 00", "1522", "0407"],
+                ["700 589 14 15 00", "1518", "0507"],
+                ["700 589 14 15 00", "1522", "0407"],
+                ["700 589 15 15 00", "1518", "0507"],
+                ["700 589 15 15 00", "1522", "0407"],
+                ["700 589 16 15 00", "1518", "0507"],
+                ["700 589 16 15 00", "1522", "0407"],
+                ["700 589 17 15 00", "1518", "0507"],
+                ["700 589 17 15 00", "1522", "0407"],
+                ["700 589 18 15 00", "1518", "0507"],
+                ["700 589 18 15 00", "1522", "0408"],
+                ["711 589 00 37 00", "1518", "0606"],
+                ["711 589 02 15 00", "1518", "0507"],
+                ["711 589 07 15 00", "1518", "0507"],
+                ["711 589 19 15 00", "1518", "0507"],
+                ["711 589 20 15 00", "1518", "0508"],
+                ["715 589 00 37 00", "1522", "0505"],
+                ["716 589 00 09 00", "1518", "0508"],
+                ["716 589 00 09 00", "1522", "0107"],
+                ["716 589 00 23 00", "1518", "0508"],
+                ["716 589 00 23 00", "1522", "0106"],
+                ["716 589 00 43 00", "1518", "0508"],
+                ["716 589 00 43 00", "1523", "0403"],
+                ["716 589 06 33 00", "1518", "0508"],
+                ["716 589 06 33 00", "1523", "0407"],
+                ["716 589 09 15 00", "1518", "0508"],
+                ["716 589 09 15 00", "1523", "0403"],
+                ["716 589 11 15 00", "1518", "0508"],
+                ["716 589 11 15 00", "1523", "0407"],
+                ["717 589 00 31 00", "1518", "0603"],
+                ["722 589 00 21 00", "1518", "0508"],
+                ["722 589 03 09 00", "1518", "0508"],
+                ["722 589 03 09 00", "1522", "0104"],
+                ["722 589 03 15 00", "1518", "0508"],
+                ["722 589 09 15 00", "1518", "0508"],
+                ["722 589 09 15 00", "1522", "0204"],
+                ["724 589 00 21 00", "1518", "0508"],
+                ["724 589 00 21 00", "1523", "0305"],
+                ["724 589 01 09 00", "1518", "0508"],
+                ["724 589 02 09 00", "1518", "0508"],
+                ["724 589 02 09 00", "1523", "0305"],
+                ["724 589 02 63 00", "1523", "0305"],
+                ["724 589 05 15 00", "1518", "0508"],
+                ["724 589 05 15 00", "1522", "0209"],
+                ["725 589 00 09 00", "1518", "0508"],
+                ["725 589 00 90 00", "1518", "0508"],
+                ["725 589 02 90 01", "1522", "0207"],
+                ["725 589 03 90 00", "1518", "0508"],
+                ["730 589 01 43 00", "1518", "0509"],
+                ["730 589 01 43 01", "1518", "0509"],
+                ["730 589 01 43 02", "1518", "0606"],
+                ["730 589 02 33 00", "1518", "0606"],
+                ["741 589 01 15 00", "1518", "0606"],
+                ["741 589 03 15 00", "1518", "0508"],
+                ["741 589 06 15 00", "1518", "0509"],
+                ["742 589 01 07 00", "1518", "0606"],
+                ["771 589 00 63 00", "1522", "0203"],
+                ["901 589 04 63 00", "1518", "0509"],
+                ["904 589 01 21 00", "1518", "0509"],
+                ["904 589 04 15 00", "1518", "0509"],
+                ["906 589 00 07 00", "1518", "0509"],
+                ["906 589 00 40 00", "1508", "0107"],
+                ["906 589 01 62 00", "1508", "0105"],
+                ["906 589 04 63 00", "1518", "0509"],
+                ["906 589 05 62 00", "1518", "0607"],
+                ["907 589 00 09 00", "1522", "0408"],
+                ["936 589 00 14 00", "1522", "0508"],
+                ["936 589 00 31 00", "1522", "0605"],
+                ["936 589 00 33 00", "1522", "0604"],
+                ["936 589 00 63 00", "1522", "0608"],
+                ["936 589 00 91 00", "1522", "0606"],
+                ["936 589 01 33 00", "1522", "0608"],
+                ["936 589 01 91 00", "1522", "0604"],
+                ["936 589 02 61 00", "1522", "0408"],
+                ["936 589 02 63 00", "1522", "0609"],
+                ["936 589 02 91 00", "1522", "0608"],
+                ["936 589 03 33 00", "1522", "0406"],
+                ["936 589 03 91 00", "1522", "0602"],
+                ["936 589 04 91 00", "1522", "0505"],
+                ["970 589 02 63 00", "1518", "0607"]
+            ];
 
-    <main class="container">
-      <div class="search-container">
-        <h2>Zoek Gereedschap</h2>
-        <div class="search-input-wrapper">
-          <svg
-            class="search-icon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Voer gereedschapsnummer in..."
-            autocomplete="off"
-          />
-        </div>
-        <p class="search-hint">
-          💡 Je mag het gereedschapsnummer ook zonder spaties invoeren
-        </p>
-      </div>
+            let currentSearch = "";
 
-      <div class="results-container">
-        <div class="results-header">
-          <h3><span id="resultCount">10</span> resultaten gevonden</h3>
-          <button class="reset-btn" onclick="resetAllData()">
-            🔄 Reset Alles
-          </button>
-        </div>
-        <div class="results-list" id="resultsList"></div>
-      </div>
-    </main>
+            document.addEventListener("DOMContentLoaded", () => {
+                displayResults(gereedschapData);
+                document.getElementById("searchInput").addEventListener("input", handleSearch);
+            });
 
-    <footer class="footer">
-      <p>© 2025 Mercedes-Benz • TEST VERSIE (Lokale opslag)</p>
-      <p style="color: #6b7280; margin-top: 0.5rem">
-        ⚠️ Data wordt alleen lokaal opgeslagen op dit apparaat
-      </p>
-    </footer>
+            function handleSearch(e) {
+                currentSearch = e.target.value;
+                filterAndDisplay();
+            }
 
-    <script>
-      // GEBRUIKERS LIJST
-      const GEBRUIKERS = [
-        "Albin",
-        "Chris",
-        "Destiny",
-        "Dylan",
-        "Joeri",
-        "Ken",
-        "Kris",
-        "Luc",
-        "Marc",
-        "Maxime",
-        "Michael",
-        "Philippe",
-        "EXTERN",
-      ];
+            function filterAndDisplay() {
+                const searchNormalized = currentSearch.replace(/\s/g, "").toLowerCase();
 
-      // TEST DATA - Formaat: [gereedschapnummer, locatie]
-      const gereedschapData = [
-        ["000 581 25 58", "Magazijn: rek 1518 • schap 0108"],
-        ["102 589 00 09 00", "Magazijn: Rek 1518 • Schap 0105 • Bak 4"],
-        ["111 589 00 40 00", "Werkplaats: BORD C"],
-        ["210 589 00 07 00", "Magazijn: Rek 1518 • Schap 0302"],
-        ["210 589 01 43 05", "Magazijn: rek 1518 • schap 0303 • bak 12"],
-        ["230 589 04 63 00", "WERKPLAATS: KAST RIJ 3"],
-        ["651 589 00 09 00", "Werkplaats: bord A"],
-        ["103 589 00 33 00", "Magazijn: Rek 1518 • Schap 0106"],
-        ["220 589 00 07 00", "Werkplaats: KAST RIJ 1"],
-        ["129 589 00 21 00", "Magazijn: Rek 1518 • Schap 0201 • BAK 8"],
-      ];
+                const filtered = gereedschapData.filter((item) => {
+                    const itemNormalized = item[0].replace(/\s/g, "").toLowerCase();
+                    return searchNormalized === "" || itemNormalized.includes(searchNormalized);
+                });
 
-      // LOCALSTORAGE FUNCTIES
-      function loadStatus() {
-        const data = localStorage.getItem("mbtools_status");
-        return data ? JSON.parse(data) : {};
-      }
+                displayResults(filtered);
+            }
 
-      function saveStatus(statusData) {
-        localStorage.setItem("mbtools_status", JSON.stringify(statusData));
-      }
+            function displayResults(items) {
+                const resultsList = document.getElementById("resultsList");
+                const resultCount = document.getElementById("resultCount");
 
-      function resetAllData() {
-        if (
-          confirm(
-            "⚠️ Weet je zeker dat je alle data wilt wissen?\n\nAlle statussen en geschiedenis worden verwijderd."
-          )
-        ) {
-          localStorage.removeItem("mbtools_status");
-          alert("✅ Alle data is gewist!");
-          location.reload();
-        }
-      }
+                resultCount.textContent = items.length;
 
-      // GEREEDSCHAP UITLENEN
-      function leenUit(gereedschapNr, gebruiker) {
-        if (!gebruiker || gebruiker.trim() === "") {
-          alert("⚠️ Geen geldige gebruiker geselecteerd");
-          return;
-        }
-
-        const statusData = loadStatus();
-
-        statusData[gereedschapNr] = {
-          status: "uitgeleend",
-          gebruiker: gebruiker,
-          sinds: new Date().toISOString(),
-          geschiedenis: statusData[gereedschapNr]?.geschiedenis || [],
-        };
-
-        saveStatus(statusData);
-        alert(`✅ Gereedschap ${gereedschapNr} in gebruik door ${gebruiker}`);
-        location.reload();
-      }
-
-      // GEREEDSCHAP TERUGBRENGEN
-      function brengTerug(gereedschapNr) {
-        if (!confirm(`Wil je gereedschap ${gereedschapNr} terugbrengen?`)) {
-          return;
-        }
-
-        const statusData = loadStatus();
-
-        if (statusData[gereedschapNr]) {
-          // Voeg toe aan geschiedenis
-          if (!statusData[gereedschapNr].geschiedenis) {
-            statusData[gereedschapNr].geschiedenis = [];
-          }
-
-          statusData[gereedschapNr].geschiedenis.push({
-            gebruiker: statusData[gereedschapNr].gebruiker,
-            van: statusData[gereedschapNr].sinds,
-            tot: new Date().toISOString(),
-          });
-
-          // Verwijder huidige uitlening
-          statusData[gereedschapNr].status = "beschikbaar";
-          delete statusData[gereedschapNr].gebruiker;
-          delete statusData[gereedschapNr].sinds;
-        }
-
-        saveStatus(statusData);
-        alert(`✅ Gereedschap ${gereedschapNr} teruggebracht`);
-        location.reload();
-      }
-
-      // TOON UITLEENPOPUP
-      function toonUitleenPopup(gereedschapNr) {
-        const keuze = prompt(
-          `Wie gebruikt gereedschap ${gereedschapNr}?\n\n` +
-            GEBRUIKERS.map((naam, i) => `${i + 1}. ${naam}`).join("\n") +
-            "\n\nTyp het nummer (1-13) of de volledige naam:"
-        );
-
-        if (!keuze) return;
-
-        const nr = parseInt(keuze.trim());
-        let gekozenNaam;
-
-        if (nr && nr >= 1 && nr <= GEBRUIKERS.length) {
-          gekozenNaam = GEBRUIKERS[nr - 1];
-        } else {
-          const gevonden = GEBRUIKERS.find(
-            (naam) => naam.toLowerCase() === keuze.trim().toLowerCase()
-          );
-          gekozenNaam = gevonden || keuze.trim();
-        }
-
-        leenUit(gereedschapNr, gekozenNaam);
-      }
-
-      // ZOEK FUNCTIE
-      let currentSearch = "";
-
-      document.addEventListener("DOMContentLoaded", () => {
-        displayResults(gereedschapData);
-        document
-          .getElementById("searchInput")
-          .addEventListener("input", handleSearch);
-      });
-
-      function handleSearch(e) {
-        currentSearch = e.target.value;
-        filterAndDisplay();
-      }
-
-      function filterAndDisplay() {
-        const searchNormalized = currentSearch.replace(/\s/g, "").toLowerCase();
-
-        const filtered = gereedschapData.filter((item) => {
-          const itemNormalized = item[0].replace(/\s/g, "").toLowerCase();
-          return (
-            searchNormalized === "" || itemNormalized.includes(searchNormalized)
-          );
-        });
-
-        displayResults(filtered);
-      }
-
-      // DISPLAY RESULTATEN
-      function displayResults(items) {
-        const resultsList = document.getElementById("resultsList");
-        const resultCount = document.getElementById("resultCount");
-        const statusData = loadStatus();
-
-        resultCount.textContent = items.length;
-
-        if (items.length === 0) {
-          resultsList.innerHTML = `
+                if (items.length === 0) {
+                    resultsList.innerHTML = `
                     <div class="no-results">
+                        <svg class="no-results-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
                         <p style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Geen resultaten gevonden</p>
                         <p>Probeer een andere zoekopdracht</p>
                     </div>
                 `;
-          return;
-        }
+                    return;
+                }
 
-        resultsList.innerHTML = items
-          .map((item) => {
-            const gereedschapNr = item[0];
-            const locatie = item[1];
-            const status = statusData[gereedschapNr];
-            const isInGebruik = status && status.status === "uitgeleend";
-
-            // Bepaal of het magazijn of werkplaats is
-            const isMagazijn = locatie.includes("Magazijn");
-            const locatieClass = isMagazijn
-              ? "locatie-magazijn"
-              : "locatie-werkplaats";
-            const locatieIcon = isMagazijn ? "📦" : "🔧";
-
-            let statusButton = "";
-            let detailHTML = "";
-            let geschiedenisHTML = "";
-
-            if (isInGebruik) {
-              const sinds = new Date(status.sinds);
-              const tijd = sinds.toLocaleString("nl-BE", {
-                day: "2-digit",
-                month: "short",
-                hour: "2-digit",
-                minute: "2-digit",
-              });
-
-              statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
-              detailHTML = `<div class="detail-text">Door: <strong>${status.gebruiker}</strong> • Sinds: ${tijd}</div>`;
-
-              if (status.geschiedenis && status.geschiedenis.length > 0) {
-                const laatste3 = status.geschiedenis.slice(-3).reverse();
-                geschiedenisHTML = `
-                            <div class="geschiedenis-section">
-                                <div class="geschiedenis-title">📜 Recente Geschiedenis</div>
-                                ${laatste3
-                                  .map((h) => {
-                                    const van = new Date(
-                                      h.van
-                                    ).toLocaleDateString("nl-BE", {
-                                      day: "2-digit",
-                                      month: "short",
-                                    });
-                                    const tot = new Date(
-                                      h.tot
-                                    ).toLocaleDateString("nl-BE", {
-                                      day: "2-digit",
-                                      month: "short",
-                                    });
-                                    return `<div class="geschiedenis-item">🔧 <strong>${h.gebruiker}</strong> (${van} → ${tot})</div>`;
-                                  })
-                                  .join("")}
-                            </div>
-                        `;
-              }
-            } else {
-              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}')">✅ BESCHIKBAAR - Klik om te gebruiken</button>`;
-
-              if (
-                status &&
-                status.geschiedenis &&
-                status.geschiedenis.length > 0
-              ) {
-                const laatste3 = status.geschiedenis.slice(-3).reverse();
-                const laatsteGebruiker = laatste3[0];
-                const laatsteDatum = new Date(
-                  laatsteGebruiker.tot
-                ).toLocaleDateString("nl-BE", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                });
-
-                detailHTML = `<div class="detail-text beschikbaar">📅 Laatst gebruikt door <strong>${laatsteGebruiker.gebruiker}</strong> op ${laatsteDatum}</div>`;
-
-                geschiedenisHTML = `
-                            <div class="geschiedenis-section">
-                                <div class="geschiedenis-title">📜 Recente Geschiedenis</div>
-                                ${laatste3
-                                  .map((h) => {
-                                    const van = new Date(
-                                      h.van
-                                    ).toLocaleDateString("nl-BE", {
-                                      day: "2-digit",
-                                      month: "short",
-                                    });
-                                    const tot = new Date(
-                                      h.tot
-                                    ).toLocaleDateString("nl-BE", {
-                                      day: "2-digit",
-                                      month: "short",
-                                    });
-                                    return `<div class="geschiedenis-item">🔧 <strong>${h.gebruiker}</strong> (${van} → ${tot})</div>`;
-                                  })
-                                  .join("")}
-                            </div>
-                        `;
-              }
-            }
-
-            return `
-                    <div class="result-item">
-                        <div class="gereedschap-header">
-                            <div class="gereedschap-nummer">${gereedschapNr}</div>
-                            ${statusButton}
-                        </div>
-                        <div class="locatie-badge ${locatieClass}">
-                            ${locatieIcon} ${locatie}
-                        </div>
-                        ${detailHTML}
-                        ${geschiedenisHTML}
+                resultsList.innerHTML = items
+                    .map(
+                        (item) => `
+                <div class="result-item">
+                    <div class="gereedschap-nummer">${item[0]}</div>
+                    <div class="badges">
+                        <span class="badge badge-rek">Rek: ${item[1]}</span>
+                        <span class="badge badge-schapnr">Schapnr: ${item[2]}</span>
                     </div>
-                `;
-          })
-          .join("");
-      }
-    </script>
-  </body>
+                </div>
+            `
+                    )
+                    .join("");
+            }
+        </script>
+    </body>
 </html>
