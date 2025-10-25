@@ -2258,6 +2258,16 @@
         document
           .getElementById("searchInput")
           .addEventListener("input", handleSearch);
+        
+        // Filter button event listeners
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+            e.currentTarget.classList.add("active");
+            currentFilter = e.currentTarget.dataset.filter;
+            filterAndDisplay();
+          });
+        });
       });
 
       function handleSearch(e) {
@@ -2265,16 +2275,35 @@
         filterAndDisplay();
       }
 
-      function filterAndDisplay() {
+      async function filterAndDisplay() {
         const searchNormalized = currentSearch.replace(/\s/g, "").toLowerCase();
-
-        const filtered = gereedschapData.filter((item) => {
+        
+        // Laad eerst de status data
+        const { content } = await loadStatus();
+        const statusData = content.gereedschap || {};
+        
+        let filtered = gereedschapData.filter((item) => {
           const itemNormalized = item[0].replace(/\s/g, "").toLowerCase();
           return (
             searchNormalized === "" || itemNormalized.includes(searchNormalized)
           );
         });
-
+        
+        // Pas status filter toe
+        if (currentFilter === "beschikbaar") {
+          filtered = filtered.filter((item) => {
+            const gereedschapNr = item[0];
+            const status = statusData[gereedschapNr];
+            return !status || status.status !== "uitgeleend";
+          });
+        } else if (currentFilter === "ingebruik") {
+          filtered = filtered.filter((item) => {
+            const gereedschapNr = item[0];
+            const status = statusData[gereedschapNr];
+            return status && status.status === "uitgeleend";
+          });
+        }
+        
         displayResults(filtered);
       }
 
