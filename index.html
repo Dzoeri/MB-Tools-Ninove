@@ -262,6 +262,48 @@
         font-size: 0.875rem;
         margin: 0.25rem 0;
       }
+      .settings-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: all 0.2s;
+      }
+      .settings-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+      }
+      .filter-buttons {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+      .filter-btn {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid #e5e7eb;
+        background: white;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .filter-btn:hover {
+        border-color: #60a5fa;
+        background: #eff6ff;
+      }
+      .filter-btn.active {
+        background: #60a5fa;
+        color: white;
+        border-color: #60a5fa;
+      }
       @media (max-width: 768px) {
         .header-content {
           flex-direction: column;
@@ -297,6 +339,9 @@
           <div class="stats-label">Totaal items</div>
           <div class="stats-value" id="totalCount">1614</div>
         </div>
+        <button class="settings-btn" onclick="showTokenSetup()" title="Instellingen">
+          ⚙️
+        </button>
       </div>
     </header>
 
@@ -327,6 +372,17 @@
         <p class="search-hint">
           💡 Je mag het gereedschapsnummer ook zonder spaties invoeren
         </p>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">
+            📋 Alle
+          </button>
+          <button class="filter-btn" data-filter="beschikbaar">
+            ✅ Beschikbaar
+          </button>
+          <button class="filter-btn" data-filter="ingebruik">
+            🔴 In gebruik
+          </button>
+        </div>
       </div>
 
       <div class="results-container">
@@ -348,9 +404,19 @@
 
     <script>
       // ═══════════════════════════════════════════════════════════
-      // ⚠️ STAP 1: VERVANG JOUW GITHUB TOKEN HIER
+      // ⚙️ CONFIGURATIE - TOKEN WORDT OPGEHAALD UIT LOCALSTORAGE
       // ═══════════════════════════════════════════════════════════
-      const GITHUB_TOKEN = "YOUR_GITHUB_TOKEN";
+      
+      // Probeer token uit localStorage te halen
+      let GITHUB_TOKEN = localStorage.getItem('MB_TOOLS_TOKEN');
+      
+      // Check of token bestaat, zo niet, vraag gebruiker om invoer
+      if (!GITHUB_TOKEN) {
+        setTimeout(() => {
+          showTokenSetup();
+        }, 500);
+      }
+
       const GITHUB_REPO = "dzoeri/MB-Tools-Ninove";
       const GITHUB_BRANCH = "main";
       const STATUS_FILE = "status.json";
@@ -379,6 +445,7 @@
       // Formaat: ["gereedschapnummer", "locatie"]
       // ═══════════════════════════════════════════════════════════
       const gereedschapData = [
+        ["000 581 25 58 00", "Magazijn: Rek 1518 - Schap 0108"],
         ["000 581 25 58 00", "Magazijn: Rek 1518 - Schap 0108"],
         ["000 581 39 01 00", "Magazijn: Rek 1518 - Schap 0108"],
         ["000 586 00 99 00", "Magazijn: Rek 1518 - Schap 0101"],
@@ -1996,13 +2063,38 @@
         ["970 589 01 63 00", "Werkplaats: NFZ - Bureau Luc"],
         ["970 589 02 63 00", "Magazijn: Rek 1518 - Schap 0607"],
         ["970 589 02 63 00", "Werkplaats: NFZ - Bureau Luc"],
-
-        // ⬇️ VOEG HIER MEER ITEMS TOE (kopieer het format hierboven)
-        // ["jouw nummer", "Magazijn: Rek XXX • Schap XXX • BAK XX"],
-        // ["jouw nummer", "Werkplaats: BORD X"],
+        // ← PLAK HIER DE REST VAN JE GEREEDSCHAPPEN
       ];
 
       // ═══════════════════════════════════════════════════════════
+      // TOKEN SETUP FUNCTIE
+      // ═══════════════════════════════════════════════════════════
+      function showTokenSetup() {
+        const currentToken = localStorage.getItem('MB_TOOLS_TOKEN') || '';
+        const message = currentToken 
+          ? '⚙️ Huidige token wijzigen:\n(laat leeg om te behouden)'
+          : '🔑 Voer de GitHub Personal Access Token in:\n(Dit hoeft maar 1x)';
+        
+        const token = prompt(message, currentToken ? '••••••••••••••••' : '');
+        
+        if (token && token !== '••••••••••••••••') {
+          localStorage.setItem('MB_TOOLS_TOKEN', token);
+          GITHUB_TOKEN = token;
+          alert('✅ Token opgeslagen! De pagina wordt opnieuw geladen.');
+          location.reload();
+        } else if (!currentToken && !token) {
+          alert('⚠️ Zonder token kan de app niet werken. Voer een token in via de ⚙️ knop.');
+        }
+      }
+
+
+      // ═══════════════════════════════════════════════════════════
+      
+      // ═══════════════════════════════════════════════════════════
+      // FILTER STATE
+      // ═══════════════════════════════════════════════════════════
+      let currentFilter = "all";
+
       // GITHUB API FUNCTIES
       // ═══════════════════════════════════════════════════════════
 
