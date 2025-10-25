@@ -1,4 +1,4 @@
-name: Deploy MB Tools
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,33 +6,29 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Inject token into HTML
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      
+      - name: Inject GitHub Token
         run: |
           sed -i 's/YOUR_GITHUB_TOKEN/${{ secrets.SHARING_INVENTORY }}/g' index.html
-          echo "Token injected successfully"
       
-      - name: Configure Git
-        run: |
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "actions@github.com"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: '.'
       
-      - name: Commit changes to gh-pages branch
-        run: |
-          git checkout -b gh-pages || git checkout gh-pages
-          git add index.html
-          git commit -m "Deploy with injected token" || echo "No changes to commit"
-          git push origin gh-pages --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.SHARING_INVENTORY }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
