@@ -1,7 +1,14 @@
 {
   "metadata": {
-    "laatste_update": "2025-10-25T19:11:13.850Z",
+    "laatste_update": "2025-10-25T19:18:46.533Z",
     "versie": "1.0"
   },
-  "gereedschap": {}
+  "gereedschap": {
+    "000 581 25 58 00": {
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2025-10-25T19:18:46.533Z",
+      "geschiedenis": []
+    }
+  }
 }
