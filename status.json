@@ -3,16 +3,5 @@
     "laatste_update": "2025-10-25T19:11:13.850Z",
     "versie": "1.0"
   },
-  "gereedschap": {
-    "000 581 25 58 00": {
-      "status": "beschikbaar",
-      "geschiedenis": [
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-10-25T19:11:00.156Z",
-          "tot": "2025-10-25T19:11:13.850Z"
-        }
-      ]
-    }
-  }
+  "gereedschap": {}
 }
