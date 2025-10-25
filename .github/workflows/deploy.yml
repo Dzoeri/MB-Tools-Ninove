@@ -5,6 +5,11 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,9 +21,18 @@ jobs:
       - name: Inject token into HTML
         run: |
           sed -i 's/YOUR_GITHUB_TOKEN/${{ secrets.SHARING_INVENTORY }}/g' index.html
+          echo "Token injected successfully"
       
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.SHARING_INVENTORY }}
-          publish_dir: .
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+      
+      - name: Commit changes to gh-pages branch
+        run: |
+          git checkout -b gh-pages || git checkout gh-pages
+          git add index.html
+          git commit -m "Deploy with injected token" || echo "No changes to commit"
+          git push origin gh-pages --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.SHARING_INVENTORY }}
