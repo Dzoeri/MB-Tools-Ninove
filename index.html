@@ -352,6 +352,7 @@
       // ═══════════════════════════════════════════════════════════
       const GITHUB_TOKEN = "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";
       const GITHUB_REPO = "dzoeri/MB-Tools-Ninove";
+      const GITHUB_BRANCH = "main";
       const STATUS_FILE = "status.json";
 
       // ═══════════════════════════════════════════════════════════
@@ -2008,7 +2009,7 @@
       async function loadStatus() {
         try {
           const response = await fetch(
-            `https://api.github.com/repos/${GITHUB_REPO}/contents/${STATUS_FILE}`,
+            `https://api.github.com/repos/${GITHUB_REPO}/contents/${STATUS_FILE}?ref=${GITHUB_BRANCH}`,
             {
               headers: {
                 Authorization: `token ${GITHUB_TOKEN}`,
@@ -2040,6 +2041,7 @@
           const body = {
             message: "Update gereedschap status",
             content: content,
+            branch: GITHUB_BRANCH,
           };
 
           if (sha) {
@@ -2047,7 +2049,7 @@
           }
 
           const response = await fetch(
-            `https://api.github.com/repos/${GITHUB_REPO}/contents/${STATUS_FILE}`,
+            `https://api.github.com/repos/${GITHUB_REPO}/contents/${STATUS_FILE}?ref=${GITHUB_BRANCH}`,
             {
               method: "PUT",
               headers: {
