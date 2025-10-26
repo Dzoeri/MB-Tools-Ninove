@@ -262,6 +262,16 @@
         font-size: 0.875rem;
         margin: 0.25rem 0;
       }
+      .ha-logo-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ha-logo {
+        height: 80px;
+        width: auto;
+        object-fit: contain;
+      }
       .settings-btn {
         background: rgba(255, 255, 255, 0.1);
         border: none;
@@ -335,11 +345,14 @@
             <p>Speciaal Gereedschap Database Ninove</p>
           </div>
         </div>
-        <div class="stats">
-          <div class="stats-label">Totaal items</div>
-          <div class="stats-value" id="totalCount">1614</div>
+        <div class="ha-logo-section">
+          <img src="ha_cleaned.png" alt="HA Logo" class="ha-logo" />
         </div>
-        <button class="settings-btn" onclick="showTokenSetup()" title="Instellingen">
+        <button
+          class="settings-btn"
+          onclick="showTokenSetup()"
+          title="Instellingen"
+        >
           ⚙️
         </button>
       </div>
@@ -373,9 +386,7 @@
           💡 Je mag het gereedschapsnummer ook zonder spaties invoeren
         </p>
         <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="all">
-            📋 Alle
-          </button>
+          <button class="filter-btn active" data-filter="all">📋 Alle</button>
           <button class="filter-btn" data-filter="beschikbaar">
             🟢 Beschikbaar
           </button>
@@ -406,10 +417,10 @@
       // ═══════════════════════════════════════════════════════════
       // ⚙️ CONFIGURATIE - TOKEN WORDT OPGEHAALD UIT LOCALSTORAGE
       // ═══════════════════════════════════════════════════════════
-      
+
       // Probeer token uit localStorage te halen
-      let GITHUB_TOKEN = localStorage.getItem('MB_TOOLS_TOKEN');
-      
+      let GITHUB_TOKEN = localStorage.getItem("MB_TOOLS_TOKEN");
+
       // Check of token bestaat, zo niet, vraag gebruiker om invoer
       if (!GITHUB_TOKEN) {
         setTimeout(() => {
@@ -2070,26 +2081,27 @@
       // TOKEN SETUP FUNCTIE
       // ═══════════════════════════════════════════════════════════
       function showTokenSetup() {
-        const currentToken = localStorage.getItem('MB_TOOLS_TOKEN') || '';
-        const message = currentToken 
-          ? '⚙️ Huidige token wijzigen:\n(laat leeg om te behouden)'
-          : '🔑 Voer de GitHub Personal Access Token in:\n(Dit hoeft maar 1x)';
-        
-        const token = prompt(message, currentToken ? '••••••••••••••••' : '');
-        
-        if (token && token !== '••••••••••••••••') {
-          localStorage.setItem('MB_TOOLS_TOKEN', token);
+        const currentToken = localStorage.getItem("MB_TOOLS_TOKEN") || "";
+        const message = currentToken
+          ? "⚙️ Huidige token wijzigen:\n(laat leeg om te behouden)"
+          : "🔑 Voer de GitHub Personal Access Token in:\n(Dit hoeft maar 1x)";
+
+        const token = prompt(message, currentToken ? "••••••••••••••••" : "");
+
+        if (token && token !== "••••••••••••••••") {
+          localStorage.setItem("MB_TOOLS_TOKEN", token);
           GITHUB_TOKEN = token;
-          alert('✅ Token opgeslagen! De pagina wordt opnieuw geladen.');
+          alert("✅ Token opgeslagen! De pagina wordt opnieuw geladen.");
           location.reload();
         } else if (!currentToken && !token) {
-          alert('⚠️ Zonder token kan de app niet werken. Voer een token in via de ⚙️ knop.');
+          alert(
+            "⚠️ Zonder token kan de app niet werken. Voer een token in via de ⚙️ knop."
+          );
         }
       }
 
-
       // ═══════════════════════════════════════════════════════════
-      
+
       // ═══════════════════════════════════════════════════════════
       // FILTER STATE
       // ═══════════════════════════════════════════════════════════
@@ -2259,11 +2271,13 @@
         document
           .getElementById("searchInput")
           .addEventListener("input", handleSearch);
-        
+
         // Filter button event listeners
         document.querySelectorAll(".filter-btn").forEach((btn) => {
           btn.addEventListener("click", (e) => {
-            document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+            document
+              .querySelectorAll(".filter-btn")
+              .forEach((b) => b.classList.remove("active"));
             e.currentTarget.classList.add("active");
             currentFilter = e.currentTarget.dataset.filter;
             filterAndDisplay();
@@ -2278,18 +2292,18 @@
 
       async function filterAndDisplay() {
         const searchNormalized = currentSearch.replace(/\s/g, "").toLowerCase();
-        
+
         // Laad eerst de status data
         const { content } = await loadStatus();
         const statusData = content.gereedschap || {};
-        
+
         let filtered = gereedschapData.filter((item) => {
           const itemNormalized = item[0].replace(/\s/g, "").toLowerCase();
           return (
             searchNormalized === "" || itemNormalized.includes(searchNormalized)
           );
         });
-        
+
         // Pas status filter toe
         if (currentFilter === "beschikbaar") {
           filtered = filtered.filter((item) => {
@@ -2304,7 +2318,7 @@
             return status && status.status === "uitgeleend";
           });
         }
-        
+
         displayResults(filtered);
       }
 
