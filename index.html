@@ -41,18 +41,19 @@
         margin: 0 auto;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 1.5rem;
+        position: relative;
       }
-      .logo-section {
+      .logos-center {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 2rem;
       }
-      .mercedes-logo {
-        width: 80px;
+      .header-logo {
         height: 80px;
+        width: auto;
         object-fit: contain;
       }
       .title-section h1 {
@@ -262,16 +263,6 @@
         font-size: 0.875rem;
         margin: 0.25rem 0;
       }
-      .ha-logo-section {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .ha-logo {
-        height: 80px;
-        width: auto;
-        object-fit: contain;
-      }
       .settings-btn {
         background: rgba(255, 255, 255, 0);
         border: none;
@@ -290,6 +281,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
       }
       .refresh-btn {
         background: rgba(255, 255, 255, 0);
@@ -354,15 +349,15 @@
   <body>
     <header class="header">
       <div class="header-content">
-        <div class="logo-section">
+        <div class="logos-center">
           <img
-            src="mb-logo.png"
-            alt="Mercedes-Benz Logo"
-            class="mercedes-logo"
-          />
-        </div>
-        <div class="ha-logo-section">
-          <img src="ha_cleaned.png" alt="HA Logo" class="ha-logo" />
+          src="mb-logo.png"
+          alt="Mercedes-Benz Logo"
+          class="header-logo" />
+          <img
+          src="ha_cleaned.png"
+          alt="HA Logo"
+          class="header-logo" />
         </div>
         <div class="buttons-container">
         <button
