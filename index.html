@@ -273,7 +273,7 @@
         object-fit: contain;
       }
       .settings-btn {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0);
         border: none;
         color: white;
         padding: 0.5rem 1rem;
@@ -285,6 +285,26 @@
       .settings-btn:hover {
         background: rgba(255, 255, 255, 0.2);
         transform: scale(1.05);
+      }
+      .buttons-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .refresh-btn {
+        background: rgba(255, 255, 255, 0);
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: all 0.2s;
+        margin-bottom: 0.5rem;
+      }
+      .refresh-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(180deg) scale(1.05);
       }
       .filter-buttons {
         display: flex;
@@ -348,6 +368,14 @@
         <div class="ha-logo-section">
           <img src="ha_cleaned.png" alt="HA Logo" class="ha-logo" />
         </div>
+        <div class="buttons-container">
+        <button
+          class="refresh-btn"
+          onclick="refreshPage()"
+          title="Ververs pagina"
+        >
+          ⟳
+        </button>
         <button
           class="settings-btn"
           onclick="showTokenSetup()"
@@ -2098,6 +2126,21 @@
             "⚠️ Zonder token kan de app niet werken. Voer een token in via de ⚙️ knop."
           );
         }
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // REFRESH FUNCTIE
+      // ═══════════════════════════════════════════════════════════
+      function refreshPage() {
+        // Voeg draai-animatie toe aan de knop
+        const btn = document.querySelector(".refresh-btn");
+        btn.style.transform = "rotate(720deg)";
+        btn.style.transition = "transform 1s ease";
+
+        // Wacht even en herlaad dan de pagina
+        setTimeout(() => {
+          location.reload();
+        }, 500);
       }
 
       // ═══════════════════════════════════════════════════════════
