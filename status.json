@@ -3,31 +3,5 @@
     "laatste_update": "2025-10-26T21:03:40.680Z",
     "versie": "1.0"
   },
-  "gereedschap": {
-    "000 581 25 58 00": {
-      "status": "beschikbaar",
-      "geschiedenis": [
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-10-25T19:18:46.533Z",
-          "tot": "2025-10-26T10:16:36.613Z"
-        },
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-10-26T19:32:51.643Z",
-          "tot": "2025-10-26T19:33:04.191Z"
-        },
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-10-26T19:39:08.721Z",
-          "tot": "2025-10-26T19:43:29.401Z"
-        },
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-10-26T21:03:02.662Z",
-          "tot": "2025-10-26T21:03:40.680Z"
-        }
-      ]
-    }
-  }
+  "gereedschap": {}
 }
