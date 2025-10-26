@@ -377,7 +377,7 @@
             📋 Alle
           </button>
           <button class="filter-btn" data-filter="beschikbaar">
-            ✅ Beschikbaar
+            🟢 Beschikbaar
           </button>
           <button class="filter-btn" data-filter="ingebruik">
             🔴 In gebruik
@@ -2185,7 +2185,7 @@
 
         const success = await saveStatus(content, sha);
         if (success) {
-          alert(`✅ Gereedschap ${gereedschapNr} in gebruik door ${gebruiker}`);
+          alert(`🟢 Gereedschap ${gereedschapNr} in gebruik door ${gebruiker}`);
           location.reload();
         }
       }
@@ -2383,7 +2383,7 @@
                         `;
               }
             } else {
-              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}')">✅ BESCHIKBAAR - Klik om te gebruiken</button>`;
+              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
 
               if (
                 status &&
