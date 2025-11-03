@@ -1,11 +1,13 @@
 {
   "metadata": {
-    "laatste_update": "2025-11-03T14:30:59.271Z",
+    "laatste_update": "2025-11-03T14:31:20.966Z",
     "versie": "1.0"
   },
   "gereedschap": {
     "000 581 25 58 00": {
-      "status": "beschikbaar",
+      "status": "uitgeleend",
+      "gebruiker": "Michael",
+      "sinds": "2025-11-03T14:31:20.966Z",
       "geschiedenis": [
         {
           "gebruiker": "Michael",
