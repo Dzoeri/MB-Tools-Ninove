@@ -2,7 +2,7 @@
   "name": "MB Tools Ninove",
   "short_name": "MB Tools",
   "description": "Mercedes-Benz Speciaal Gereedschap Database Ninove",
-  "start_url": "/",
+  "start_url": "/MB-Tools-Ninove/",
   "display": "standalone",
   "background_color": "#1a1a1a",
   "theme_color": "#1a1a1a",
