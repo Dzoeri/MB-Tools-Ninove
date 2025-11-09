@@ -14,7 +14,7 @@ Toegang tot de volledige gereedschap database met zoekfunctie.
 - 🚀 Offline beschikbaar na eerste bezoek
 
 ## 📊 Database
-- **587 items** in totaal
+- **totaal aantal items**
 - Automatisch bijgewerkt via GitHub
 
 ## 🛠️ Data Bijwerken
@@ -29,4 +29,4 @@ Beheerd door: Joeri Van Melkebeke
 
 ---
 
-© 2025 Mercedes-Benz • Voor intern gebruik
+© 2025 Mercedes-Benz - Hedin Automotive • Voor intern gebruik
