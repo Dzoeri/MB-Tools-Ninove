@@ -2274,9 +2274,9 @@
         }
       }
 
-      function toonUitleenPopup(gereedschapNr) {
+      function toonUitleenPopup(gereedschapNr, locatie) {
         const keuze = prompt(
-          `Wie gebruikt gereedschap ${gereedschapNr}?\n\n` +
+          `Wie gebruikt gereedschap ${gereedschapNr}?\nLocatie: ${locatie}\n\n` +
             GEBRUIKERS.map((naam, i) => `${i + 1}. ${naam}`).join("\n") +
             "\n\nTyp het nummer (1-13) of de volledige naam:"
         );
@@ -2295,7 +2295,7 @@
           gekozenNaam = gevonden || keuze.trim();
         }
 
-        leenUit(gereedschapNr, gekozenNaam);
+        leenUit(gereedschapNr, locatie, gekozenNaam);
       }
 
       // ═══════════════════════════════════════════════════════════
