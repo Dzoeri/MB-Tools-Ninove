@@ -1,24 +1,7 @@
 {
   "metadata": {
-    "laatste_update": "2025-11-09T16:42:42.277Z",
-    "versie": "1.0"
+    "laatste_update": "2025-11-06T00:00:00",
+    "versie": "2.0"
   },
-  "gereedschap": {
-    "000 581 25 58 00": {
-      "status": "beschikbaar",
-      "geschiedenis": [
-        {
-          "gebruiker": "Michael",
-          "van": "2025-11-03T14:30:48.481Z",
-          "tot": "2025-11-03T14:30:59.271Z"
-        }
-      ]
-    },
-    "166 589 00 03 00": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2025-11-05T16:19:34.910Z",
-      "geschiedenis": []
-    }
-  }
+  "gereedschap": {}
 }
