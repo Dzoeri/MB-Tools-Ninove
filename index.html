@@ -2407,7 +2407,7 @@
                 minute: "2-digit",
               });
 
-              statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
+              statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}', '${locatie}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
               detailHTML = `<div class="detail-text">Door: <strong>${status.gebruiker}</strong> • Sinds: ${tijd}</div>`;
 
               if (status.geschiedenis && status.geschiedenis.length > 0) {
@@ -2436,7 +2436,7 @@
                         `;
               }
             } else {
-              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
+              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}', '${locatie}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
 
               if (
                 status &&
