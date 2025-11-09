@@ -126,33 +126,6 @@
         color: #6b7280;
         margin-top: 0.5rem;
       }
-      .filter-buttons {
-        display: flex;
-        gap: 0.5rem;
-        margin-top: 1rem;
-      }
-      .filter-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.625rem 1.25rem;
-        border: 2px solid #e5e7eb;
-        background: white;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .filter-btn:hover {
-        background: #f9fafb;
-        border-color: #d1d5db;
-      }
-      .filter-btn.active {
-        background: #3b82f6;
-        color: white;
-        border-color: #3b82f6;
-      }
       .results-container {
         background: white;
         border-radius: 12px;
@@ -270,225 +243,153 @@
         gap: 0.5rem;
       }
       .no-results {
+        padding: 4rem 2rem;
         text-align: center;
-        padding: 3rem 2rem;
         color: #6b7280;
       }
       .loading {
         text-align: center;
-        padding: 3rem 2rem;
-        font-size: 1.125rem;
-        color: #6b7280;
-      }
-      .header-icons {
-        position: absolute;
-        right: 0;
-        display: flex;
-        gap: 1rem;
-      }
-      .icon-button {
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        color: white;
-        padding: 0.75rem;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-size: 1.25rem;
-      }
-      .icon-button:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-      }
-      .settings-popup {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        justify-content: center;
-        align-items: center;
-      }
-      .settings-popup.show {
-        display: flex;
-      }
-      .settings-content {
-        background: white;
         padding: 2rem;
-        border-radius: 12px;
-        max-width: 500px;
-        width: 90%;
-        max-height: 80vh;
-        overflow-y: auto;
-      }
-      .settings-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
-      }
-      .settings-header h2 {
-        font-size: 1.5rem;
-        color: #1a1a1a;
-      }
-      .close-button {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
         color: #6b7280;
-      }
-      .settings-group {
-        margin-bottom: 1.5rem;
-      }
-      .settings-label {
-        display: block;
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #374151;
-        margin-bottom: 0.5rem;
-      }
-      .settings-input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        font-size: 1rem;
-      }
-      .settings-input:focus {
-        outline: none;
-        border-color: #3b82f6;
-      }
-      .settings-button {
-        width: 100%;
-        padding: 0.875rem;
-        background: #3b82f6;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .settings-button:hover {
-        background: #2563eb;
       }
       .footer {
         background: #1a1a1a;
         color: #b0b0b0;
-        padding: 2rem;
+        padding: 1rem 2rem;
         text-align: center;
-        margin-top: 3rem;
+        position: sticky;
+        bottom: 0;
+        z-index: 50;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
       }
-      .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
+      .footer p {
+        font-size: 0.875rem;
+        margin: 0.25rem 0;
       }
-      .footer-title {
-        font-size: 1rem;
-        font-weight: 600;
+      .settings-btn {
+        background: rgba(255, 255, 255, 0);
+        border: none;
         color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: all 0.2s;
+      }
+      .settings-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+      }
+      .buttons-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .refresh-btn {
+        background: rgba(255, 255, 255, 0);
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 2rem;
+        transition: all 0.2s;
         margin-bottom: 0.5rem;
       }
-      .footer-subtitle {
-        font-size: 0.875rem;
-        margin-bottom: 0.25rem;
+      .refresh-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(180deg) scale(1.05);
+      }
+      .filter-buttons {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+      .filter-btn {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid #e5e7eb;
+        background: white;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .filter-btn:hover {
+        border-color: #60a5fa;
+        background: #eff6ff;
+      }
+      .filter-btn.active {
+        background: #60a5fa;
+        color: white;
+        border-color: #60a5fa;
       }
       @media (max-width: 768px) {
         .header-content {
           flex-direction: column;
           text-align: center;
         }
-        .logos-center {
+        .logo-section {
           flex-direction: column;
-          gap: 1rem;
         }
         .stats {
           text-align: center;
         }
-        .header-icons {
-          position: static;
-          margin-top: 1rem;
-        }
-        .gereedschap-header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.75rem;
-        }
-        .status-button {
-          width: 100%;
-          justify-content: center;
-        }
-        .filter-buttons {
-          flex-direction: column;
-        }
-        .filter-btn {
-          width: 100%;
-          justify-content: center;
+        .container {
+          padding: 1rem;
         }
       }
     </style>
   </head>
   <body>
-    <div class="header">
+    <header class="header">
       <div class="header-content">
         <div class="logos-center">
-          <svg
-            class="header-logo"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 80 80"
-            fill="white"
-          >
-            <circle
-              cx="40"
-              cy="40"
-              r="36"
-              fill="none"
-              stroke="white"
-              stroke-width="2"
-            />
-            <path
-              d="M40 15 L55 40 L40 40 L25 40 L40 15 M25 40 L40 65 L55 40"
-              fill="white"
-            />
-          </svg>
-          <div class="title-section">
-            <h1>HEDIN</h1>
-            <p>AUTOMOTIVE</p>
-          </div>
+          <img
+          src="mb-logo.png"
+          alt="Mercedes-Benz Logo"
+          class="header-logo" />
+          <img
+          src="ha_cleaned.png"
+          alt="HA Logo"
+          class="header-logo" />
         </div>
-        <div class="header-icons">
-          <button
-            class="icon-button"
-            onclick="location.reload()"
-            title="Vernieuwen"
-          >
-            ↻
-          </button>
-          <button
-            class="icon-button"
-            onclick="toonInstellingen()"
-            title="Instellingen"
-          >
-            ⚙
-          </button>
-        </div>
+        <div class="buttons-container">
+        <button
+          class="refresh-btn"
+          onclick="refreshPage()"
+          title="Ververs pagina"
+        >
+          ⟳
+        </button>
+        <button
+          class="settings-btn"
+          onclick="showTokenSetup()"
+          title="Instellingen"
+        >
+          ⚙️
+        </button>
       </div>
-    </div>
+    </header>
 
-    <div class="container">
+    <main class="container">
       <div class="search-container">
         <h2>Database Gereedschap Ninove</h2>
         <div class="search-input-wrapper">
           <svg
             class="search-icon"
             fill="none"
-            viewBox="0 0 24 24"
             stroke="currentColor"
+            viewBox="0 0 24 24"
           >
             <path
               stroke-linecap="round"
@@ -501,13 +402,14 @@
             type="text"
             id="searchInput"
             placeholder="Voer gereedschapsnummer in..."
+            autocomplete="off"
           />
         </div>
-        <div class="search-hint">
+        <p class="search-hint">
           TIP: Je mag het gereedschapsnummer ook zonder spaties invoeren
-        </div>
+        </p>
         <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="alle">📋 Alle</button>
+          <button class="filter-btn active" data-filter="all">📋 Alle</button>
           <button class="filter-btn" data-filter="beschikbaar">
             🟢 Beschikbaar
           </button>
@@ -519,56 +421,62 @@
 
       <div class="results-container">
         <div class="results-header">
-          <h3><span id="resultCount">0</span> resultaten gevonden</h3>
+          <h3><span id="resultCount">10</span> resultaten gevonden</h3>
         </div>
-        <div id="resultsList"></div>
+        <div class="results-list" id="resultsList">
+          <div class="loading">⏳ Data laden...</div>
+        </div>
       </div>
-    </div>
+    </main>
 
-    <div class="settings-popup" id="settingsPopup">
-      <div class="settings-content">
-        <div class="settings-header">
-          <h2>⚙️ Instellingen</h2>
-          <button class="close-button" onclick="sluitInstellingen()">✕</button>
-        </div>
-        <div class="settings-group">
-          <label class="settings-label">GitHub Token</label>
-          <input
-            type="password"
-            id="tokenInput"
-            class="settings-input"
-            placeholder="ghp_..."
-          />
-        </div>
-        <div class="settings-group">
-          <label class="settings-label">Repository (gebruiker/repo)</label>
-          <input
-            type="text"
-            id="repoInput"
-            class="settings-input"
-            placeholder="gebruiker/repository"
-          />
-        </div>
-        <button class="settings-button" onclick="opslaanInstellingen()">
-          💾 Opslaan
-        </button>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="footer-content">
-        <div class="footer-title">
-          © 2025 Hedin Automotive • Speciaal Gereedschap Database Ninove
-        </div>
-        <div class="footer-subtitle">
-          Voor intern gebruik • Beheerd door Joeri Van Melkebeke
-        </div>
-      </div>
-    </div>
+    <footer class="footer">
+      <p>© 2025 Hedin Automotive • Speciaal Gereedschap Database Ninove</p>
+      <p style="color: #6b7280; margin-top: 0.5rem">
+        Voor intern gebruik • Beheerd door Joeri Van Melkebeke
+      </p>
+    </footer>
 
     <script>
       // ═══════════════════════════════════════════════════════════
-      // GEREEDSCHAP DATABASE - EERSTE 5 ITEMS
+      // ⚙️ CONFIGURATIE - TOKEN WORDT OPGEHAALD UIT LOCALSTORAGE
+      // ═══════════════════════════════════════════════════════════
+
+      // Probeer token uit localStorage te halen
+      let GITHUB_TOKEN = localStorage.getItem("MB_TOOLS_TOKEN");
+
+      // Check of token bestaat, zo niet, vraag gebruiker om invoer
+      if (!GITHUB_TOKEN) {
+        setTimeout(() => {
+          showTokenSetup();
+        }, 500);
+      }
+
+      const GITHUB_REPO = "dzoeri/MB-Tools-Ninove";
+      const GITHUB_BRANCH = "main";
+      const STATUS_FILE = "status.json";
+
+      // ═══════════════════════════════════════════════════════════
+      // GEBRUIKERS LIJST
+      // ═══════════════════════════════════════════════════════════
+      const GEBRUIKERS = [
+        "Albin",
+        "Chris",
+        "Destiny",
+        "Dylan",
+        "Joeri",
+        "Ken",
+        "Kris",
+        "Luc",
+        "Marc",
+        "Maxime",
+        "Michael",
+        "Philippe",
+        "EXTERN",
+      ];
+
+      // ═══════════════════════════════════════════════════════════
+      // ⚠️ STAP 2: VOEG HIER JOUW GEREEDSCHAP DATA TOE
+      // Formaat: ["gereedschapnummer", "locatie"]
       // ═══════════════════════════════════════════════════════════
       const gereedschapData = [
         ["000 581 25 58 00", "Magazijn: Rek 1518 - Schap 0108"],
@@ -2193,130 +2101,89 @@
       ];
 
       // ═══════════════════════════════════════════════════════════
-      // GEBRUIKERS LIJST
+      // TOKEN SETUP FUNCTIE
       // ═══════════════════════════════════════════════════════════
-      const GEBRUIKERS = [
-        "Aart",
-        "Dylan",
-        "Ilias",
-        "Jan",
-        "Joeri",
-        "Ken",
-        "Michael",
-        "Nathan",
-        "Niels",
-        "Rik",
-        "Ruben",
-        "Siebe",
-        "Wesley",
-      ];
+      function showTokenSetup() {
+        const currentToken = localStorage.getItem("MB_TOOLS_TOKEN") || "";
+        const message = currentToken
+          ? "⚙️ Huidige token wijzigen:\n(laat leeg om te behouden)"
+          : "🔑 Voer de GitHub Personal Access Token in:\n(Dit hoeft maar 1x)";
 
-      // ═══════════════════════════════════════════════════════════
-      // HELPER FUNCTIE: MAAK UNIEKE KEY VOOR GEREEDSCHAP + LOCATIE
-      // ═══════════════════════════════════════════════════════════
-      function maakGereedschapKey(gereedschapNr, locatie) {
-        return `${gereedschapNr}__${locatie}`;
-      }
+        const token = prompt(message, currentToken ? "••••••••••••••••" : "");
 
-      // ═══════════════════════════════════════════════════════════
-      // GITHUB API CONFIGURATIE
-      // ═══════════════════════════════════════════════════════════
-      function getGitHubConfig() {
-        const token = localStorage.getItem("github_token");
-        const repo = localStorage.getItem("github_repo");
-
-        if (!token || !repo) {
+        if (token && token !== "••••••••••••••••") {
+          localStorage.setItem("MB_TOOLS_TOKEN", token);
+          GITHUB_TOKEN = token;
+          alert("✅ Token opgeslagen! De pagina wordt opnieuw geladen.");
+          location.reload();
+        } else if (!currentToken && !token) {
           alert(
-            "⚠️ GitHub instellingen ontbreken!\n\nKlik op het tandwiel (⚙) rechtsboven om je token en repository in te stellen."
+            "⚠️ Zonder token kan de app niet werken. Voer een token in via de ⚙️ knop."
           );
-          return null;
         }
-
-        return { token, repo };
       }
-
-      function toonInstellingen() {
-        document.getElementById("settingsPopup").classList.add("show");
-        document.getElementById("tokenInput").value =
-          localStorage.getItem("github_token") || "";
-        document.getElementById("repoInput").value =
-          localStorage.getItem("github_repo") || "";
-      }
-
-      function sluitInstellingen() {
-        document.getElementById("settingsPopup").classList.remove("show");
-      }
-
-      function opslaanInstellingen() {
-        const token = document.getElementById("tokenInput").value.trim();
-        const repo = document.getElementById("repoInput").value.trim();
-
-        if (!token || !repo) {
-          alert("❌ Vul alle velden in!");
-          return;
-        }
-
-        localStorage.setItem("github_token", token);
-        localStorage.setItem("github_repo", repo);
-
-        alert("✅ Instellingen opgeslagen!");
-        sluitInstellingen();
-        location.reload();
-      }
-
-      // Sluit popup bij klik buiten content
-      document
-        .getElementById("settingsPopup")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            sluitInstellingen();
-          }
-        });
 
       // ═══════════════════════════════════════════════════════════
+      // REFRESH FUNCTIE
+      // ═══════════════════════════════════════════════════════════
+      function refreshPage() {
+        // Voeg draai-animatie toe aan de knop
+        const btn = document.querySelector(".refresh-btn");
+        btn.style.transform = "rotate(720deg)";
+        btn.style.transition = "transform 1s ease";
+
+        // Wacht even en herlaad dan de pagina
+        setTimeout(() => {
+          location.reload();
+        }, 500);
+      }
+
+      // ═══════════════════════════════════════════════════════════
+
+      // ═══════════════════════════════════════════════════════════
+      // FILTER STATE
+      // ═══════════════════════════════════════════════════════════
+      let currentFilter = "all";
+
       // GITHUB API FUNCTIES
       // ═══════════════════════════════════════════════════════════
-      async function loadStatus() {
-        const config = getGitHubConfig();
-        if (!config) {
-          return { content: { gereedschap: {} }, sha: null };
-        }
 
+      async function loadStatus() {
         try {
           const response = await fetch(
-            `https://api.github.com/repos/${config.repo}/contents/status.json`,
+            `https://api.github.com/repos/${GITHUB_REPO}/contents/${STATUS_FILE}?ref=${GITHUB_BRANCH}`,
             {
               headers: {
-                Authorization: `token ${config.token}`,
+                Authorization: `token ${GITHUB_TOKEN}`,
                 Accept: "application/vnd.github.v3+json",
               },
             }
           );
 
           if (!response.ok) {
-            if (response.status === 404) {
-              return { content: { gereedschap: {} }, sha: null };
-            }
-            throw new Error(`GitHub API Error: ${response.status}`);
+            console.warn("Status bestand niet gevonden, maak nieuwe aan");
+            return { content: { metadata: {}, gereedschap: {} }, sha: null };
           }
 
           const data = await response.json();
           const content = JSON.parse(atob(data.content));
-          return { content, sha: data.sha };
+          return { content: content, sha: data.sha };
         } catch (error) {
           console.error("Error loading status:", error);
-          return { content: { gereedschap: {} }, sha: null };
+          return { content: { metadata: {}, gereedschap: {} }, sha: null };
         }
       }
 
-      async function saveStatus(content, sha) {
-        const config = getGitHubConfig();
-        if (!config) return false;
-
+      async function saveStatus(statusData, sha) {
         try {
+          const content = btoa(
+            unescape(encodeURIComponent(JSON.stringify(statusData, null, 2)))
+          );
+
           const body = {
-            message: `Update status - ${new Date().toISOString()}`,
-            content: btoa(JSON.stringify(content, null, 2)),
+            message: "Update gereedschap status",
+            content: content,
+            branch: GITHUB_BRANCH,
           };
 
           if (sha) {
@@ -2324,11 +2191,11 @@
           }
 
           const response = await fetch(
-            `https://api.github.com/repos/${config.repo}/contents/status.json`,
+            `https://api.github.com/repos/${GITHUB_REPO}/contents/${STATUS_FILE}?ref=${GITHUB_BRANCH}`,
             {
               method: "PUT",
               headers: {
-                Authorization: `token ${config.token}`,
+                Authorization: `token ${GITHUB_TOKEN}`,
                 Accept: "application/vnd.github.v3+json",
                 "Content-Type": "application/json",
               },
@@ -2337,9 +2204,10 @@
           );
 
           if (!response.ok) {
-            throw new Error(`GitHub API Error: ${response.status}`);
+            const errorData = await response.json();
+            console.error("GitHub API error:", errorData);
+            throw new Error("Kon status niet opslaan");
           }
-
           return true;
         } catch (error) {
           console.error("Error saving status:", error);
@@ -2348,20 +2216,19 @@
         }
       }
 
-      // ═══════════════════════════════════════════════════════════
-      // UITLENEN & TERUGBRENGEN FUNCTIES (MET LOCATIE)
-      // ═══════════════════════════════════════════════════════════
-      async function leenUit(gereedschapNr, locatie, gebruiker) {
+      async function leenUit(gereedschapNr, gebruiker) {
+        if (!gebruiker || gebruiker.trim() === "") {
+          alert("⚠️ Geen geldige gebruiker geselecteerd");
+          return;
+        }
+
         const { content, sha } = await loadStatus();
 
-        const key = maakGereedschapKey(gereedschapNr, locatie);
-
-        content.gereedschap = content.gereedschap || {};
-        content.gereedschap[key] = {
+        content.gereedschap[gereedschapNr] = {
           status: "uitgeleend",
           gebruiker: gebruiker,
           sinds: new Date().toISOString(),
-          geschiedenis: content.gereedschap[key]?.geschiedenis || [],
+          geschiedenis: content.gereedschap[gereedschapNr]?.geschiedenis || [],
         };
 
         content.metadata = content.metadata || {};
@@ -2369,33 +2236,32 @@
 
         const success = await saveStatus(content, sha);
         if (success) {
-          alert(
-            `✅ Gereedschap ${gereedschapNr}\n📍 ${locatie}\n👤 Uitgeleend aan ${gebruiker}`
-          );
+          alert(`🟢 Gereedschap ${gereedschapNr} in gebruik door ${gebruiker}`);
           location.reload();
         }
       }
 
-      async function brengTerug(gereedschapNr, locatie) {
+      async function brengTerug(gereedschapNr) {
+        if (!confirm(`Wil je gereedschap ${gereedschapNr} terugbrengen?`)) {
+          return;
+        }
+
         const { content, sha } = await loadStatus();
 
-        const key = maakGereedschapKey(gereedschapNr, locatie);
+        if (content.gereedschap[gereedschapNr]) {
+          if (!content.gereedschap[gereedschapNr].geschiedenis) {
+            content.gereedschap[gereedschapNr].geschiedenis = [];
+          }
 
-        if (
-          content.gereedschap[key] &&
-          content.gereedschap[key].status === "uitgeleend"
-        ) {
-          content.gereedschap[key].geschiedenis =
-            content.gereedschap[key].geschiedenis || [];
-          content.gereedschap[key].geschiedenis.push({
-            gebruiker: content.gereedschap[key].gebruiker,
-            van: content.gereedschap[key].sinds,
+          content.gereedschap[gereedschapNr].geschiedenis.push({
+            gebruiker: content.gereedschap[gereedschapNr].gebruiker,
+            van: content.gereedschap[gereedschapNr].sinds,
             tot: new Date().toISOString(),
           });
 
-          content.gereedschap[key].status = "beschikbaar";
-          delete content.gereedschap[key].gebruiker;
-          delete content.gereedschap[key].sinds;
+          content.gereedschap[gereedschapNr].status = "beschikbaar";
+          delete content.gereedschap[gereedschapNr].gebruiker;
+          delete content.gereedschap[gereedschapNr].sinds;
         }
 
         content.metadata = content.metadata || {};
@@ -2403,16 +2269,14 @@
 
         const success = await saveStatus(content, sha);
         if (success) {
-          alert(
-            `✅ Gereedschap ${gereedschapNr}\n📍 ${locatie}\n✓ Teruggebracht`
-          );
+          alert(`✅ Gereedschap ${gereedschapNr} teruggebracht`);
           location.reload();
         }
       }
 
-      function toonUitleenPopup(gereedschapNr, locatie) {
+      function toonUitleenPopup(gereedschapNr) {
         const keuze = prompt(
-          `Wie gebruikt gereedschap ${gereedschapNr}?\n📍 Locatie: ${locatie}\n\n` +
+          `Wie gebruikt gereedschap ${gereedschapNr}?\n\n` +
             GEBRUIKERS.map((naam, i) => `${i + 1}. ${naam}`).join("\n") +
             "\n\nTyp het nummer (1-13) of de volledige naam:"
         );
@@ -2431,14 +2295,14 @@
           gekozenNaam = gevonden || keuze.trim();
         }
 
-        leenUit(gereedschapNr, locatie, gekozenNaam);
+        leenUit(gereedschapNr, gekozenNaam);
       }
 
       // ═══════════════════════════════════════════════════════════
       // ZOEK & DISPLAY FUNCTIES
       // ═══════════════════════════════════════════════════════════
+
       let currentSearch = "";
-      let currentFilter = "alle";
 
       document.addEventListener("DOMContentLoaded", () => {
         displayResults(gereedschapData);
@@ -2446,6 +2310,7 @@
           .getElementById("searchInput")
           .addEventListener("input", handleSearch);
 
+        // Filter button event listeners
         document.querySelectorAll(".filter-btn").forEach((btn) => {
           btn.addEventListener("click", (e) => {
             document
@@ -2466,6 +2331,7 @@
       async function filterAndDisplay() {
         const searchNormalized = currentSearch.replace(/\s/g, "").toLowerCase();
 
+        // Laad eerst de status data
         const { content } = await loadStatus();
         const statusData = content.gereedschap || {};
 
@@ -2476,16 +2342,17 @@
           );
         });
 
+        // Pas status filter toe
         if (currentFilter === "beschikbaar") {
           filtered = filtered.filter((item) => {
-            const key = maakGereedschapKey(item[0], item[1]);
-            const status = statusData[key];
+            const gereedschapNr = item[0];
+            const status = statusData[gereedschapNr];
             return !status || status.status !== "uitgeleend";
           });
         } else if (currentFilter === "ingebruik") {
           filtered = filtered.filter((item) => {
-            const key = maakGereedschapKey(item[0], item[1]);
-            const status = statusData[key];
+            const gereedschapNr = item[0];
+            const status = statusData[gereedschapNr];
             return status && status.status === "uitgeleend";
           });
         }
@@ -2518,8 +2385,7 @@
           .map((item) => {
             const gereedschapNr = item[0];
             const locatie = item[1];
-            const key = maakGereedschapKey(gereedschapNr, locatie);
-            const status = statusData[key];
+            const status = statusData[gereedschapNr];
             const isInGebruik = status && status.status === "uitgeleend";
 
             const isMagazijn = locatie.includes("Magazijn");
@@ -2541,7 +2407,7 @@
                 minute: "2-digit",
               });
 
-              statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}', '${locatie}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
+              statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
               detailHTML = `<div class="detail-text">Door: <strong>${status.gebruiker}</strong> • Sinds: ${tijd}</div>`;
 
               if (status.geschiedenis && status.geschiedenis.length > 0) {
@@ -2570,7 +2436,7 @@
                         `;
               }
             } else {
-              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}', '${locatie}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
+              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
 
               if (
                 status &&
@@ -2578,6 +2444,15 @@
                 status.geschiedenis.length > 0
               ) {
                 const laatste3 = status.geschiedenis.slice(-3).reverse();
+                const laatsteGebruiker = laatste3[0];
+                const laatsteDatum = new Date(
+                  laatsteGebruiker.tot
+                ).toLocaleDateString("nl-BE", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                });
+
                 geschiedenisHTML = `
                             <div class="geschiedenis-section">
                                 <div class="geschiedenis-title">📜 Recente Geschiedenis</div>

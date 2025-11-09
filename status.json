@@ -1,10 +1,10 @@
 {
   "metadata": {
     "laatste_update": "2025-11-09T16:42:42.277Z",
-    "versie": "2.0"
+    "versie": "1.0"
   },
   "gereedschap": {
-    "000 581 25 58 00__Magazijn: Rek 1508 - Schap 0107": {
+    "000 581 25 58 00": {
       "status": "beschikbaar",
       "geschiedenis": [
         {
@@ -14,14 +14,10 @@
         }
       ]
     },
-    "166 589 00 03 00__Magazijn: Rek 1508 - Schap 0107": {
+    "166 589 00 03 00": {
       "status": "uitgeleend",
       "gebruiker": "Joeri",
       "sinds": "2025-11-05T16:19:34.910Z",
-      "geschiedenis": []
-    },
-    "166 589 00 03 00__Werkplaats: PKW - Bord A": {
-      "status": "beschikbaar",
       "geschiedenis": []
     }
   }
