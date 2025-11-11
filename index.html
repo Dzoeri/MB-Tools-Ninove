@@ -6,12 +6,12 @@
     <meta
       name="description"
       content="Mercedes-Benz Speciaal Gereedschap Database Ninove"
-    />
+      />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
-    />
+      />
     <meta name="apple-mobile-web-app-title" content="MB Tools" />
     <link rel="apple-touch-icon" href="icon-192.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -20,367 +20,534 @@
     <title>MB Tools Ninove - Gereedschap Database</title>
     <style>
       * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       }
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        background: linear-gradient(to bottom right, #f5f5f5, #e8e8e8);
-        min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(to bottom right, #f5f5f5, #e8e8e8);
+      min-height: 100vh;
       }
       .header {
-        background: linear-gradient(to right, #1a1a1a, #2d2d2d, #1a1a1a);
-        color: white;
-        padding: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(to right, #1a1a1a, #2d2d2d, #1a1a1a);
+      color: white;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       .header-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      position: relative;
       }
       .logos-center {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
       }
       .header-logo {
-        height: 80px;
-        width: auto;
-        object-fit: contain;
+      height: 80px;
+      width: auto;
+      object-fit: contain;
       }
       .title-section h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
       }
       .title-section p {
-        color: #b0b0b0;
-        font-size: 0.95rem;
+      color: #b0b0b0;
+      font-size: 0.95rem;
       }
       .stats {
-        text-align: right;
+      text-align: right;
       }
       .stats-label {
-        font-size: 0.875rem;
-        color: #b0b0b0;
-        margin-bottom: 0.25rem;
+      font-size: 0.875rem;
+      color: #b0b0b0;
+      margin-bottom: 0.25rem;
       }
       .stats-value {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #60a5fa;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #60a5fa;
       }
       .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
       }
       .search-container {
-        background: white;
-        border-radius: 12px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       .search-container h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: #1a1a1a;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
       }
       .search-input-wrapper {
-        position: relative;
-        margin-bottom: 0.75rem;
+      position: relative;
+      margin-bottom: 0.75rem;
       }
       .search-icon {
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #9ca3af;
-        width: 20px;
-        height: 20px;
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      width: 20px;
+      height: 20px;
       }
       #searchInput {
-        width: 100%;
-        padding: 1rem 1rem 1rem 3rem;
-        font-size: 1.125rem;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        transition: all 0.3s;
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      font-size: 1.125rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      transition: all 0.3s;
       }
       #searchInput:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
       }
       .search-hint {
-        font-size: 0.875rem;
-        color: #6b7280;
-        margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-top: 0.5rem;
       }
       .results-container {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       .results-header {
-        background: #2d2d2d;
-        color: white;
-        padding: 1.5rem 2rem;
+      background: #2d2d2d;
+      color: white;
+      padding: 1.5rem 2rem;
       }
       .results-header h3 {
-        font-size: 1.25rem;
-        font-weight: 600;
+      font-size: 1.25rem;
+      font-weight: 600;
       }
       .result-item {
-        padding: 1.5rem 2rem;
-        border-bottom: 1px solid #e5e7eb;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #e5e7eb;
       }
       .result-item:hover {
-        background-color: #eff6ff;
+      background-color: #eff6ff;
       }
       .result-item:last-child {
-        border-bottom: none;
+      border-bottom: none;
       }
       .gereedschap-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0.75rem;
-        width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      width: 100%;
       }
       .gereedschap-nummer {
-        font-family: "Courier New", monospace;
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #1a1a1a;
+      font-family: "Courier New", monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a1a1a;
       }
       .status-button {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
       }
       .status-button.beschikbaar {
-        background: #d1fae5;
-        color: #065f46;
+      background: #d1fae5;
+      color: #065f46;
       }
       .status-button.beschikbaar:hover {
-        background: #a7f3d0;
-        transform: scale(1.02);
-        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+      background: #a7f3d0;
+      transform: scale(1.02);
+      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
       }
       .status-button.ingebruik {
-        background: #fee2e2;
-        color: #991b1b;
+      background: #fee2e2;
+      color: #991b1b;
       }
       .status-button.ingebruik:hover {
-        background: #fecaca;
-        transform: scale(1.02);
-        box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+      background: #fecaca;
+      transform: scale(1.02);
+      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
       }
       .locatie-badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.5rem 0.75rem;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        gap: 0.5rem;
-        margin-bottom: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
       }
       .locatie-magazijn {
-        background: #e0e7ff;
-        color: #3730a3;
-        border-left: 3px solid #4f46e5;
+      background: #e0e7ff;
+      color: #3730a3;
+      border-left: 3px solid #4f46e5;
       }
       .locatie-werkplaats {
-        background: #fef3c7;
-        color: #92400e;
-        border-left: 3px solid #f59e0b;
+      background: #fef3c7;
+      color: #92400e;
+      border-left: 3px solid #f59e0b;
       }
       .detail-text {
-        font-size: 0.875rem;
-        color: #991b1b;
-        margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+      color: #991b1b;
+      margin-bottom: 0.75rem;
       }
       .detail-text.beschikbaar {
-        color: #6b7280;
+      color: #6b7280;
       }
       .geschiedenis-section {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #e5e7eb;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e7eb;
       }
       .geschiedenis-title {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #6b7280;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       }
       .geschiedenis-item {
-        font-size: 0.8rem;
-        color: #6b7280;
-        padding: 0.25rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+      padding: 0.25rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       }
       .no-results {
-        padding: 4rem 2rem;
-        text-align: center;
-        color: #6b7280;
+      padding: 4rem 2rem;
+      text-align: center;
+      color: #6b7280;
       }
       .loading {
-        text-align: center;
-        padding: 2rem;
-        color: #6b7280;
+      text-align: center;
+      padding: 2rem;
+      color: #6b7280;
       }
       .footer {
-        background: #1a1a1a;
-        color: #b0b0b0;
-        padding: 1rem 2rem;
-        text-align: center;
-        position: sticky;
-        bottom: 0;
-        z-index: 50;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+      background: #1a1a1a;
+      color: #b0b0b0;
+      padding: 1rem 2rem;
+      text-align: center;
+      position: sticky;
+      bottom: 0;
+      z-index: 50;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
       }
       .footer p {
-        font-size: 0.875rem;
-        margin: 0.25rem 0;
+      font-size: 0.875rem;
+      margin: 0.25rem 0;
       }
       .settings-btn {
-        background: rgba(255, 255, 255, 0);
-        border: none;
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1.5rem;
-        transition: all 0.2s;
+      background: rgba(255, 255, 255, 0);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: all 0.2s;
       }
       .settings-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
       }
       .buttons-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        right: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
       }
       .refresh-btn {
-        background: rgba(255, 255, 255, 0);
-        border: none;
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 2rem;
-        transition: all 0.2s;
-        margin-bottom: 0.5rem;
+      background: rgba(255, 255, 255, 0);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 2rem;
+      transition: all 0.2s;
+      margin-bottom: 0.5rem;
       }
       .refresh-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: rotate(180deg) scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(180deg) scale(1.05);
       }
       .filter-buttons {
-        display: flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        margin-top: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
       }
       .filter-btn {
-        padding: 0.75rem 1.5rem;
-        border: 2px solid #e5e7eb;
-        background: white;
-        border-radius: 8px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #e5e7eb;
+      background: white;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       }
       .filter-btn:hover {
-        border-color: #60a5fa;
-        background: #eff6ff;
+      border-color: #60a5fa;
+      background: #eff6ff;
       }
       .filter-btn.active {
-        background: #60a5fa;
-        color: white;
-        border-color: #60a5fa;
+      background: #60a5fa;
+      color: white;
+      border-color: #60a5fa;
       }
       @media (max-width: 768px) {
-        .header-content {
-          flex-direction: column;
-          text-align: center;
-        }
-        .logo-section {
-          flex-direction: column;
-        }
-        .stats {
-          text-align: center;
-        }
-        .container {
-          padding: 1rem;
-        }
+      .header-content {
+      flex-direction: column;
+      text-align: center;
+      }
+      .logo-section {
+      flex-direction: column;
+      }
+      .stats {
+      text-align: center;
+      }
+      .container {
+      padding: 1rem;
+      }
+      }
+      /* Custom Modal Styling */
+      .custom-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease;
+      }
+      .custom-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      }
+      .custom-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      }
+      .custom-modal-content {
+      position: relative;
+      background: white;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+      }
+      .custom-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+      }
+      .custom-modal-header h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      }
+      .custom-modal-close {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      }
+      .custom-modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+      }
+      .custom-modal-body {
+      padding: 1.5rem;
+      max-height: 60vh;
+      overflow-y: auto;
+      }
+      .modal-gereedschap-nr {
+      font-family: 'Courier New', monospace;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: #f3f4f6;
+      border-radius: 8px;
+      text-align: center;
+      }
+      .modal-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #4b5563;
+      margin-bottom: 1rem;
+      }
+      .modal-user-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      }
+      .modal-user-btn {
+      padding: 1rem 1.5rem;
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      }
+      .modal-user-btn:hover {
+      background: #eff6ff;
+      border-color: #3b82f6;
+      transform: translateX(4px);
+      }
+      .modal-user-btn:active {
+      transform: translateX(4px) scale(0.98);
+      }
+      .custom-modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #e5e7eb;
+      background: #f9fafb;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      }
+      .modal-btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      }
+      .modal-btn-cancel {
+      background: #e5e7eb;
+      color: #1a1a1a;
+      }
+      .modal-btn-cancel:hover {
+      background: #d1d5db;
+      }
+      @keyframes fadeIn {
+      from {
+      opacity: 0;
+      }
+      to {
+      opacity: 1;
+      }
+      }
+      @keyframes slideUp {
+      from {
+      transform: translateY(30px);
+      opacity: 0;
+      }
+      to {
+      transform: translateY(0);
+      opacity: 1;
+      }
+      }
+      /* iPad optimalisaties */
+      @media (max-width: 768px) {
+      .custom-modal-content {
+      width: 95%;
+      max-height: 85vh;
+      }
+      .modal-user-btn {
+      padding: 1.25rem 1.5rem;
+      font-size: 1.125rem;
+      }
       }
     </style>
   </head>
   <body>
     <header class="header">
       <div class="header-content">
-        <div class="logos-center">
-          <img
+      <div class="logos-center">
+        <img
           src="mb-logo.png"
           alt="Mercedes-Benz Logo"
           class="header-logo" />
-          <img
+        <img
           src="ha_cleaned.png"
           alt="HA Logo"
           class="header-logo" />
-        </div>
-        <div class="buttons-container">
+      </div>
+      <div class="buttons-container">
         <button
           class="refresh-btn"
           onclick="refreshPage()"
           title="Ververs pagina"
-        >
-          ⟳
+          >
+        ⟳
         </button>
         <button
           class="settings-btn"
           onclick="showTokenSetup()"
           title="Instellingen"
-        >
-          ⚙️
+          >
+        ⚙️
         </button>
       </div>
     </header>
-
     <main class="container">
       <div class="search-container">
         <h2>Database Gereedschap Ninove</h2>
@@ -390,20 +557,20 @@
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
-          >
+            >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
+              />
           </svg>
           <input
             type="text"
             id="searchInput"
             placeholder="Voer gereedschapsnummer in..."
             autocomplete="off"
-          />
+            />
         </div>
         <p class="search-hint">
           TIP: Je mag het gereedschapsnummer ook zonder spaties invoeren
@@ -411,14 +578,13 @@
         <div class="filter-buttons">
           <button class="filter-btn active" data-filter="all">📋 Alle</button>
           <button class="filter-btn" data-filter="beschikbaar">
-            🟢 Beschikbaar
+          🟢 Beschikbaar
           </button>
           <button class="filter-btn" data-filter="ingebruik">
-            🔴 In gebruik
+          🔴 In gebruik
           </button>
         </div>
       </div>
-
       <div class="results-container">
         <div class="results-header">
           <h3><span id="resultCount">10</span> resultaten gevonden</h3>
@@ -428,33 +594,31 @@
         </div>
       </div>
     </main>
-
     <footer class="footer">
       <p>© 2025 Hedin Automotive • Speciaal Gereedschap Database Ninove</p>
       <p style="color: #6b7280; margin-top: 0.5rem">
         Voor intern gebruik • Beheerd door Joeri Van Melkebeke
       </p>
     </footer>
-
     <script>
       // ═══════════════════════════════════════════════════════════
       // ⚙️ CONFIGURATIE - TOKEN WORDT OPGEHAALD UIT LOCALSTORAGE
       // ═══════════════════════════════════════════════════════════
-
+      
       // Probeer token uit localStorage te halen
       let GITHUB_TOKEN = localStorage.getItem("MB_TOOLS_TOKEN");
-
+      
       // Check of token bestaat, zo niet, vraag gebruiker om invoer
       if (!GITHUB_TOKEN) {
         setTimeout(() => {
           showTokenSetup();
         }, 500);
       }
-
+      
       const GITHUB_REPO = "dzoeri/MB-Tools-Ninove";
       const GITHUB_BRANCH = "main";
       const STATUS_FILE = "status.json";
-
+      
       // ═══════════════════════════════════════════════════════════
       // GEBRUIKERS LIJST
       // ═══════════════════════════════════════════════════════════
@@ -473,7 +637,7 @@
         "Philippe",
         "EXTERN",
       ];
-
+      
       // ═══════════════════════════════════════════════════════════
       // ⚠️ STAP 2: VOEG HIER JOUW GEREEDSCHAP DATA TOE
       // Formaat: ["gereedschapnummer", "locatie"]
@@ -654,7 +818,7 @@
         ["112 589 03 31 00", "Magazijn: Rek 1522 - Schap 0402"],
         ["112 589 03 40 00", "Magazijn: Rek 1522 - Schap 0105"],
         ["112 589 03 40 00", "Magazijn: Rek 1518 - Schap 0107"],
-        ["112 589 09 61 00","Werkplaats: NFZ /MAGAZIJN - Rek 1523 - Schap 0106 - Bak 3",],
+        ["112 589 09 61 00", "Werkplaats: NFZ /MAGAZIJN - Rek 1523 - Schap 0106 - Bak 3",],
         ["112 589 09 61 00", "Magazijn: Rek 1518 - Schap 0107"],
         ["112 589 10 61 00", "Magazijn: Rek 1518 - Schap 0107"],
         ["113 589 00 01 00", "Werkplaats: NFZ - Rek 1522 - Schap 0105 - Bak 1"],
@@ -1354,7 +1518,7 @@
         ["274 589 00 63 00", "Magazijn: Rek 1522 - Schap 0202"],
         ["276 589 00 63 00", "Magazijn: Rek 1522 - Schap 0102 - Bak 1"],
         ["276 589 00 63 00", "Magazijn: Rek 1518 - Schap 0310"],
-        ["276 589 01  91 0", "Magazijn: Rek 1522 - Schap 0103"],
+        ["276 589 01 91 00", "Magazijn: Rek 1522 - Schap 0103"],
         ["276 589 01 91 00", "Magazijn: Rek 1522 - Schap 0105 - Bak 1"],
         ["276 589 01 91 00", "Magazijn: Rek 1518 - Schap 0310"],
         ["276 589 02 91 00", "Magazijn: Rek 1523 - Schap 0106 - Bak 1"],
@@ -1623,7 +1787,7 @@
         ["607 589 00 63 00", "Magazijn: Rek 1523 - Schap 0308"],
         ["607 589 00 91 00", "Magazijn: Rek 1522 - Schap 0105 - Bak 3"],
         ["607 589 00 91 00", "Magazijn: Rek 1518 - Schap 0405"],
-        ["607 589 01  63 0", "Magazijn: Rek 1522 - Schap 0105"],
+        ["607 589 01 63 00", "Magazijn: Rek 1522 - Schap 0105"],
         ["607 589 01 15 00", "Magazijn: Rek 1523 - Schap 0507"],
         ["607 589 01 15 00", "Magazijn: Rek 1518 - Schap 0405"],
         ["607 589 01 40 00", "Magazijn: Rek 1518 - Schap 0405"],
@@ -1806,8 +1970,8 @@
         ["646 589 03 63 00", "Magazijn: Rek 1518 - Schap 0503"],
         ["646 589 04 63 00", "Magazijn: Rek 1522 - Schap 0102 - Bak 1"],
         ["646 589 04 63 00", "Magazijn: Rek 1518 - Schap 0503"],
-        ["651  589 10 40 00", "Magazijn: Rek 1522 - Schap 0102"],
-        ["651 116 50 99", "Magazijn: Rek 1522 - Schap 0509"],
+        ["651 589 10 40 00", "Magazijn: Rek 1522 - Schap 0102"],
+        ["651 116 50 99 00", "Magazijn: Rek 1522 - Schap 0509"],
         ["651 589 00 07 00", "Magazijn: Rek 1522 - Schap 0107 - Bak 2"],
         ["651 589 00 09 00", "Magazijn: Rek 1522 - Schap 0104 - Bak 4"],
         ["651 589 00 09 00", "Magazijn: Rek 1518 - Schap 0503"],
@@ -2096,7 +2260,7 @@
         ["970 589 02 63 00", "Werkplaats: NFZ - Bureau Luc"],
         // ← PLAK HIER DE REST VAN JE GEREEDSCHAPPEN
       ];
-
+      
       // ═══════════════════════════════════════════════════════════
       // TOKEN SETUP FUNCTIE
       // ═══════════════════════════════════════════════════════════
@@ -2105,9 +2269,9 @@
         const message = currentToken
           ? "⚙️ Huidige token wijzigen:\n(laat leeg om te behouden)"
           : "🔑 Voer de GitHub Personal Access Token in:\n(Dit hoeft maar 1x)";
-
+      
         const token = prompt(message, currentToken ? "••••••••••••••••" : "");
-
+      
         if (token && token !== "••••••••••••••••") {
           localStorage.setItem("MB_TOOLS_TOKEN", token);
           GITHUB_TOKEN = token;
@@ -2119,7 +2283,7 @@
           );
         }
       }
-
+      
       // ═══════════════════════════════════════════════════════════
       // REFRESH FUNCTIE
       // ═══════════════════════════════════════════════════════════
@@ -2128,23 +2292,23 @@
         const btn = document.querySelector(".refresh-btn");
         btn.style.transform = "rotate(720deg)";
         btn.style.transition = "transform 1s ease";
-
+      
         // Wacht even en herlaad dan de pagina
         setTimeout(() => {
           location.reload();
         }, 500);
       }
-
+      
       // ═══════════════════════════════════════════════════════════
-
+      
       // ═══════════════════════════════════════════════════════════
       // FILTER STATE
       // ═══════════════════════════════════════════════════════════
       let currentFilter = "all";
-
+      
       // GITHUB API FUNCTIES
       // ═══════════════════════════════════════════════════════════
-
+      
       async function loadStatus() {
         try {
           const response = await fetch(
@@ -2156,12 +2320,12 @@
               },
             }
           );
-
+      
           if (!response.ok) {
             console.warn("Status bestand niet gevonden, maak nieuwe aan");
             return { content: { metadata: {}, gereedschap: {} }, sha: null };
           }
-
+      
           const data = await response.json();
           const content = JSON.parse(atob(data.content));
           return { content: content, sha: data.sha };
@@ -2170,23 +2334,23 @@
           return { content: { metadata: {}, gereedschap: {} }, sha: null };
         }
       }
-
+      
       async function saveStatus(statusData, sha) {
         try {
           const content = btoa(
             unescape(encodeURIComponent(JSON.stringify(statusData, null, 2)))
           );
-
+      
           const body = {
             message: "Update gereedschap status",
             content: content,
             branch: GITHUB_BRANCH,
           };
-
+      
           if (sha) {
             body.sha = sha;
           }
-
+      
           const response = await fetch(
             `https://api.github.com/repos/${GITHUB_REPO}/contents/${STATUS_FILE}?ref=${GITHUB_BRANCH}`,
             {
@@ -2199,7 +2363,7 @@
               body: JSON.stringify(body),
             }
           );
-
+      
           if (!response.ok) {
             const errorData = await response.json();
             console.error("GitHub API error:", errorData);
@@ -2212,18 +2376,18 @@
           return false;
         }
       }
-
+      
       async function leenUit(gereedschapNr, locatie, gebruiker) {
         if (!gebruiker || gebruiker.trim() === "") {
           alert("⚠️ Geen geldige gebruiker geselecteerd");
           return;
         }
-
+      
         const { content, sha } = await loadStatus();
-
+      
         // Maak een unieke key met nummer + locatie
         const uniqueKey = `${gereedschapNr}||${locatie}`;
-
+      
         content.gereedschap[uniqueKey] = {
           status: "uitgeleend",
           gebruiker: gebruiker,
@@ -2232,89 +2396,104 @@
           locatie: locatie,
           geschiedenis: content.gereedschap[uniqueKey]?.geschiedenis || [],
         };
-
+      
         content.metadata = content.metadata || {};
         content.metadata.laatste_update = new Date().toISOString();
-
+      
         const success = await saveStatus(content, sha);
         if (success) {
           alert(`🟢 Gereedschap ${gereedschapNr}\nLocatie: ${locatie}\nIn gebruik door ${gebruiker}`);
           location.reload();
         }
       }
-
+      
       async function brengTerug(gereedschapNr, locatie) {
         if (!confirm(`Wil je gereedschap ${gereedschapNr} terugbrengen?\nLocatie: ${locatie}`)) {
           return;
         }
-
+      
         const { content, sha } = await loadStatus();
-
+      
         // Maak dezelfde unieke key
         const uniqueKey = `${gereedschapNr}||${locatie}`;
-
+      
         if (content.gereedschap[uniqueKey]) {
           if (!content.gereedschap[uniqueKey].geschiedenis) {
             content.gereedschap[uniqueKey].geschiedenis = [];
           }
-
+      
           content.gereedschap[uniqueKey].geschiedenis.push({
             gebruiker: content.gereedschap[uniqueKey].gebruiker,
             van: content.gereedschap[uniqueKey].sinds,
             tot: new Date().toISOString(),
           });
-
+      
           content.gereedschap[uniqueKey].status = "beschikbaar";
           delete content.gereedschap[uniqueKey].gebruiker;
           delete content.gereedschap[uniqueKey].sinds;
         }
-
+      
         content.metadata = content.metadata || {};
         content.metadata.laatste_update = new Date().toISOString();
-
+      
         const success = await saveStatus(content, sha);
         if (success) {
           alert(`✅ Gereedschap ${gereedschapNr}\nLocatie: ${locatie}\nTerug beschikbaar`);
           location.reload();
         }
       }
-
+      
+      // Globale variabelen voor modal
+      let currentModalGereedschap = null;
+      let currentModalLocatie = null;
+      
       function toonUitleenPopup(gereedschapNr, locatie) {
-        const keuze = prompt(
-          `Wie gebruikt gereedschap ${gereedschapNr}?\nLocatie: ${locatie}\n\n` +
-          GEBRUIKERS.map((naam, i) => `${i + 1}. ${naam}`).join("\n") +
-          "\n\nTyp het nummer (1-13) of de volledige naam:"
-        );
-        
-        if (!keuze) return;
-        
-        const nr = parseInt(keuze.trim());
-        let gekozenNaam;
-        
-        if (nr && nr >= 1 && nr <= GEBRUIKERS.length) {
-          gekozenNaam = GEBRUIKERS[nr - 1];
-        } else {
-          const gevonden = GEBRUIKERS.find(
-            (naam) => naam.toLowerCase() === keuze.trim().toLowerCase()
-          );
-          gekozenNaam = gevonden || keuze.trim();
-        }
-        
-        leenUit(gereedschapNr, locatie, gekozenNaam);
+      // Bewaar gegevens
+      currentModalGereedschap = gereedschapNr;
+      currentModalLocatie = locatie;
+      
+      // Toon gereedschapnummer
+      document.getElementById('modalGereedschapNr').textContent = gereedschapNr;
+      
+      // Maak gebruiker buttons
+      const buttonsContainer = document.getElementById('modalUserButtons');
+      buttonsContainer.innerHTML = GEBRUIKERS.map((naam, index) => 
+      `<button class="modal-user-btn" onclick="selectUser('${naam}')">
+      ${index + 1}. ${naam}
+      </button>`
+      ).join('');
+      
+      // Toon modal
+      document.getElementById('customUserModal').classList.add('show');
+      
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
       }
-
+      
+      function closeCustomModal() {
+      document.getElementById('customUserModal').classList.remove('show');
+      document.body.style.overflow = '';
+      currentModalGereedschap = null;
+      currentModalLocatie = null;
+      }
+      
+      function selectUser(gebruiker) {
+      closeCustomModal();
+      leenUit(currentModalGereedschap, currentModalLocatie, gebruiker);
+      }
+      
       // ═══════════════════════════════════════════════════════════
       // ZOEK & DISPLAY FUNCTIES
       // ═══════════════════════════════════════════════════════════
-
+      
       let currentSearch = "";
-
+      
       document.addEventListener("DOMContentLoaded", () => {
         displayResults(gereedschapData);
         document
           .getElementById("searchInput")
           .addEventListener("input", handleSearch);
-
+      
         // Filter button event listeners
         document.querySelectorAll(".filter-btn").forEach((btn) => {
           btn.addEventListener("click", (e) => {
@@ -2327,26 +2506,26 @@
           });
         });
       });
-
+      
       function handleSearch(e) {
         currentSearch = e.target.value;
         filterAndDisplay();
       }
-
+      
       async function filterAndDisplay() {
         const searchNormalized = currentSearch.replace(/\s/g, "").toLowerCase();
-
+      
         // Laad eerst de status data
         const { content } = await loadStatus();
         const statusData = content.gereedschap || {};
-
+      
         let filtered = gereedschapData.filter((item) => {
           const itemNormalized = item[0].replace(/\s/g, "").toLowerCase();
           return (
             searchNormalized === "" || itemNormalized.includes(searchNormalized)
           );
         });
-
+      
         // Pas status filter toe
         if (currentFilter === "beschikbaar") {
           filtered = filtered.filter((item) => {
@@ -2365,21 +2544,21 @@
             return status && status.status === "uitgeleend";
           });
         }
-
+      
         displayResults(filtered);
       }
-
+      
       async function displayResults(items) {
         const resultsList = document.getElementById("resultsList");
         const resultCount = document.getElementById("resultCount");
-
+      
         resultsList.innerHTML = '<div class="loading">⏳ Status laden...</div>';
-
+      
         const { content } = await loadStatus();
         const statusData = content.gereedschap || {};
-
+      
         resultCount.textContent = items.length;
-
+      
         if (items.length === 0) {
           resultsList.innerHTML = `
                     <div class="no-results">
@@ -2389,7 +2568,7 @@
                 `;
           return;
         }
-
+      
         resultsList.innerHTML = items
           .map((item) => {
             const gereedschapNr = item[0];
@@ -2397,17 +2576,17 @@
             const uniqueKey = `${gereedschapNr}||${locatie}`;
             const status = statusData[uniqueKey];
             const isInGebruik = status && status.status === "uitgeleend";
-
+      
             const isMagazijn = locatie.includes("Magazijn");
             const locatieClass = isMagazijn
               ? "locatie-magazijn"
               : "locatie-werkplaats";
             const locatieIcon = isMagazijn ? "📦" : "🔧";
-
+      
             let statusButton = "";
             let detailHTML = "";
             let geschiedenisHTML = "";
-
+      
             if (isInGebruik) {
               const sinds = new Date(status.sinds);
               const tijd = sinds.toLocaleString("nl-BE", {
@@ -2416,10 +2595,10 @@
                 hour: "2-digit",
                 minute: "2-digit",
               });
-
+      
               statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}', '${locatie}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
               detailHTML = `<div class="detail-text">Door: <strong>${status.gebruiker}</strong> • Sinds: ${tijd}</div>`;
-
+      
               if (status.geschiedenis && status.geschiedenis.length > 0) {
                 const laatste3 = status.geschiedenis.slice(-3).reverse();
                 geschiedenisHTML = `
@@ -2447,7 +2626,7 @@
               }
             } else {
               statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}', '${locatie}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
-
+      
               if (
                 status &&
                 status.geschiedenis &&
@@ -2462,7 +2641,7 @@
                   month: "short",
                   year: "numeric",
                 });
-
+      
                 geschiedenisHTML = `
                             <div class="geschiedenis-section">
                                 <div class="geschiedenis-title">📜 Recente Geschiedenis</div>
@@ -2487,7 +2666,7 @@
                         `;
               }
             }
-
+      
             return `
                     <div class="result-item">
                         <div class="gereedschap-header">
@@ -2505,5 +2684,23 @@
           .join("");
       }
     </script>
+    <!-- Custom Modal voor gebruiker selectie -->
+    <div id="customUserModal" class="custom-modal">
+      <div class="custom-modal-overlay" onclick="closeCustomModal()"></div>
+      <div class="custom-modal-content">
+        <div class="custom-modal-header">
+          <h3>Gereedschap</h3>
+          <button class="custom-modal-close" onclick="closeCustomModal()">✕</button>
+        </div>
+        <div class="custom-modal-body">
+          <p class="modal-gereedschap-nr" id="modalGereedschapNr"></p>
+          <p class="modal-label">Selecteer gebruiker:</p>
+          <div class="modal-user-buttons" id="modalUserButtons"></div>
+        </div>
+        <div class="custom-modal-footer">
+          <button class="modal-btn modal-btn-cancel" onclick="closeCustomModal()">Annuleren</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
