@@ -421,16 +421,22 @@
       max-height: 60vh;
       overflow-y: auto;
       }
-      .modal-gereedschap-nr {
-      font-family: 'Courier New', monospace;
-      font-size: 1.125rem;
-      font-weight: 700;
-      color: #1a1a1a;
+      .modal-locatie {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #4b5563;
       margin-bottom: 1rem;
       padding: 0.75rem;
-      background: #f3f4f6;
-      border-radius: 8px;
-      text-align: center;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      }
+      .modal-locatie::before {
+      content: '📍';
+      font-size: 1.125rem;
       }
       .modal-label {
       font-size: 0.95rem;
@@ -439,8 +445,8 @@
       margin-bottom: 1rem;
       }
       .modal-user-buttons {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 0.5rem;
       }
       .modal-user-btn {
@@ -2452,8 +2458,11 @@
       currentModalGereedschap = gereedschapNr;
       currentModalLocatie = locatie;
       
-      // Toon gereedschapnummer
-      document.getElementById('modalGereedschapNr').textContent = gereedschapNr;
+      // Toon gereedschapnummer in header
+      document.getElementById('modalHeaderGereedschapNr').textContent = gereedschapNr;
+
+      // Toon locatie in body
+      document.getElementById('modalLocatie').textContent = locatie;
       
       // Maak gebruiker buttons
       const buttonsContainer = document.getElementById('modalUserButtons');
@@ -2478,8 +2487,10 @@
       }
       
       function selectUser(gebruiker) {
-      closeCustomModal();
-      leenUit(currentModalGereedschap, currentModalLocatie, gebruiker);
+        const gereedschap = currentModalGereedschap;
+        const locatie = currentModalLocatie;
+        closeCustomModal();
+        leenUit(gereedschap, locatie, gebruiker);
       }
       
       // ═══════════════════════════════════════════════════════════
@@ -2689,11 +2700,11 @@
       <div class="custom-modal-overlay" onclick="closeCustomModal()"></div>
       <div class="custom-modal-content">
         <div class="custom-modal-header">
-          <h3>Gereedschap</h3>
+          <h3 id="modalHeaderGereedschapNr">Gereedschap uitlenen</h3>
           <button class="custom-modal-close" onclick="closeCustomModal()">✕</button>
         </div>
         <div class="custom-modal-body">
-          <p class="modal-gereedschap-nr" id="modalGereedschapNr"></p>
+          <p class="modal-locatie" id="modalLocatie"></p>
           <p class="modal-label">Selecteer gebruiker:</p>
           <div class="modal-user-buttons" id="modalUserButtons"></div>
         </div>
