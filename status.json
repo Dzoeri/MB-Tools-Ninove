@@ -1,7 +1,16 @@
 {
   "metadata": {
-    "laatste_update": "2025-11-06T00:00:00",
+    "laatste_update": "2025-11-11T10:22:32.247Z",
     "versie": "2.0"
   },
-  "gereedschap": {}
+  "gereedschap": {
+    "166 589 00 03 00||Werkplaats: PKW - Bord A": {
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2025-11-11T10:22:32.247Z",
+      "nummer": "166 589 00 03 00",
+      "locatie": "Werkplaats: PKW - Bord A",
+      "geschiedenis": []
+    }
+  }
 }
