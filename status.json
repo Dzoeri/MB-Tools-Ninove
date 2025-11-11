@@ -11,31 +11,6 @@
       "nummer": "166 589 00 03 00",
       "locatie": "Werkplaats: PKW - Bord A",
       "geschiedenis": []
-    },
-    "null||null": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2025-11-11T13:18:07.014Z",
-      "nummer": null,
-      "locatie": null,
-      "geschiedenis": []
-    },
-    "000 581 25 58 00||Magazijn: Rek 1518 - Schap 0108": {
-      "status": "beschikbaar",
-      "nummer": "000 581 25 58 00",
-      "locatie": "Magazijn: Rek 1518 - Schap 0108",
-      "geschiedenis": [
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-11-11T13:47:46.130Z",
-          "tot": "2025-11-11T13:51:04.625Z"
-        },
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-11-11T14:30:58.208Z",
-          "tot": "2025-11-11T14:31:39.922Z"
-        }
-      ]
     }
   }
 }
