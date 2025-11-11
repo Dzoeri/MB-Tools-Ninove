@@ -654,10 +654,7 @@
         ["112 589 03 31 00", "Magazijn: Rek 1522 - Schap 0402"],
         ["112 589 03 40 00", "Magazijn: Rek 1522 - Schap 0105"],
         ["112 589 03 40 00", "Magazijn: Rek 1518 - Schap 0107"],
-        [
-          "112 589 09 61 00",
-          "Werkplaats: NFZ /MAGAZIJN - Rek 1523 - Schap 0106 - Bak 3",
-        ],
+        ["112 589 09 61 00","Werkplaats: NFZ /MAGAZIJN - Rek 1523 - Schap 0106 - Bak 3",],
         ["112 589 09 61 00", "Magazijn: Rek 1518 - Schap 0107"],
         ["112 589 10 61 00", "Magazijn: Rek 1518 - Schap 0107"],
         ["113 589 00 01 00", "Werkplaats: NFZ - Rek 1522 - Schap 0105 - Bak 1"],
@@ -2216,7 +2213,7 @@
         }
       }
 
-      async function leenUit(gereedschapNr, gebruiker) {
+      async function leenUit(gereedschapNr, locatie, gebruiker) {
         if (!gebruiker || gebruiker.trim() === "") {
           alert("⚠️ Geen geldige gebruiker geselecteerd");
           return;
@@ -2224,11 +2221,16 @@
 
         const { content, sha } = await loadStatus();
 
-        content.gereedschap[gereedschapNr] = {
+        // Maak een unieke key met nummer + locatie
+        const uniqueKey = `${gereedschapNr}||${locatie}`;
+
+        content.gereedschap[uniqueKey] = {
           status: "uitgeleend",
           gebruiker: gebruiker,
           sinds: new Date().toISOString(),
-          geschiedenis: content.gereedschap[gereedschapNr]?.geschiedenis || [],
+          nummer: gereedschapNr,
+          locatie: locatie,
+          geschiedenis: content.gereedschap[uniqueKey]?.geschiedenis || [],
         };
 
         content.metadata = content.metadata || {};
@@ -2236,32 +2238,35 @@
 
         const success = await saveStatus(content, sha);
         if (success) {
-          alert(`🟢 Gereedschap ${gereedschapNr} in gebruik door ${gebruiker}`);
+          alert(`🟢 Gereedschap ${gereedschapNr}\nLocatie: ${locatie}\nIn gebruik door ${gebruiker}`);
           location.reload();
         }
       }
 
-      async function brengTerug(gereedschapNr) {
-        if (!confirm(`Wil je gereedschap ${gereedschapNr} terugbrengen?`)) {
+      async function brengTerug(gereedschapNr, locatie) {
+        if (!confirm(`Wil je gereedschap ${gereedschapNr} terugbrengen?\nLocatie: ${locatie}`)) {
           return;
         }
 
         const { content, sha } = await loadStatus();
 
-        if (content.gereedschap[gereedschapNr]) {
-          if (!content.gereedschap[gereedschapNr].geschiedenis) {
-            content.gereedschap[gereedschapNr].geschiedenis = [];
+        // Maak dezelfde unieke key
+        const uniqueKey = `${gereedschapNr}||${locatie}`;
+
+        if (content.gereedschap[uniqueKey]) {
+          if (!content.gereedschap[uniqueKey].geschiedenis) {
+            content.gereedschap[uniqueKey].geschiedenis = [];
           }
 
-          content.gereedschap[gereedschapNr].geschiedenis.push({
-            gebruiker: content.gereedschap[gereedschapNr].gebruiker,
-            van: content.gereedschap[gereedschapNr].sinds,
+          content.gereedschap[uniqueKey].geschiedenis.push({
+            gebruiker: content.gereedschap[uniqueKey].gebruiker,
+            van: content.gereedschap[uniqueKey].sinds,
             tot: new Date().toISOString(),
           });
 
-          content.gereedschap[gereedschapNr].status = "beschikbaar";
-          delete content.gereedschap[gereedschapNr].gebruiker;
-          delete content.gereedschap[gereedschapNr].sinds;
+          content.gereedschap[uniqueKey].status = "beschikbaar";
+          delete content.gereedschap[uniqueKey].gebruiker;
+          delete content.gereedschap[uniqueKey].sinds;
         }
 
         content.metadata = content.metadata || {};
@@ -2269,23 +2274,23 @@
 
         const success = await saveStatus(content, sha);
         if (success) {
-          alert(`✅ Gereedschap ${gereedschapNr} teruggebracht`);
+          alert(`✅ Gereedschap ${gereedschapNr}\nLocatie: ${locatie}\nTerug beschikbaar`);
           location.reload();
         }
       }
 
-      function toonUitleenPopup(gereedschapNr) {
+      function toonUitleenPopup(gereedschapNr, locatie) {
         const keuze = prompt(
-          `Wie gebruikt gereedschap ${gereedschapNr}?\n\n` +
-            GEBRUIKERS.map((naam, i) => `${i + 1}. ${naam}`).join("\n") +
-            "\n\nTyp het nummer (1-13) of de volledige naam:"
+          `Wie gebruikt gereedschap ${gereedschapNr}?\nLocatie: ${locatie}\n\n` +
+          GEBRUIKERS.map((naam, i) => `${i + 1}. ${naam}`).join("\n") +
+          "\n\nTyp het nummer (1-13) of de volledige naam:"
         );
-
+        
         if (!keuze) return;
-
+        
         const nr = parseInt(keuze.trim());
         let gekozenNaam;
-
+        
         if (nr && nr >= 1 && nr <= GEBRUIKERS.length) {
           gekozenNaam = GEBRUIKERS[nr - 1];
         } else {
@@ -2294,8 +2299,8 @@
           );
           gekozenNaam = gevonden || keuze.trim();
         }
-
-        leenUit(gereedschapNr, gekozenNaam);
+        
+        leenUit(gereedschapNr, locatie, gekozenNaam);
       }
 
       // ═══════════════════════════════════════════════════════════
@@ -2346,13 +2351,17 @@
         if (currentFilter === "beschikbaar") {
           filtered = filtered.filter((item) => {
             const gereedschapNr = item[0];
-            const status = statusData[gereedschapNr];
+            const locatie = item[1];
+            const uniqueKey = `${gereedschapNr}||${locatie}`;
+            const status = statusData[uniqueKey];
             return !status || status.status !== "uitgeleend";
           });
         } else if (currentFilter === "ingebruik") {
           filtered = filtered.filter((item) => {
             const gereedschapNr = item[0];
-            const status = statusData[gereedschapNr];
+            const locatie = item[1];
+            const uniqueKey = `${gereedschapNr}||${locatie}`;
+            const status = statusData[uniqueKey];
             return status && status.status === "uitgeleend";
           });
         }
@@ -2385,7 +2394,8 @@
           .map((item) => {
             const gereedschapNr = item[0];
             const locatie = item[1];
-            const status = statusData[gereedschapNr];
+            const uniqueKey = `${gereedschapNr}||${locatie}`;
+            const status = statusData[uniqueKey];
             const isInGebruik = status && status.status === "uitgeleend";
 
             const isMagazijn = locatie.includes("Magazijn");
@@ -2407,7 +2417,7 @@
                 minute: "2-digit",
               });
 
-              statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
+              statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}', '${locatie}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
               detailHTML = `<div class="detail-text">Door: <strong>${status.gebruiker}</strong> • Sinds: ${tijd}</div>`;
 
               if (status.geschiedenis && status.geschiedenis.length > 0) {
@@ -2436,7 +2446,7 @@
                         `;
               }
             } else {
-              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
+              statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}', '${locatie}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
 
               if (
                 status &&
