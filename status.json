@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2025-11-12T06:56:38.900Z",
+    "laatste_update": "2025-11-12T14:53:18.932Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -39,6 +39,14 @@
       "sinds": "2025-11-12T06:56:31.152Z",
       "nummer": "166 589 00 03 00",
       "locatie": "Magazijn: Rek 1508 - Schap 0107",
+      "geschiedenis": []
+    },
+    "000 581 39 01 00||Magazijn: Rek 1518 - Schap 0108": {
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2025-11-12T14:53:18.932Z",
+      "nummer": "000 581 39 01 00",
+      "locatie": "Magazijn: Rek 1518 - Schap 0108",
       "geschiedenis": []
     }
   }
