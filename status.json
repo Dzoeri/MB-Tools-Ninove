@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2025-11-12T06:52:12.968Z",
+    "laatste_update": "2025-11-12T06:52:20.567Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -13,9 +13,7 @@
       "geschiedenis": []
     },
     "000 581 25 58 00||Magazijn: Rek 1518 - Schap 0108": {
-      "status": "uitgeleend",
-      "gebruiker": "Philippe",
-      "sinds": "2025-11-12T06:52:12.968Z",
+      "status": "beschikbaar",
       "nummer": "000 581 25 58 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0108",
       "geschiedenis": [
@@ -23,6 +21,11 @@
           "gebruiker": "Joeri",
           "van": "2025-11-12T06:50:59.262Z",
           "tot": "2025-11-12T06:51:17.258Z"
+        },
+        {
+          "gebruiker": "Philippe",
+          "van": "2025-11-12T06:52:12.968Z",
+          "tot": "2025-11-12T06:52:20.567Z"
         }
       ]
     }
