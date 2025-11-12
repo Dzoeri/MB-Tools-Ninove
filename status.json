@@ -1,16 +1,20 @@
 {
   "metadata": {
-    "laatste_update": "2025-11-12T06:56:31.152Z",
+    "laatste_update": "2025-11-12T06:56:38.900Z",
     "versie": "2.0"
   },
   "gereedschap": {
     "166 589 00 03 00||Werkplaats: PKW - Bord A": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2025-11-11T10:22:32.247Z",
+      "status": "beschikbaar",
       "nummer": "166 589 00 03 00",
       "locatie": "Werkplaats: PKW - Bord A",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Joeri",
+          "van": "2025-11-11T10:22:32.247Z",
+          "tot": "2025-11-12T06:56:38.900Z"
+        }
+      ]
     },
     "000 581 25 58 00||Magazijn: Rek 1518 - Schap 0108": {
       "status": "beschikbaar",
