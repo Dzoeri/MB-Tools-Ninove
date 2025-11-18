@@ -3,55 +3,5 @@
     "laatste_update": "2025-11-12T14:53:27.788Z",
     "versie": "2.0"
   },
-  "gereedschap": {
-    "166 589 00 03 00||Werkplaats: PKW - Bord A": {
-      "status": "beschikbaar",
-      "nummer": "166 589 00 03 00",
-      "locatie": "Werkplaats: PKW - Bord A",
-      "geschiedenis": [
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-11-11T10:22:32.247Z",
-          "tot": "2025-11-12T06:56:38.900Z"
-        }
-      ]
-    },
-    "000 581 25 58 00||Magazijn: Rek 1518 - Schap 0108": {
-      "status": "beschikbaar",
-      "nummer": "000 581 25 58 00",
-      "locatie": "Magazijn: Rek 1518 - Schap 0108",
-      "geschiedenis": [
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-11-12T06:50:59.262Z",
-          "tot": "2025-11-12T06:51:17.258Z"
-        },
-        {
-          "gebruiker": "Philippe",
-          "van": "2025-11-12T06:52:12.968Z",
-          "tot": "2025-11-12T06:52:20.567Z"
-        }
-      ]
-    },
-    "166 589 00 03 00||Magazijn: Rek 1508 - Schap 0107": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2025-11-12T06:56:31.152Z",
-      "nummer": "166 589 00 03 00",
-      "locatie": "Magazijn: Rek 1508 - Schap 0107",
-      "geschiedenis": []
-    },
-    "000 581 39 01 00||Magazijn: Rek 1518 - Schap 0108": {
-      "status": "beschikbaar",
-      "nummer": "000 581 39 01 00",
-      "locatie": "Magazijn: Rek 1518 - Schap 0108",
-      "geschiedenis": [
-        {
-          "gebruiker": "Joeri",
-          "van": "2025-11-12T14:53:18.932Z",
-          "tot": "2025-11-12T14:53:27.788Z"
-        }
-      ]
-    }
-  }
+  "gereedschap": {]
 }
