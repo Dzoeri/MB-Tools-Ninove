@@ -17,13 +17,6 @@ Toegang tot de volledige gereedschap database met zoekfunctie.
 - **totaal aantal items**
 - Automatisch bijgewerkt via GitHub
 
-## 🛠️ Data Bijwerken
-1. Ga naar `index.html`
-2. Klik op potlood icoon (Edit)
-3. Zoek `gereedschapData` array
-4. Pas aan en commit
-5. Website update automatisch binnen 1 minuut
-
 ## 👨‍💼 Beheer
 Beheerd door: Joeri Van Melkebeke
 
