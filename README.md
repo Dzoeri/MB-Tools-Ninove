@@ -1,6 +1,6 @@
-# MB Tools Ninove
+# MB Tools
 
-Mercedes-Benz Speciaal Gereedschap Database Ninove
+Speciaal Gereedschap Database
 
 ## 📱 Web App
 Toegang tot de volledige gereedschap database met zoekfunctie.
@@ -29,4 +29,4 @@ Beheerd door: Joeri Van Melkebeke
 
 ---
 
-© 2025 Mercedes-Benz - Hedin Automotive • Voor intern gebruik
+© 2025 JVM • Voor intern gebruik
