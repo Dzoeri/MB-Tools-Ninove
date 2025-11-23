@@ -522,6 +522,199 @@
       font-size: 1.125rem;
       }
       }
+      /* About Modal Styling */
+      .about-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10000;
+      animation: fadeIn 0.3s ease;
+      }
+      .about-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      }
+      .about-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      }
+      .about-modal-content {
+      position: relative;
+      background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 85vh;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+      animation: slideUp 0.4s ease;
+      border: 2px solid #60a5fa;
+      }
+      .about-modal-header {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 2px solid #60a5fa;
+      }
+      .about-modal-header h2 {
+      color: #60a5fa;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      }
+      .about-modal-header p {
+      color: #b0b0b0;
+      font-size: 1rem;
+      }
+      .about-modal-body {
+      padding: 2rem;
+      max-height: 60vh;
+      overflow-y: auto;
+      color: #e0e0e0;
+      }
+      .about-section {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+      }
+      .about-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      }
+      .about-section h3 {
+      color: #60a5fa;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      }
+      .about-section p {
+      line-height: 1.8;
+      color: #c0c0c0;
+      margin-bottom: 0.75rem;
+      }
+      .about-section strong {
+      color: #ffffff;
+      font-weight: 600;
+      }
+      .copyright-box {
+      background: rgba(96, 165, 250, 0.1);
+      border: 2px solid #60a5fa;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      }
+      .copyright-box .copyright-symbol {
+      font-size: 2rem;
+      color: #60a5fa;
+      margin-bottom: 0.5rem;
+      }
+      .copyright-box .copyright-year {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      }
+      .copyright-box .copyright-owner {
+      font-size: 1.2rem;
+      color: #60a5fa;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      }
+      .copyright-box .copyright-text {
+      font-size: 0.9rem;
+      color: #b0b0b0;
+      line-height: 1.6;
+      }
+      .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+      }
+      .info-item {
+      background: rgba(45, 45, 45, 0.5);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 3px solid #60a5fa;
+      }
+      .info-label {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      }
+      .info-value {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      }
+      .about-modal-footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid rgba(96, 165, 250, 0.2);
+      background: rgba(13, 13, 13, 0.8);
+      display: flex;
+      justify-content: center;
+      }
+      .about-close-btn {
+      background: #60a5fa;
+      color: #1a1a1a;
+      border: none;
+      padding: 0.875rem 2.5rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      }
+      .about-close-btn:hover {
+      background: #4a90e2;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(96, 165, 250, 0.4);
+      }
+      .info-btn {
+      background: rgba(255, 255, 2558, 0);
+      border: none;
+      color: #60a5fa;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: all 0.2s;
+      margin-bottom: 0.5rem;
+      }
+      .info-btn:hover {
+      background: rgba(96, 165, 250, 0.2);
+      transform: scale(1.05);
+      }
+      /* Scrollbar styling voor about modal */
+      .about-modal-body::-webkit-scrollbar {
+      width: 8px;
+      }
+      .about-modal-body::-webkit-scrollbar-track {
+      background: rgba(45, 45, 45, 0.5);
+      border-radius: 10px;
+      }
+      .about-modal-body::-webkit-scrollbar-thumb {
+      background: #60a5fa;
+      border-radius: 10px;
+      }
+      .about-modal-body::-webkit-scrollbar-thumb:hover {
+      background: #4a90e2;
+      }
     </style>
   </head>
   <body>
@@ -547,6 +740,13 @@
           title="Instellingen"
           >
         ⚙️
+        </button>
+        <button
+          class="info-btn"
+          onclick="showAboutModal()"
+          title="Over deze applicatie"
+          >
+        ℹ️
         </button>
       </div>
     </header>
@@ -2302,6 +2502,24 @@
       }
       
       // ═══════════════════════════════════════════════════════════
+      // ABOUT FUNCTIE
+      // ═══════════════════════════════════════════════════════════ 
+      function showAboutModal() {
+          document.getElementById('aboutModal').classList.add('show');
+          document.body.style.overflow = 'hidden';
+        }
+        
+        function closeAboutModal() {
+          document.getElementById('aboutModal').classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      
+      // Close modal when clicking Escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          closeAboutModal();
+        }
+        });
       
       // ═══════════════════════════════════════════════════════════
       // FILTER STATE
@@ -2456,7 +2674,7 @@
       
       // Toon gereedschapnummer in header
       document.getElementById('modalHeaderGereedschapNr').textContent = gereedschapNr;
-
+      
       // Toon locatie in body
       document.getElementById('modalLocatie').textContent = locatie;
       
@@ -2707,6 +2925,113 @@
         </div>
         <div class="custom-modal-footer">
           <button class="modal-btn modal-btn-cancel" onclick="closeCustomModal()">Annuleren</button>
+        </div>
+      </div>
+    </div>
+    <!-- About/License Modal -->
+    <div id="aboutModal" class="about-modal">
+      <div class="about-modal-overlay" onclick="closeAboutModal()"></div>
+      <div class="about-modal-content">
+        <div class="about-modal-header">
+          <h2>📋 Over deze Applicatie</h2>
+          <p>MB Tools Inventory System</p>
+        </div>
+        <div class="about-modal-body">
+          <!-- Copyright Section -->
+          <div class="about-section">
+            <div class="copyright-box">
+              <div class="copyright-symbol">©</div>
+              <div class="copyright-year">2025</div>
+              <div class="copyright-owner">Joeri Van Melkebeke</div>
+              <div class="copyright-text">
+                Alle rechten voorbehouden.<br>
+                Ongeautoriseerd gebruik, reproductie of distributie is verboden.
+              </div>
+            </div>
+          </div>
+          <!-- System Info -->
+          <div class="about-section">
+            <h3>🛠️ Applicatie Informatie</h3>
+            <div class="info-grid">
+              <div class="info-item">
+                <div class="info-label">Naam</div>
+                <div class="info-value">MB Tools</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Versie</div>
+                <div class="info-value">2.0</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Type</div>
+                <div class="info-value">Inventory System</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Jaar</div>
+                <div class="info-value">2025</div>
+              </div>
+            </div>
+          </div>
+          <!-- Developer Info -->
+          <div class="about-section">
+            <h3>👨‍💻 Ontwikkelaar</h3>
+            <p>
+              Deze applicatie is volledig ontworpen en ontwikkeld door 
+              <strong>Joeri Van Melkebeke</strong>.
+            </p>
+            <p>
+              Het systeem beheert de speciale gereedschap inventaris en
+              maakt gebruik van moderne webtechnologieën 
+              voor een optimale gebruikerservaring.
+            </p>
+          </div>
+          <!-- License Info -->
+          <div class="about-section">
+            <h3>⚖️ Licentie & Gebruik</h3>
+            <p>
+              Dit systeem, inclusief alle code, design en documentatie, is 
+              <strong>intellectueel eigendom</strong> van Joeri Van Melkebeke.
+            </p>
+            <p>
+              <strong>Toegestaan gebruik:</strong><br>
+              ✅ Intern gebruik, met toestemming van de eigenaar<br>
+              ✅ Raadplegen en bijwerken van gereedschap status
+            </p>
+            <p>
+              <strong>Niet toegestaan zonder toestemming:</strong><br>
+              ❌ Reproductie of kopiëren van de code<br>
+              ❌ Distributie aan derden<br>
+              ❌ Commercieel gebruik zowel binnen als buiten de organisatie<br>
+              ❌ Wijzigen en doorverkopen
+            </p>
+          </div>
+          <!-- Technical Info -->
+          <div class="about-section">
+            <h3>💻 Technische Details</h3>
+            <p>
+              <strong>Platform:</strong> Progressive Web App (PWA)<br>
+              <strong>Compatibiliteit:</strong> Alle moderne browsers, iOS, Android<br>
+              <strong>Laatste update:</strong> November 2025
+            </p>
+          </div>
+          <!-- Contact Info -->
+          <div class="about-section">
+            <h3>📞 Contact & Support</h3>
+            <p>
+              Voor vragen, problemen of feature requests met betrekking tot 
+              deze applicatie, neem contact op met de ontwikkelaar.
+            </p>
+            <p>
+              <strong>Ontwikkelaar:</strong> Joeri Van Melkebeke<br>
+              <strong>E-mail:</strong> 
+              <E-mail>joerivanmelkebeke@hotmail.com</E-mail>
+              <br>
+            </p>
+          </div>
+        </div>
+        <div class="about-modal-footer">
+          <button class="about-close-btn" onclick="closeAboutModal()">
+          Sluiten
+          </button>
         </div>
       </div>
     </div>
