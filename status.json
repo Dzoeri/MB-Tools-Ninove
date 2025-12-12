@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2025-12-12T12:18:47.796Z",
+    "laatste_update": "2025-12-12T12:18:56.882Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -29,12 +29,16 @@
       ]
     },
     "220 589 00 99 34||Magazijn: Rek 1522 - Schap 0102 - Bak 2": {
-      "status": "uitgeleend",
-      "gebruiker": "Chris",
-      "sinds": "2025-12-12T12:18:47.796Z",
+      "status": "beschikbaar",
       "nummer": "220 589 00 99 34",
       "locatie": "Magazijn: Rek 1522 - Schap 0102 - Bak 2",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Chris",
+          "van": "2025-12-12T12:18:47.796Z",
+          "tot": "2025-12-12T12:18:56.882Z"
+        }
+      ]
     }
   }
 }
