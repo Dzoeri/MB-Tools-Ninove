@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2025-12-19T09:48:41.367Z",
+    "laatste_update": "2025-12-19T09:48:57.516Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -41,12 +41,16 @@
       ]
     },
     "000 586 00 99 00||Magazijn: Rek 1518 - Schap 0101": {
-      "status": "uitgeleend",
-      "gebruiker": "Albin",
-      "sinds": "2025-12-19T09:48:41.367Z",
+      "status": "beschikbaar",
       "nummer": "000 586 00 99 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0101",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Albin",
+          "van": "2025-12-19T09:48:41.367Z",
+          "tot": "2025-12-19T09:48:57.516Z"
+        }
+      ]
     }
   }
 }
