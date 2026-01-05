@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2025-12-19T09:48:57.516Z",
+    "laatste_update": "2026-01-05T09:33:55.513Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -51,6 +51,14 @@
           "tot": "2025-12-19T09:48:57.516Z"
         }
       ]
+    },
+    "611 589 03 63 00||Magazijn: 15220102": {
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2026-01-05T09:33:55.513Z",
+      "nummer": "611 589 03 63 00",
+      "locatie": "Magazijn: 15220102",
+      "geschiedenis": []
     }
   }
 }
