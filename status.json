@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-01-05T09:33:55.513Z",
+    "laatste_update": "2026-01-05T10:55:06.995Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -17,7 +17,9 @@
       ]
     },
     "000 589 00 21 00||Magazijn: Rek 1522 - Schap 0309": {
-      "status": "beschikbaar",
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2026-01-05T10:55:06.995Z",
       "nummer": "000 589 00 21 00",
       "locatie": "Magazijn: Rek 1522 - Schap 0309",
       "geschiedenis": [
