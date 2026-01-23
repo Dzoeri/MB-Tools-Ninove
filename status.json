@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-01-23T12:54:35.560Z",
+    "laatste_update": "2026-01-23T13:01:41.103Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -66,12 +66,16 @@
       "geschiedenis": []
     },
     "654 589 00 40 00||Magazijn: Rek 1518 - Schap 0504": {
-      "status": "uitgeleend",
-      "gebruiker": "Albin",
-      "sinds": "2026-01-23T12:54:35.560Z",
+      "status": "beschikbaar",
       "nummer": "654 589 00 40 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0504",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Albin",
+          "van": "2026-01-23T12:54:35.560Z",
+          "tot": "2026-01-23T13:01:41.103Z"
+        }
+      ]
     }
   }
 }
