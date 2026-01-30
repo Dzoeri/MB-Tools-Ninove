@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-01-29T10:55:39.784Z",
+    "laatste_update": "2026-01-30T08:43:33.294Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -90,12 +90,16 @@
       ]
     },
     "000 589 68 03 00||Magazijn: Rek 1518 - Schap 0103": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-01-29T10:55:39.784Z",
+      "status": "beschikbaar",
       "nummer": "000 589 68 03 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0103",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Joeri",
+          "van": "2026-01-29T10:55:39.784Z",
+          "tot": "2026-01-30T08:43:33.294Z"
+        }
+      ]
     }
   }
 }
