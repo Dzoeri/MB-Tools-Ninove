@@ -57,14 +57,6 @@
         }
       ]
     },
-    "611 589 03 63 00||Magazijn: 15220102": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-01-05T09:33:55.513Z",
-      "nummer": "611 589 03 63 00",
-      "locatie": "Magazijn: 15220102",
-      "geschiedenis": []
-    },
     "654 589 00 40 00||Magazijn: Rek 1518 - Schap 0504": {
       "status": "beschikbaar",
       "nummer": "654 589 00 40 00",
