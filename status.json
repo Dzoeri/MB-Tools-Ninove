@@ -92,22 +92,6 @@
           "tot": "2026-01-30T08:43:33.294Z"
         }
       ]
-    },
-    "000 588 00 71 00||Magazijn: Rek 1523 - Schap 0501": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-02-01T14:23:14.578Z",
-      "nummer": "000 588 00 71 00",
-      "locatie": "Magazijn: Rek 1523 - Schap 0501",
-      "geschiedenis": []
-    },
-    "000 588 00 99 00||Magazijn: Rek 1523 - Schap 0603": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-02-01T14:23:24.933Z",
-      "nummer": "000 588 00 99 00",
-      "locatie": "Magazijn: Rek 1523 - Schap 0603",
-      "geschiedenis": []
     }
   }
 }
