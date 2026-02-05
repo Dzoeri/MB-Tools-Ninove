@@ -92,18 +92,6 @@
           "tot": "2026-01-30T08:43:33.294Z"
         }
       ]
-    },
-    "000 588 00 71 00||Magazijn: Rek 1523 - Schap 0501": {
-      "status": "beschikbaar",
-      "nummer": "000 588 00 71 00",
-      "locatie": "Magazijn: Rek 1523 - Schap 0501",
-      "geschiedenis": [
-        {
-          "gebruiker": "Joeri",
-          "van": "2026-02-04T14:33:29.169Z",
-          "tot": "2026-02-04T14:34:31.882Z"
-        }
-      ]
     }
   }
 }
