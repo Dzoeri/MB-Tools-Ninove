@@ -6,12 +6,12 @@
     <meta
       name="description"
       content="Mercedes-Benz Speciaal Gereedschap Database Ninove"
-      />
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
-      />
+    />
     <meta name="apple-mobile-web-app-title" content="MB Tools" />
     <link rel="apple-touch-icon" href="icon-192.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -20,736 +20,505 @@
     <title>MB Tools Ninove - Gereedschap Database</title>
     <style>
       * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
       body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(to bottom right, #f5f5f5, #e8e8e8);
-      min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(to bottom right, #f5f5f5, #e8e8e8);
+        min-height: 100vh;
       }
       .header {
-      background: linear-gradient(to right, #1a1a1a, #2d2d2d, #1a1a1a);
-      color: white;
-      padding: 2rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(to right, #1a1a1a, #2d2d2d, #1a1a1a);
+        color: white;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        position: relative;
       }
       .logos-center {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
       }
       .header-logo {
-      height: 150px;
-      width: auto;
-      object-fit: contain;
-      }
-      .title-section h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-      }
-      .title-section p {
-      color: #b0b0b0;
-      font-size: 0.95rem;
-      }
-      .stats {
-      text-align: right;
-      }
-      .stats-label {
-      font-size: 0.875rem;
-      color: #b0b0b0;
-      margin-bottom: 0.25rem;
-      }
-      .stats-value {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #60a5fa;
+        height: 150px;
+        width: auto;
+        object-fit: contain;
       }
       .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
       }
       .search-container {
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       .search-container h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: #1a1a1a;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #1a1a1a;
       }
       .search-input-wrapper {
-      position: relative;
-      margin-bottom: 0.75rem;
+        position: relative;
+        margin-bottom: 0.75rem;
       }
       .search-icon {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #9ca3af;
-      width: 20px;
-      height: 20px;
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        width: 20px;
+        height: 20px;
       }
       #searchInput {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3rem;
-      font-size: 1.125rem;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      transition: all 0.3s;
+        width: 100%;
+        padding: 1rem 1rem 1rem 3rem;
+        font-size: 1.125rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        transition: all 0.3s;
       }
       #searchInput:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
       }
       .search-hint {
-      font-size: 0.875rem;
-      color: #6b7280;
-      margin-top: 0.5rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-top: 0.5rem;
       }
       .results-container {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       .results-header {
-      background: #2d2d2d;
-      color: white;
-      padding: 1.5rem 2rem;
+        background: #2d2d2d;
+        color: white;
+        padding: 1.5rem 2rem;
       }
       .results-header h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
+        font-size: 1.25rem;
+        font-weight: 600;
       }
       .result-item {
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid #e5e7eb;
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid #e5e7eb;
       }
       .result-item:hover {
-      background-color: #eff6ff;
+        background-color: #eff6ff;
       }
       .result-item:last-child {
-      border-bottom: none;
+        border-bottom: none;
       }
       .gereedschap-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-      width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        width: 100%;
       }
       .gereedschap-nummer {
-      font-family: "Courier New", monospace;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #1a1a1a;
+        font-family: "Courier New", monospace;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .photo-btn {
+        background: transparent;
+        color: white;
+        border: none;
+        padding: 0;
+        border-radius: 6px;
+        font-size: 2.2rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        line-height: 1;
+        vertical-align: middle;
+        margin-bottom: 1rem;
+        width: 2.2rem;
+        height: 2.2rem;
+        justify-content: center;
+      }
+      .photo-btn:hover {
+        background: transparent;
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      .photo-btn.active {
+        background: transparent;
+        color: #ef4444;
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
+      }
+      .photo-container {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+      }
+      .photo-container.show {
+        max-height: 600px;
+        margin-top: 1rem;
+      }
+      .photo-wrapper {
+        background: #f9fafb;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+      }
+      .photo-wrapper img {
+        max-width: 100%;
+        max-height: 400px;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
       .status-button {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
       }
       .status-button.beschikbaar {
-      background: #d1fae5;
-      color: #065f46;
+        background: #d1fae5;
+        color: #065f46;
       }
       .status-button.beschikbaar:hover {
-      background: #a7f3d0;
-      transform: scale(1.02);
-      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+        background: #a7f3d0;
+        transform: scale(1.02);
+        box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
       }
       .status-button.ingebruik {
-      background: #fee2e2;
-      color: #991b1b;
+        background: #fee2e2;
+        color: #991b1b;
       }
       .status-button.ingebruik:hover {
-      background: #fecaca;
-      transform: scale(1.02);
-      box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+        background: #fecaca;
+        transform: scale(1.02);
+        box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
       }
       .locatie-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
       }
       .locatie-magazijn {
-      background: #e0e7ff;
-      color: #3730a3;
-      border-left: 3px solid #4f46e5;
+        background: #e0e7ff;
+        color: #3730a3;
+        border-left: 3px solid #4f46e5;
       }
       .locatie-werkplaats {
-      background: #fef3c7;
-      color: #92400e;
-      border-left: 3px solid #f59e0b;
-      }
-      .detail-text {
-      font-size: 0.875rem;
-      color: #991b1b;
-      margin-bottom: 0.75rem;
-      }
-      .detail-text.beschikbaar {
-      color: #6b7280;
-      }
-      .geschiedenis-section {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid #e5e7eb;
-      }
-      .geschiedenis-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #6b7280;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      }
-      .geschiedenis-item {
-      font-size: 0.8rem;
-      color: #6b7280;
-      padding: 0.25rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+        background: #fef3c7;
+        color: #92400e;
+        border-left: 3px solid #f59e0b;
       }
       .no-results {
-      padding: 4rem 2rem;
-      text-align: center;
-      color: #6b7280;
+        padding: 4rem 2rem;
+        text-align: center;
+        color: #6b7280;
       }
       .loading {
-      text-align: center;
-      padding: 2rem;
-      color: #6b7280;
+        text-align: center;
+        padding: 2rem;
+        color: #6b7280;
       }
       .footer {
-      background: #1a1a1a;
-      color: #b0b0b0;
-      padding: 1rem 2rem;
-      text-align: center;
-      position: sticky;
-      bottom: 0;
-      z-index: 50;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        background: #1a1a1a;
+        color: #b0b0b0;
+        padding: 1rem 2rem;
+        text-align: center;
+        position: sticky;
+        bottom: 0;
+        z-index: 50;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
       }
       .footer p {
-      font-size: 0.875rem;
-      margin: 0.25rem 0;
+        font-size: 0.875rem;
+        margin: 0.25rem 0;
       }
-      .settings-btn {
-      background: rgba(255, 255, 255, 0);
-      border: none;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1.5rem;
-      transition: all 0.2s;
+      .settings-btn,
+      .refresh-btn,
+      .info-btn {
+        background: rgba(255, 255, 255, 0);
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: all 0.2s;
+        margin-bottom: 0.5rem;
       }
-      .settings-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.05);
-      }
-      .buttons-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: absolute;
-      right: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
+      .settings-btn:hover,
+      .info-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
       }
       .refresh-btn {
-      background: rgba(255, 255, 255, 0);
-      border: none;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 2rem;
-      transition: all 0.2s;
-      margin-bottom: 0.5rem;
+        font-size: 2rem;
       }
       .refresh-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(180deg) scale(1.05);
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(180deg) scale(1.05);
+      }
+      .buttons-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
       }
       .filter-buttons {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
       }
       .filter-btn {
-      padding: 0.75rem 1.5rem;
-      border: 2px solid #e5e7eb;
-      background: white;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: 2px solid #e5e7eb;
+        background: white;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
       }
       .filter-btn:hover {
-      border-color: #60a5fa;
-      background: #eff6ff;
+        border-color: #60a5fa;
+        background: #eff6ff;
       }
       .filter-btn.active {
-      background: #60a5fa;
-      color: white;
-      border-color: #60a5fa;
+        background: #60a5fa;
+        color: white;
+        border-color: #60a5fa;
       }
-      @media (max-width: 768px) {
-      .header-content {
-      flex-direction: column;
-      text-align: center;
-      }
-      .logo-section {
-      flex-direction: column;
-      }
-      .stats {
-      text-align: center;
-      }
-      .container {
-      padding: 1rem;
-      }
-      }
-      /* Custom Modal Styling */
       .custom-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      animation: fadeIn 0.3s ease;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        animation: fadeIn 0.3s ease;
       }
       .custom-modal.show {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .custom-modal-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
       }
       .custom-modal-content {
-      position: relative;
-      background: white;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 500px;
-      max-height: 80vh;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      animation: slideUp 0.3s ease;
+        position: relative;
+        background: white;
+        border-radius: 16px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideUp 0.3s ease;
       }
       .custom-modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem;
-      border-bottom: 1px solid #e5e7eb;
-      background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        background: linear-gradient(to right, #1a1a1a, #2d2d2d);
       }
       .custom-modal-header h3 {
-      margin: 0;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: white;
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
       }
       .custom-modal-close {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
       }
       .custom-modal-close:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(90deg);
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(90deg);
       }
       .custom-modal-body {
-      padding: 1.5rem;
-      max-height: 60vh;
-      overflow-y: auto;
+        padding: 1.5rem;
+        max-height: 60vh;
+        overflow-y: auto;
       }
       .modal-locatie {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 1rem;
-      padding: 0rem;
-      background: #6b728000;
-      border-left: 4px solid #6b728000;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 1rem;
       }
       .modal-locatie::before {
-      content: '📍';
-      font-size: 1.125rem;
+        content: "📍";
+        font-size: 1.125rem;
+        margin-right: 0.5rem;
       }
       .modal-label {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #4b5563;
-      margin-bottom: 1rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #4b5563;
+        margin-bottom: 1rem;
       }
       .modal-user-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
       }
       .modal-user-btn {
-      padding: 1rem 1.5rem;
-      background: white;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #1a1a1a;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-align: left;
+        padding: 1rem 1.5rem;
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: left;
       }
       .modal-user-btn:hover {
-      background: #eff6ff;
-      border-color: #3b82f6;
-      transform: translateX(4px);
-      }
-      .modal-user-btn:active {
-      transform: translateX(4px) scale(0.98);
+        background: #eff6ff;
+        border-color: #3b82f6;
+        transform: translateX(4px);
       }
       .custom-modal-footer {
-      padding: 1rem 1.5rem;
-      border-top: 1px solid #e5e7eb;
-      background: #f9fafb;
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.75rem;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #e5e7eb;
+        background: #f9fafb;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
       }
       .modal-btn {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
       }
       .modal-btn-cancel {
-      background: #e5e7eb;
-      color: #1a1a1a;
+        background: #e5e7eb;
+        color: #1a1a1a;
       }
       .modal-btn-cancel:hover {
-      background: #d1d5db;
+        background: #d1d5db;
       }
       @keyframes fadeIn {
-      from {
-      opacity: 0;
-      }
-      to {
-      opacity: 1;
-      }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
       @keyframes slideUp {
-      from {
-      transform: translateY(30px);
-      opacity: 0;
-      }
-      to {
-      transform: translateY(0);
-      opacity: 1;
-      }
-      }
-      /* iPad optimalisaties */
-      @media (max-width: 768px) {
-      .custom-modal-content {
-      width: 95%;
-      max-height: 85vh;
-      }
-      .modal-user-btn {
-      padding: 1.25rem 1.5rem;
-      font-size: 1.125rem;
-      }
-      }
-      /* About Modal Styling */
-      .about-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 10000;
-      animation: fadeIn 0.3s ease;
-      }
-      .about-modal.show {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      }
-      .about-modal-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(6px);
-      }
-      .about-modal-content {
-      position: relative;
-      background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
-      border-radius: 20px;
-      width: 90%;
-      max-width: 600px;
-      max-height: 85vh;
-      overflow: hidden;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
-      animation: slideUp 0.4s ease;
-      border: 2px solid #60a5fa;
-      }
-      .about-modal-header {
-      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-      padding: 2rem;
-      text-align: center;
-      border-bottom: 2px solid #60a5fa;
-      }
-      .about-modal-header h2 {
-      color: #60a5fa;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      }
-      .about-modal-header p {
-      color: #b0b0b0;
-      font-size: 1rem;
-      }
-      .about-modal-body {
-      padding: 2rem;
-      max-height: 60vh;
-      overflow-y: auto;
-      color: #e0e0e0;
-      }
-      .about-section {
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(96, 165, 250, 0.2);
-      }
-      .about-section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-      }
-      .about-section h3 {
-      color: #60a5fa;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      }
-      .about-section p {
-      line-height: 1.8;
-      color: #c0c0c0;
-      margin-bottom: 0.75rem;
-      }
-      .about-section strong {
-      color: #ffffff;
-      font-weight: 600;
-      }
-      .copyright-box {
-      background: rgba(96, 165, 250, 0.1);
-      border: 2px solid #60a5fa;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      text-align: center;
-      }
-      .copyright-box .copyright-symbol {
-      font-size: 2rem;
-      color: #60a5fa;
-      margin-bottom: 0.5rem;
-      }
-      .copyright-box .copyright-year {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 0.5rem;
-      }
-      .copyright-box .copyright-owner {
-      font-size: 1.2rem;
-      color: #60a5fa;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      }
-      .copyright-box .copyright-text {
-      font-size: 0.9rem;
-      color: #b0b0b0;
-      line-height: 1.6;
-      }
-      .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin: 1rem 0;
-      }
-      .info-item {
-      background: rgba(45, 45, 45, 0.5);
-      padding: 1rem;
-      border-radius: 8px;
-      border-left: 3px solid #60a5fa;
-      }
-      .info-label {
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      }
-      .info-value {
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 1.1rem;
-      }
-      .about-modal-footer {
-      padding: 1.5rem 2rem;
-      border-top: 1px solid rgba(96, 165, 250, 0.2);
-      background: rgba(13, 13, 13, 0.8);
-      display: flex;
-      justify-content: center;
-      }
-      .about-close-btn {
-      background: #60a5fa;
-      color: #1a1a1a;
-      border: none;
-      padding: 0.875rem 2.5rem;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      }
-      .about-close-btn:hover {
-      background: #4a90e2;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(96, 165, 250, 0.4);
-      }
-      .info-btn {
-      background: rgba(255, 255, 2558, 0);
-      border: none;
-      color: #60a5fa;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1.5rem;
-      transition: all 0.2s;
-      margin-bottom: 0.5rem;
-      }
-      .info-btn:hover {
-      background: rgba(96, 165, 250, 0.2);
-      transform: scale(1.05);
-      }
-      /* Scrollbar styling voor about modal */
-      .about-modal-body::-webkit-scrollbar {
-      width: 8px;
-      }
-      .about-modal-body::-webkit-scrollbar-track {
-      background: rgba(45, 45, 45, 0.5);
-      border-radius: 10px;
-      }
-      .about-modal-body::-webkit-scrollbar-thumb {
-      background: #60a5fa;
-      border-radius: 10px;
-      }
-      .about-modal-body::-webkit-scrollbar-thumb:hover {
-      background: #4a90e2;
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
     </style>
   </head>
   <body>
     <header class="header">
       <div class="header-content">
-      <div class="logos-center">
-        <img
-          src="JVM_TOOLS.png"
-          alt="JVM TOOLS Logo"
-          class="header-logo" />
-      </div>
-      <div class="buttons-container">
-        <button
-          class="refresh-btn"
-          onclick="refreshPage()"
-          title="Ververs pagina"
+        <div class="logos-center">
+          <img src="JVM_TOOLS.png" alt="JVM TOOLS Logo" class="header-logo" />
+        </div>
+        <div class="buttons-container">
+          <button
+            class="refresh-btn"
+            onclick="refreshPage()"
+            title="Ververs pagina"
           >
-        ⟳
-        </button>
-        <button
-          class="settings-btn"
-          onclick="showTokenSetup()"
-          title="Instellingen"
+            ⟳
+          </button>
+          <button
+            class="settings-btn"
+            onclick="showTokenSetup()"
+            title="Instellingen"
           >
-        ⚙️
-        </button>
-        <button
-          class="info-btn"
-          onclick="showAboutModal()"
-          title="Over deze applicatie"
+            ⚙️
+          </button>
+          <button
+            class="info-btn"
+            onclick="showAboutModal()"
+            title="Over deze applicatie"
           >
-        ℹ️
-        </button>
+            ℹ️
+          </button>
+        </div>
       </div>
     </header>
+
     <main class="container">
       <div class="search-container">
         <h2>Database Gereedschap Ninove</h2>
@@ -759,20 +528,20 @@
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
-            >
+          >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
+            />
           </svg>
           <input
             type="text"
             id="searchInput"
             placeholder="Voer gereedschapsnummer in..."
             autocomplete="off"
-            />
+          />
         </div>
         <p class="search-hint">
           TIP: Je mag het gereedschapsnummer ook zonder spaties invoeren
@@ -780,50 +549,68 @@
         <div class="filter-buttons">
           <button class="filter-btn active" data-filter="all">📋 Alle</button>
           <button class="filter-btn" data-filter="beschikbaar">
-          🟢 Beschikbaar
+            🟢 Beschikbaar
           </button>
           <button class="filter-btn" data-filter="ingebruik">
-          🔴 In gebruik
+            🔴 In gebruik
           </button>
         </div>
       </div>
+
       <div class="results-container">
         <div class="results-header">
-          <h3><span id="resultCount">10</span> resultaten gevonden</h3>
+          <h3><span id="resultCount">0</span> resultaten gevonden</h3>
         </div>
         <div class="results-list" id="resultsList">
-          <div class="loading">⏳ Data laden...</div>
+          <div class="loading">⏳ Klaar om te zoeken...</div>
         </div>
       </div>
     </main>
+
     <footer class="footer">
       <p>© 2025 JVM • Speciaal Gereedschap Database</p>
       <p style="color: #6b7280; margin-top: 0.5rem">
         Voor intern gebruik • Beheerd door Joeri Van Melkebeke
       </p>
     </footer>
+
+    <!-- Modal voor gebruiker selectie -->
+    <div id="customUserModal" class="custom-modal">
+      <div class="custom-modal-overlay" onclick="closeCustomModal()"></div>
+      <div class="custom-modal-content">
+        <div class="custom-modal-header">
+          <h3 id="modalHeaderGereedschapNr">Gereedschap uitlenen</h3>
+          <button class="custom-modal-close" onclick="closeCustomModal()">
+            ✕
+          </button>
+        </div>
+        <div class="custom-modal-body">
+          <p class="modal-locatie" id="modalLocatie"></p>
+          <p class="modal-label">Selecteer gebruiker:</p>
+          <div class="modal-user-buttons" id="modalUserButtons"></div>
+        </div>
+        <div class="custom-modal-footer">
+          <button
+            class="modal-btn modal-btn-cancel"
+            onclick="closeCustomModal()"
+          >
+            Annuleren
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
-      // ═══════════════════════════════════════════════════════════
-      // ⚙️ CONFIGURATIE - TOKEN WORDT OPGEHAALD UIT LOCALSTORAGE
-      // ═══════════════════════════════════════════════════════════
-      
-      // Probeer token uit localStorage te halen
+      // CONFIGURATIE
       let GITHUB_TOKEN = localStorage.getItem("MB_TOOLS_TOKEN");
-      
-      // Check of token bestaat, zo niet, vraag gebruiker om invoer
       if (!GITHUB_TOKEN) {
-        setTimeout(() => {
-          showTokenSetup();
-        }, 500);
+        setTimeout(() => showTokenSetup(), 500);
       }
-      
+
       const GITHUB_REPO = "dzoeri/MB-Tools-Ninove";
       const GITHUB_BRANCH = "main";
       const STATUS_FILE = "status.json";
-      
-      // ═══════════════════════════════════════════════════════════
-      // GEBRUIKERS LIJST
-      // ═══════════════════════════════════════════════════════════
+
       const GEBRUIKERS = [
         "Albin",
         "Chris",
@@ -839,11 +626,9 @@
         "Philippe",
         "EXTERN",
       ];
-      
-      // ═══════════════════════════════════════════════════════════
-      // ⚠️ STAP 2: VOEG HIER JOUW GEREEDSCHAP DATA TOE
-      // Formaat: ["gereedschapnummer", "locatie"]
-      // ═══════════════════════════════════════════════════════════
+
+      // ⚠️ GEREEDSCHAP DATA
+      // ← PLAK HIER DE REST VAN JE GEREEDSCHAPPEN
       const gereedschapData = [
         ["000 581 25 58 00", "Magazijn: Rek 1518 - Schap 0108"],
         ["000 581 39 01 00", "Magazijn: Rek 1518 - Schap 0108"],
@@ -1021,7 +806,10 @@
         ["112 589 03 31 00", "Magazijn: Rek 1522 - Schap 0402"],
         ["112 589 03 40 00", "Magazijn: Rek 1522 - Schap 0105"],
         ["112 589 03 40 00", "Magazijn: Rek 1518 - Schap 0107"],
-        ["112 589 09 61 00", "Werkplaats: NFZ /MAGAZIJN - Rek 1523 - Schap 0106 - Bak 3",],
+        [
+          "112 589 09 61 00",
+          "Werkplaats: NFZ /MAGAZIJN - Rek 1523 - Schap 0106 - Bak 3",
+        ],
         ["112 589 09 61 00", "Magazijn: Rek 1518 - Schap 0107"],
         ["112 589 10 61 00", "Magazijn: Rek 1518 - Schap 0107"],
         ["113 589 00 01 00", "Werkplaats: NFZ - Rek 1522 - Schap 0105 - Bak 1"],
@@ -2468,20 +2256,901 @@
         ["970 589 01 63 00", "Werkplaats: NFZ - Bureau Luc"],
         ["970 589 02 63 00", "Magazijn: Rek 1518 - Schap 0607"],
         ["970 589 02 63 00", "Werkplaats: NFZ - Bureau Luc"],
-        // ← PLAK HIER DE REST VAN JE GEREEDSCHAPPEN
+        // ← PLAK HIER DE REST
       ];
-      
-      // ═══════════════════════════════════════════════════════════
-      // TOKEN SETUP FUNCTIE
-      // ═══════════════════════════════════════════════════════════
+
+      // 📷 FOTO MAPPING
+      // ← PLAK HIER DE REST VAN JE PHOTO_MAPPING
+      const PHOTO_MAPPING = {
+        "000 586 00 99 00": "W000586009900.png",
+        "000 588 08 19 00": "W000588081900.png",
+        "000 588 09 19 00": "W000588091900.png",
+        "000 588 13 62 00": "W000588136200.png",
+        "000 588 14 62 00": "W000588146200.png",
+        "000 588 16 31 00": "W000588163100.png",
+        "000 588 20 31 00": "W000588203100.png",
+        "000 589 00 21 00": "W000589002100.png",
+        "000 589 01 21 00": "W000589012100.png",
+        "000 589 01 68 00": "W000589016800.png",
+        "000 589 02 98 00": "W000589029800.png",
+        "000 589 03 10 00": "W000589031000.png",
+        "000 589 05 91 00": "W000589059100.png",
+        "000 589 10 99 00": "W000589109900.png",
+        "000 589 13 99 00": "W000589139900.png",
+        "000 589 18 99 00": "W000589189900.png",
+        "000 589 21 99 00": "W000589219900.png",
+        "000 589 22 01 00": "W000589220100.png",
+        "000 589 25 01 00": "W000589250100.png",
+        "000 589 28 01 00": "W000589280100.png",
+        "000 589 28 33 00": "W000589283300.png",
+        "000 589 30 37 00": "W000589303700.png",
+        "000 589 34 16 00": "W000589341600.png",
+        "000 589 35 33 00": "W000589353300.png",
+        "000 589 47 31 00": "W000589473100.png",
+        "000 589 48 34 00": "W000589483400.png",
+        "000 589 50 03 00": "W000589500300.png",
+        "000 589 52 43 00": "W000589524300.png",
+        "000 589 52 98 00": "W000589529800.png",
+        "000 589 55 37 00": "W000589553700.png",
+        "000 589 59 63 00": "W000589596300.png",
+        "000 589 68 03 00": "W000589680300.png",
+        "000 589 69 03 00": "W000589690300.png",
+        "000 589 71 03 00": "W000589710300.png",
+        "000 589 75 03 00": "W000589750300.png",
+        "000 589 76 03 00": "W000589760300.png",
+        "000 589 76 09 00": "W000589760900.png",
+        "000 589 77 03 00": "W000589770300.png",
+        "000 589 77 63 00": "W000589776300.png",
+        "000 589 78 03 00": "W000589780300.png",
+        "000 589 78 63 00": "W000589786300.png",
+        "000 589 80 03 00": "W000589800300.png",
+        "000 589 88 63 00": "W000589886300.png",
+        "000 589 91 63 00": "W000589916300.png",
+        "000 589 94 63 00": "W000589946300.png",
+        "001 589 00 07 00": "W001589000700.png",
+        "001 589 00 40 00": "W001589004000.png",
+        "001 589 00 91 00": "W001589009100.png",
+        "001 589 01 07 00": "W001589010700.png",
+        "001 589 01 16 10": "W001589011610.png",
+        "001 589 01 91 00": "W001589019100.png",
+        "001 589 02 16 00": "W001589021600.png",
+        "001 589 02 91 00": "W001589029100.png",
+        "001 589 03 16 00": "W001589031600.png",
+        "001 589 03 91 00": "W001589039100.png",
+        "001 589 38 33 00": "W001589383300.png",
+        "001 589 41 33 00": "W001589413300.png",
+        "001 589 50 33 00": "W001589503300.png",
+        "001 589 65 09 00": "W001589650900.png",
+        "001 589 76 09 00": "W001589760900.png",
+        "001 589 76 21 00": "W001589762100.png",
+        "001 589 78 21 00": "W001589782100.png",
+        "001 589 80 21 00": "W001589802100.png",
+        "001 589 81 21 00": "W001589812100.png",
+        "001 589 83 21 00": "W001589832100.png",
+        "002 589 01 33 00": "W002589013300.png",
+        "035 589 01 33 00": "W035589013300.png",
+        "100 589 02 59 00": "W100589025900.png",
+        "102 589 00 09 00": "W102589000900.png",
+        "102 589 00 33 00": "W102589003300.png",
+        "102 589 01 40 00": "W102589014000.png",
+        "102 589 03 40 00": "W102589034000.png",
+        "103 589 00 21 01": "W103589002101.png",
+        "103 589 00 33 00": "W103589003300.png",
+        "103 589 00 37 00": "W103589003700.png",
+        "103 589 00 40 00": "W103589004000.png",
+        "103 589 01 09 00": "W103589010900.png",
+        "103 589 01 14 00": "W103589011400.png",
+        "103 589 01 39 00": "W103589013900.png",
+        "103 589 02 09 00": "W103589020900.png",
+        "103 589 02 63 00": "W103589026300.png",
+        "103 589 03 09 00": "W103589030900.png",
+        "104 589 00 63 00": "W104589006300.png",
+        "104 589 01 01 00": "W104589010100.png",
+        "104 589 01 43 00": "W104589014300.png",
+        "110 589 01 01 00": "W110589010100.png",
+        "110 589 03 59 00": "W110589035900.png",
+        "110 589 11 21 00": "W110589112100.png",
+        "111 589 00 91 00": "W111589009100.png",
+        "111 589 01 40 00": "W111589014000.png",
+        "111 589 03 09 00": "W111589030900.png",
+        "111 589 03 15 00": "W111589031500.png",
+        "111 589 04 15 00": "W111589041500.png",
+        "111 589 08 43 00": "W111589084300.png",
+        "111 589 25 61 00": "W111589256100.png",
+        "112 589 00 01 00": "W112589000100.png",
+        "112 589 00 25 00": "W112589002500.png",
+        "112 589 00 32 00": "W112589003200.png",
+        "112 589 00 40 00": "W112589004000.png",
+        "112 589 00 62 00": "W112589006200.png",
+        "112 589 01 03 00": "W112589010300.png",
+        "112 589 01 09 00": "W112589010900.png",
+        "112 589 01 32 00": "W112589013200.png",
+        "112 589 03 31 00": "W112589033100.png",
+        "112 589 03 40 00": "W112589034000.png",
+        "112 589 09 61 00": "W112589096100.png",
+        "112 589 10 61 00": "W112589106100.png",
+        "113 589 00 01 00": "W113589000100.png",
+        "113 589 00 40 00": "W113589004000.png",
+        "115 589 01 07 00": "W115589010700.png",
+        "115 589 03 59 00": "W115589035900.png",
+        "115 589 08 07 00": "W115589080700.png",
+        "115 589 15 21 00": "W115589152100.png",
+        "116 589 01 62 00": "W116589016200.png",
+        "116 589 02 07 00": "W116589020700.png",
+        "116 589 02 34 00": "W116589023400.png",
+        "116 589 03 07 00": "W116589030700.png",
+        "117 589 02 07 00": "W117589020700.png",
+        "119 589 00 43 00": "W119589004300.png",
+        "119 589 01 14 00": "W119589011400.png",
+        "120 589 02 01 00": "W120589020100.png",
+        "120 589 06 21 00": "W120589062100.png",
+        "120 589 07 21 00": "W120589072100.png",
+        "120 589 14 07 00": "W120589140700.png",
+        "123 589 01 03 00": "W123589010300.png",
+        "123 589 01 09 00": "W123589010900.png",
+        "123 589 01 10 00": "W123589011000.png",
+        "123 589 02 10 00": "W123589021000.png",
+        "123 589 02 21 00": "W123589022100.png",
+        "123 589 04 21 21": "W123589042121.png",
+        "123 589 05 33 00": "W123589053300.png",
+        "124 589 00 09 00": "W124589000900.png",
+        "124 589 00 37 00": "W124589003700.png",
+        "124 589 02 15 00": "W124589021500.png",
+        "124 589 03 33 00": "W124589033300.png",
+        "124 589 05 43 00": "W124589054300.png",
+        "124 589 06 21 00": "W124589062100.png",
+        "124 589 17 63 00": "W124589176300.png",
+        "124 589 19 21 00": "W124589192100.png",
+        "124 589 19 63 00": "W124589196300.png",
+        "124 589 33 63 00": "W124589336300.png",
+        "124 589 35 63 00": "W124589356300.png",
+        "126 589 00 01 00": "W126589000100.png",
+        "126 589 00 10 00": "W126589001000.png",
+        "126 589 00 15 00": "W126589001500.png",
+        "126 589 00 40 00": "W126589004000.png",
+        "126 589 03 15 00": "W126589031500.png",
+        "126 589 09 21 00": "W126589092100.png",
+        "126 589 13 63 00": "W126589136300.png",
+        "126 589 14 21 00": "W126589142100.png",
+        "129 589 00 21 00": "W129589002100.png",
+        "129 589 00 91 00": "W129589009100.png",
+        "129 589 00 91 12": "W129589009112.png",
+        "129 589 01 03 00": "W129589010300.png",
+        "129 589 01 07 00": "W129589010700.png",
+        "129 589 01 21 00": "W129589012100.png",
+        "129 589 03 43 00": "W129589034300.png",
+        "129 589 03 43 05": "W129589034305.png",
+        "129 589 04 63 00": "W129589046300.png",
+        "129 589 10 63 00": "W129589106300.png",
+        "129 589 12 63 00": "W129589126300.png",
+        "137 589 00 33 00": "W137589003300.png",
+        "137 589 00 63 00": "W137589006300.png",
+        "139 589 00 62 00": "W139589006200.png",
+        "139 589 01 40 00": "W139589014000.png",
+        "140 589 00 07 00": "W140589000700.png",
+        "140 589 00 09 00": "W140589000900.png",
+        "140 589 00 33 00": "W140589003300.png",
+        "140 589 00 37 00": "W140589003700.png",
+        "140 589 00 63 00": "W140589006300.png",
+        "140 589 01 33 00": "W140589013300.png",
+        "140 589 02 33 00": "W140589023300.png",
+        "140 589 03 09 00": "W140589030900.png",
+        "140 589 04 09 00": "W140589040900.png",
+        "140 589 04 34 00": "W140589043400.png",
+        "140 589 06 31 00": "W140589063100.png",
+        "140 589 06 63 00": "W140589066300.png",
+        "140 589 08 15 00": "W140589081500.png",
+        "140 589 08 43 00": "W140589084300.png",
+        "140 589 09 33 00": "W140589093300.png",
+        "140 589 10 33 00": "W140589103300.png",
+        "140 589 11 63 00": "W140589116300.png",
+        "140 589 14 63 00": "W140589146300.png",
+        "140 589 18 63 00": "W140589186300.png",
+        "140 589 34 23 00": "W140589342300.png",
+        "140 589 39 63 00": "W140589396300.png",
+        "140 589 45 63 00": "W140589456300.png",
+        "140 589 50 63 00": "W140589506300.png",
+        "140 589 51 63 00": "W140589516300.png",
+        "156 589 00 32 00": "W156589003200.png",
+        "156 589 00 61 00": "W156589006100.png",
+        "156 589 01 63 00": "W156589016300.png",
+        "163 589 00 14 00": "W163589001400.png",
+        "163 589 00 15 00": "W163589001500.png",
+        "163 589 00 37 00": "W163589003700.png",
+        "163 589 00 43 00": "W163589004300.png",
+        "163 589 01 15 00": "W163589011500.png",
+        "163 589 01 43 00": "W163589014300.png",
+        "163 589 01 63 00": "W163589016300.png",
+        "163 589 01 91 00": "W163589019100.png",
+        "163 589 02 15 00": "W163589021500.png",
+        "163 589 02 63 00": "W163589026300.png",
+        "163 589 03 15 00": "W163589031500.png",
+        "163 589 03 43 00": "W163589034300.png",
+        "163 589 04 15 00": "W163589041500.png",
+        "164 589 00 05 00": "W164589000500.png",
+        "164 589 01 37 00": "W164589013700.png",
+        "164 589 03 63 00": "W164589036300.png",
+        "164 589 04 15 00": "W164589041500.png",
+        "166 589 00 03 00": "W166589000300.png",
+        "166 589 00 14 00": "W166589001400.png",
+        "166 589 00 33 00": "W166589003300.png",
+        "166 589 00 40 00": "W166589004000.png",
+        "166 589 01 40 00": "W166589014000.png",
+        "166 589 01 63 00": "W166589016300.png",
+        "166 589 01 91 00": "W166589019100.png",
+        "166 589 04 63 00": "W166589046300.png",
+        "167 589 00 09 00": "W167589000900.png",
+        "167 589 00 40 00": "W167589004000.png",
+        "167 589 01 62 00": "W167589016200.png",
+        "167 589 01 63 00": "W167589016300.png",
+        "167 589 06 43 00": "W167589064300.png",
+        "168 589 00 15 00": "W168589001500.png",
+        "168 589 00 43 00": "W168589004300.png",
+        "168 589 00 91 00": "W168589009100.png",
+        "168 589 01 14 00": "W168589011400.png",
+        "168 589 01 15 00": "W168589011500.png",
+        "168 589 01 21 00": "W168589012100.png",
+        "168 589 01 37 00": "W168589013700.png",
+        "168 589 01 43 00": "W168589014300.png",
+        "168 589 02 31 00": "W168589023100.png",
+        "168 589 02 43 00": "W168589024300.png",
+        "168 589 02 63 00": "W168589026300.png",
+        "168 589 03 43 00": "W168589034300.png",
+        "168 589 04 63 00": "W168589046300.png",
+        "168 589 05 63 00": "W168589056300.png",
+        "168 589 06 14 00": "W168589061400.png",
+        "168 589 06 23 00": "W168589062300.png",
+        "168 589 08 15 00": "W168589081500.png",
+        "168 589 08 63 00": "W168589086300.png",
+        "168 589 15 15 00": "W168589151500.png",
+        "169 589 00 03 00": "W169589000300.png",
+        "169 589 00 37 00": "W169589003700.png",
+        "169 589 00 40 00": "W169589004000.png",
+        "169 589 00 62 00": "W169589006200.png",
+        "169 589 00 91 00": "W169589009100.png",
+        "169 589 02 31 00": "W169589023100.png",
+        "169 589 02 31 10": "W169589023110.png",
+        "169 589 02 62 00": "W169589026200.png",
+        "169 589 02 63 00": "W169589026300.png",
+        "172 589 00 63 00": "W172589006300.png",
+        "176 589 00 15 00": "W176589001500.png",
+        "176 589 00 40 00": "W176589004000.png",
+        "176 589 01 15 00": "W176589011500.png",
+        "177 589 00 21 00": "W177589002100.png",
+        "177 589 00 23 00": "W177589002300.png",
+        "177 589 00 31 00": "W177589003100.png",
+        "177 589 00 32 00": "W177589003200.png",
+        "177 589 00 37 00": "W177589003700.png",
+        "177 589 00 40 00": "W177589004000.png",
+        "177 589 00 43 00": "W177589004300.png",
+        "177 589 00 61 00": "W177589006100.png",
+        "177 589 00 62 00": "W177589006200.png",
+        "177 589 00 63 00": "W177589006300.png",
+        "177 589 01 31 00": "W177589013100.png",
+        "177 589 01 63 00": "W177589016300.png",
+        "177 589 02 32 00": "W177589023200.png",
+        "177 589 02 62 00": "W177589026200.png",
+        "177 589 03 15 00": "W177589031500.png",
+        "177 589 03 32 00": "W177589033200.png",
+        "177 589 03 62 00": "W177589036200.png",
+        "177 589 03 63 00": "W177589036300.png",
+        "177 589 04 15 00": "W177589041500.png",
+        "177 589 05 15 00": "W177589051500.png",
+        "177 589 06 15 00": "W177589061500.png",
+        "190 589 01 15 00": "W190589011500.png",
+        "199 589 01 09 00": "W199589010900.png",
+        "200 589 00 40 00": "W200589004000.png",
+        "200 589 00 43 00": "W200589004300.png",
+        "200 589 00 91 00": "W200589009100.png",
+        "200 589 02 43 00": "W200589024300.png",
+        "201 589 00 01 00": "W201589000100.png",
+        "201 589 01 33 00": "W201589013300.png",
+        "201 589 05 63 00": "W201589056300.png",
+        "201 589 08 15 00": "W201589081500.png",
+        "201 589 10 23 00": "W201589102300.png",
+        "201 589 10 43 00": "W201589104300.png",
+        "201 589 13 21 00": "W201589132100.png",
+        "202 589 00 07 00": "W202589000700.png",
+        "202 589 00 10 00": "W202589001000.png",
+        "202 589 00 14 00": "W202589001400.png",
+        "202 589 00 61 00": "W202589006100.png",
+        "202 589 00 90 00": "W202589009000.png",
+        "202 589 01 21 00": "W202589012100.png",
+        "202 589 01 31 00": "W202589013100.png",
+        "202 589 01 37 00": "W202589013700.png",
+        "202 589 01 63 00": "W202589016300.png",
+        "202 589 02 31 00": "W202589023100.png",
+        "202 589 02 33 00": "W202589023300.png",
+        "202 589 04 43 00": "W202589044300.png",
+        "202 589 04 43 03": "W202589044303.png",
+        "202 589 04 43 06": "W202589044306.png",
+        "202 589 04 43 07": "W202589044307.png",
+        "202 589 04 43 10": "W202589044310.png",
+        "202 589 04 63 00": "W202589046300.png",
+        "202 589 05 63 00": "W202589056300.png",
+        "202 589 08 63 00": "W202589086300.png",
+        "202 589 11 63 00": "W202589116300.png",
+        "202 589 13 63 00": "W202589136300.png",
+        "202 589 15 63 00": "W202589156300.png",
+        "202 589 17 63 00": "W202589176300.png",
+        "203 589 00 07 00": "W203589000700.png",
+        "203 589 00 10 00": "W203589001000.png",
+        "203 589 00 26 00": "W203589002600.png",
+        "203 589 00 33 00": "W203589003300.png",
+        "203 589 00 40 00": "W203589004000.png",
+        "203 589 00 43 00": "W203589004300.png",
+        "203 589 01 07 00": "W203589010700.png",
+        "203 589 01 10 00": "W203589011000.png",
+        "203 589 01 31 00": "W203589013100.png",
+        "203 589 01 63 00": "W203589016300.png",
+        "203 589 04 33 00": "W203589043300.png",
+        "203 589 06 63 00": "W203589066300.png",
+        "203 589 07 63 00": "W203589076300.png",
+        "204 589 00 16 00": "W204589001600.png",
+        "204 589 00 43 00": "W204589004300.png",
+        "204 589 00 63 00": "W204589006300.png",
+        "204 589 01 43 00": "W204589014300.png",
+        "204 589 01 63 00": "W204589016300.png",
+        "204 589 02 63 00": "W204589026300.png",
+        "204 589 03 63 00": "W204589036300.png",
+        "204 589 04 63 00": "W204589046300.png",
+        "205 589 00 07 00": "W205589000700.png",
+        "205 589 00 15 00": "W205589001500.png",
+        "205 589 00 21 00": "W205589002100.png",
+        "205 589 00 63 00": "W205589006300.png",
+        "205 589 01 15 00": "W205589011500.png",
+        "205 589 01 63 00": "W205589016300.png",
+        "206 588 01 32 00": "W206588013200.png",
+        "206 589 00 15 00": "W206589001500.png",
+        "206 589 00 21 00": "W206589002100.png",
+        "208 589 00 15 00": "W208589001500.png",
+        "208 589 00 77 00": "W208589007700.png",
+        "210 589 00 07 00": "W210589000700.png",
+        "210 589 00 09 00": "W210589000900.png",
+        "210 589 00 15 00": "W210589001500.png",
+        "210 589 00 40 00": "W210589004000.png",
+        "210 589 00 43 00": "W210589004300.png",
+        "210 589 00 63 00": "W210589006300.png",
+        "210 589 00 66 01": "W210589006601.png",
+        "210 589 00 66 02": "W210589006602.png",
+        "210 589 00 71 00": "W210589007100.png",
+        "210 589 00 91 00": "W210589009100.png",
+        "210 589 01 14 00": "W210589011400.png",
+        "210 589 01 16 00": "W210589011600.png",
+        "210 589 01 63 00": "W210589016300.png",
+        "210 589 02 21 00": "W210589022100.png",
+        "210 589 02 40 00": "W210589024000.png",
+        "210 589 02 43 00": "W210589024300.png",
+        "210 589 03 15 00": "W210589031500.png",
+        "210 589 03 21 00": "W210589032100.png",
+        "210 589 03 63 00": "W210589036300.png",
+        "210 589 04 33 00": "W210589043300.png",
+        "210 589 04 63 00": "W210589046300.png",
+        "210 589 05 33 00": "W210589053300.png",
+        "210 589 07 21 00": "W210589072100.png",
+        "210 589 11 63 00": "W210589116300.png",
+        "211 589 00 03 00": "W211589000300.png",
+        "211 589 00 05 00": "W211589000500.png",
+        "211 589 00 09 00": "W211589000900.png",
+        "211 589 00 15 00": "W211589001500.png",
+        "211 589 00 31 00": "W211589003100.png",
+        "211 589 00 33 00": "W211589003300.png",
+        "211 589 00 37 00": "W211589003700.png",
+        "211 589 00 63 00": "W211589006300.png",
+        "211 589 01 03 00": "W211589010300.png",
+        "211 589 01 63 00": "W211589016300.png",
+        "211 589 02 21 00": "W211589022100.png",
+        "211 589 03 15 00": "W211589031500.png",
+        "211 589 03 21 00": "W211589032100.png",
+        "211 589 03 63 00": "W211589036300.png",
+        "211 589 04 21 02": "W211589042102.png",
+        "211 589 04 21 03": "W211589042103.png",
+        "211 589 04 21 05": "W211589042105.png",
+        "211 589 04 63 00": "W211589046300.png",
+        "211 589 05 15 00": "W211589051500.png",
+        "212 589 00 31 00": "W212589003100.png",
+        "212 589 00 63 00": "W212589006300.png",
+        "212 589 00 90 00": "W212589009000.png",
+        "212 589 03 63 00": "W212589036300.png",
+        "212 589 04 63 00": "W212589046300.png",
+        "213 589 00 90 00": "W213589009000.png",
+        "215 589 00 09 00": "W215589000900.png",
+        "215 589 01 63 00": "W215589016300.png",
+        "219 589 00 09 00": "W219589000900.png",
+        "220 589 00 01 00": "W220589000100.png",
+        "220 589 00 07 00": "W220589000700.png",
+        "220 589 00 33 00": "W220589003300.png",
+        "220 589 00 43 00": "W220589004300.png",
+        "220 589 00 61 00": "W220589006100.png",
+        "220 589 00 99 00": "W220589009900.png",
+        "220 589 00 99 02": "W220589009902.png",
+        "220 589 00 99 10": "W220589009910.png",
+        "220 589 00 99 31": "W220589009931.png",
+        "220 589 00 99 34": "W220589009934.png",
+        "220 589 00 99 35": "W220589009935.png",
+        "220 589 00 99 36": "W220589009936.png",
+        "220 589 00 99 37": "W220589009937.png",
+        "220 589 00 99 38": "W220589009938.png",
+        "220 589 00 99 39": "W220589009939.png",
+        "220 589 01 01 00": "W220589010100.png",
+        "220 589 01 99 25": "W220589019925.png",
+        "220 589 01 99 40": "W220589019940.png",
+        "220 589 01 99 50": "W220589019950.png",
+        "220 589 02 31 00": "W220589023100.png",
+        "220 589 02 63 00": "W220589026300.png",
+        "220 589 03 43 00": "W220589034300.png",
+        "220 589 04 43 00": "W220589044300.png",
+        "220 589 04 99 00": "W220589049900.png",
+        "220 589 04 99 11": "W220589049911.png",
+        "220 589 04 99 34": "W220589049934.png",
+        "220 589 05 99 00": "W220589059900.png",
+        "220 589 07 43 00": "W220589074300.png",
+        "221 589 00 16 00": "W221589001600.png",
+        "221 589 00 31 00": "W221589003100.png",
+        "221 589 00 33 00": "W221589003300.png",
+        "221 589 00 39 00": "W221589003900.png",
+        "221 589 01 33 00": "W221589013300.png",
+        "221 589 01 43 00": "W221589014300.png",
+        "221 589 01 62 00": "W221589016200.png",
+        "221 589 01 98 00": "W221589019800.png",
+        "221 589 03 09 00": "W221589030900.png",
+        "221 589 04 33 00": "W221589043300.png",
+        "222 589 00 31 00": "W222589003100.png",
+        "222 589 00 63 00": "W222589006300.png",
+        "222 589 04 63 00": "W222589046300.png",
+        "222 589 05 63 00": "W222589056300.png",
+        "222 589 06 63 00": "W222589066300.png",
+        "222 589 07 63 00": "W222589076300.png",
+        "223 586 00 63 00": "W223586006300.png",
+        "223 589 00 15 00": "W223589001500.png",
+        "223 589 01 63 00": "W223589016300.png",
+        "230 589 00 21 00": "W230589002100.png",
+        "230 589 00 33 00": "W230589003300.png",
+        "230 589 00 34 00": "W230589003400.png",
+        "230 589 00 61 00": "W230589006100.png",
+        "230 589 00 90 00": "W230589009000.png",
+        "230 589 01 63 00": "W230589016300.png",
+        "230 589 04 63 00": "W230589046300.png",
+        "230 589 11 63 00": "W230589116300.png",
+        "230 589 12 63 00": "W230589126300.png",
+        "231 589 00 21 00": "W231589002100.png",
+        "240 589 00 91 00": "W240589009100.png",
+        "242 589 00 63 00": "W242589006300.png",
+        "243 588 00 32 00": "W243588003200.png",
+        "243 589 00 91 00": "W243589009100.png",
+        "246 589 00 09 00": "W246589000900.png",
+        "246 589 00 33 00": "W246589003300.png",
+        "246 589 00 40 00": "W246589004000.png",
+        "246 589 00 63 00": "W246589006300.png",
+        "246 589 01 33 00": "W246589013300.png",
+        "246 589 01 63 00": "W246589016300.png",
+        "253 589 00 15 00": "W253589001500.png",
+        "254 586 00 43 00": "W254586004300.png",
+        "254 589 00 23 00": "W254589002300.png",
+        "254 589 01 33 00": "W254589013300.png",
+        "256 589 00 63 00": "W256589006300.png",
+        "256 589 01 33 00": "W256589013300.png",
+        "256 589 01 91 00": "W256589019100.png",
+        "266 589 00 31 00": "W266589003100.png",
+        "270 589 00 07 00": "W270589000700.png",
+        "270 589 00 15 00": "W270589001500.png",
+        "270 589 00 40 00": "W270589004000.png",
+        "270 589 00 63 00": "W270589006300.png",
+        "270 589 00 91 00": "W270589009100.png",
+        "270 589 01 61 00": "W270589016100.png",
+        "270 589 01 63 00": "W270589016300.png",
+        "270 589 01 91 00": "W270589019100.png",
+        "270 589 02 91 00": "W270589029100.png",
+        "271 589 00 10 00": "W271589001000.png",
+        "271 589 00 15 00": "W271589001500.png",
+        "271 589 00 33 00": "W271589003300.png",
+        "271 589 00 40 00": "W271589004000.png",
+        "271 589 00 61 00": "W271589006100.png",
+        "271 589 00 62 00": "W271589006200.png",
+        "271 589 00 91 00": "W271589009100.png",
+        "271 589 01 91 00": "W271589019100.png",
+        "271 589 02 33 00": "W271589023300.png",
+        "271 589 03 40 00": "W271589034000.png",
+        "271 589 04 63 00": "W271589046300.png",
+        "271 589 09 63 00": "W271589096300.png",
+        "272 589 00 07 00": "W272589000700.png",
+        "272 589 00 14 00": "W272589001400.png",
+        "272 589 00 43 00": "W272589004300.png",
+        "272 589 00 91 00": "W272589009100.png",
+        "272 589 01 33 00": "W272589013300.png",
+        "272 589 01 40 00": "W272589014000.png",
+        "272 589 01 61 00": "W272589016100.png",
+        "272 589 01 91 00": "W272589019100.png",
+        "272 589 02 07 00": "W272589020700.png",
+        "272 589 02 33 00": "W272589023300.png",
+        "272 589 02 63 00": "W272589026300.png",
+        "272 589 02 91 00": "W272589029100.png",
+        "272 589 06 63 00": "W272589066300.png",
+        "273 589 00 43 00": "W273589004300.png",
+        "273 589 00 91 00": "W273589009100.png",
+        "274 589 00 63 00": "W274589006300.png",
+        "276 589 00 63 00": "W276589006300.png",
+        "276 589 01 91 00": "W276589019100.png",
+        "276 589 02 91 00": "W276589029100.png",
+        "276 589 03 91 00": "W276589039100.png",
+        "278 589 00 09 00": "W278589000900.png",
+        "278 589 00 15 00": "W278589001500.png",
+        "278 589 00 33 00": "W278589003300.png",
+        "278 589 00 40 00": "W278589004000.png",
+        "278 589 00 91 00": "W278589009100.png",
+        "278 589 01 15 00": "W278589011500.png",
+        "282 589 00 33 00": "W282589003300.png",
+        "282 589 00 40 00": "W282589004000.png",
+        "282 589 00 43 00": "W282589004300.png",
+        "282 589 01 40 00": "W282589014000.png",
+        "285 589 00 21 00": "W285589002100.png",
+        "285 589 01 21 00": "W285589012100.png",
+        "285 589 02 21 00": "W285589022100.png",
+        "290 589 00 15 00": "W290589001500.png",
+        "290 589 01 15 00": "W290589011500.png",
+        "292 589 00 40 00": "W292589004000.png",
+        "293 589 00 23 00": "W293589002300.png",
+        "293 589 00 43 00": "W293589004300.png",
+        "293 589 01 43 00": "W293589014300.png",
+        "297 589 00 63 00": "W297589006300.png",
+        "312 589 14 15 00": "W312589141500.png",
+        "312 589 15 15 00": "W312589151500.png",
+        "314 589 01 15 00": "W314589011500.png",
+        "314 589 04 15 00": "W314589041500.png",
+        "318 589 00 35 00": "W318589003500.png",
+        "321 589 00 63 00": "W321589006300.png",
+        "343 589 03 61 00": "W343589036100.png",
+        "352 589 11 63 00": "W352589116300.png",
+        "355 589 01 63 00": "W355589016300.png",
+        "363 589 02 21 00": "W363589022100.png",
+        "385 589 00 07 00": "W385589000700.png",
+        "385 589 00 15 00": "W385589001500.png",
+        "385 589 04 63 00": "W385589046300.png",
+        "387 589 02 63 00": "W387589026300.png",
+        "387 589 08 15 00": "W387589081500.png",
+        "389 589 02 15 00": "W389589021500.png",
+        "395 589 04 15 00": "W395589041500.png",
+        "403 589 00 31 00": "W403589003100.png",
+        "403 589 02 63 00": "W403589026300.png",
+        "415 589 00 61 00": "W415589006100.png",
+        "415 589 00 62 00": "W415589006200.png",
+        "415 589 00 91 00": "W415589009100.png",
+        "442 589 00 90 00": "W442589009000.png",
+        "447 588 00 31 00": "W447588003100.png",
+        "447 589 00 62 00": "W447589006200.png",
+        "447 589 00 98 00": "W447589009800.png",
+        "447 589 01 31 00": "W447589013100.png",
+        "447 589 01 63 00": "W447589016300.png",
+        "447 589 04 15 00": "W447589041500.png",
+        "447 589 05 15 00": "W447589051500.png",
+        "450 589 00 07 00": "W450589000700.png",
+        "450 589 17 21 00": "W450589172100.png",
+        "453 589 03 63 00": "W453589036300.png",
+        "460 589 00 07 00": "W460589000700.png",
+        "460 589 01 31 00": "W460589013100.png",
+        "460 589 02 07 00": "W460589020700.png",
+        "460 589 11 15 00": "W460589111500.png",
+        "463 589 00 07 00": "W463589000700.png",
+        "463 589 00 15 00": "W463589001500.png",
+        "463 589 01 63 00": "W463589016300.png",
+        "463 589 02 31 00": "W463589023100.png",
+        "463 589 04 23 00": "W463589042300.png",
+        "470 589 01 07 00": "W470589010700.png",
+        "470 589 01 16 00": "W470589011600.png",
+        "470 589 02 37 00": "W470589023700.png",
+        "470 589 04 14 00": "W470589041400.png",
+        "470 589 06 15 00": "W470589061500.png",
+        "470 589 07 15 00": "W470589071500.png",
+        "470 589 08 15 00": "W470589081500.png",
+        "470 589 10 15 00": "W470589101500.png",
+        "470 589 11 15 00": "W470589111500.png",
+        "470 589 12 15 00": "W470589121500.png",
+        "470 589 14 15 00": "W470589141500.png",
+        "470 589 26 91 00": "W470589269100.png",
+        "541 589 00 61 00": "W541589006100.png",
+        "541 589 02 21 00": "W541589022100.png",
+        "601 589 00 01 00": "W601589000100.png",
+        "601 589 00 08 00": "W601589000800.png",
+        "601 589 00 10 00": "W601589001000.png",
+        "601 589 02 40 00": "W601589024000.png",
+        "601 589 04 33 00": "W601589043300.png",
+        "601 589 05 14 00": "W601589051400.png",
+        "601 589 05 21 00": "W601589052100.png",
+        "602 589 00 10 00": "W602589001000.png",
+        "602 589 00 33 00": "W602589003300.png",
+        "602 589 00 33 02": "W602589003302.png",
+        "602 589 00 40 00": "W602589004000.png",
+        "602 589 00 98 00": "W602589009800.png",
+        "602 589 01 33 00": "W602589013300.png",
+        "602 589 01 40 00": "W602589014000.png",
+        "602 589 02 33 00": "W602589023300.png",
+        "602 589 05 63 01": "W602589056301.png",
+        "603 589 00 40 00": "W603589004000.png",
+        "603 589 01 40 00": "W603589014000.png",
+        "604 589 00 21 00": "W604589002100.png",
+        "604 589 00 40 00": "W604589004000.png",
+        "604 589 00 43 00": "W604589004300.png",
+        "604 589 00 63 00": "W604589006300.png",
+        "604 589 01 09 00": "W604589010900.png",
+        "605 589 00 33 00": "W605589003300.png",
+        "605 589 00 90 00": "W605589009000.png",
+        "606 589 00 09 00": "W606589000900.png",
+        "606 589 00 37 00": "W606589003700.png",
+        "606 589 00 61 00": "W606589006100.png",
+        "606 589 01 09 00": "W606589010900.png",
+        "607 589 00 15 00": "W607589001500.png",
+        "607 589 00 31 00": "W607589003100.png",
+        "607 589 00 43 00": "W607589004300.png",
+        "607 589 00 63 00": "W607589006300.png",
+        "607 589 00 91 00": "W607589009100.png",
+        "607 589 01 15 00": "W607589011500.png",
+        "607 589 01 40 00": "W607589014000.png",
+        "607 589 01 63 00": "W607589016300.png",
+        "607 589 01 91 00": "W607589019100.png",
+        "607 589 02 63 00": "W607589026300.png",
+        "607 589 02 91 00": "W607589029100.png",
+        "607 589 03 43 00": "W607589034300.png",
+        "607 589 03 63 00": "W607589036300.png",
+        "607 589 03 91 00": "W607589039100.png",
+        "607 589 04 63 00": "W607589046300.png",
+        "607 589 04 91 00": "W607589049100.png",
+        "608 589 00 15 00": "W608589001500.png",
+        "608 589 00 61 00": "W608589006100.png",
+        "608 589 00 63 00": "W608589006300.png",
+        "608 589 00 91 00": "W608589009100.png",
+        "608 589 01 40 00": "W608589014000.png",
+        "611 589 00 03 00": "W611589000300.png",
+        "611 589 00 09 00": "W611589000900.png",
+        "611 589 00 14 00": "W611589001400.png",
+        "611 589 00 21 00": "W611589002100.png",
+        "611 589 00 33 00": "W611589003300.png",
+        "611 589 00 40 00": "W611589004000.png",
+        "611 589 00 63 00": "W611589006300.png",
+        "611 589 00 90 00": "W611589009000.png",
+        "611 589 01 14 00": "W611589011400.png",
+        "611 589 01 21 00": "W611589012100.png",
+        "611 589 01 33 00": "W611589013300.png",
+        "611 589 01 40 00": "W611589014000.png",
+        "611 589 01 63 00": "W611589016300.png",
+        "611 589 02 21 00": "W611589022100.png",
+        "611 589 02 33 00": "W611589023300.png",
+        "611 589 02 63 00": "W611589026300.png",
+        "611 589 03 63 00": "W611589036300.png",
+        "611 589 04 21 00": "W611589042100.png",
+        "611 589 04 63 00": "W611589046300.png",
+        "611 589 05 21 00": "W611589052100.png",
+        "611 589 07 63 00": "W611589076300.png",
+        "613 589 00 33 00": "W613589003300.png",
+        "613 589 01 40 00": "W613589014000.png",
+        "615 589 00 01 00": "W615589000100.png",
+        "615 589 00 07 00": "W615589000700.png",
+        "615 589 00 33 00": "W615589003300.png",
+        "617 589 04 21 00": "W617589042100.png",
+        "617 589 09 21 00": "W617589092100.png",
+        "617 589 10 21 00": "W617589102100.png",
+        "625 589 02 15 00": "W625589021500.png",
+        "626 589 00 15 00": "W626589001500.png",
+        "626 589 00 40 00": "W626589004000.png",
+        "626 589 00 61 00": "W626589006100.png",
+        "626 589 01 91 00": "W626589019100.png",
+        "626 589 02 40 00": "W626589024000.png",
+        "626 589 03 40 00": "W626589034000.png",
+        "626 589 04 40 00": "W626589044000.png",
+        "628 589 00 40 00": "W628589004000.png",
+        "628 589 01 40 00": "W628589014000.png",
+        "628 589 02 40 00": "W628589024000.png",
+        "628 589 03 40 00": "W628589034000.png",
+        "628 589 03 63 00": "W628589036300.png",
+        "638 589 01 33 00": "W638589013300.png",
+        "638 589 01 43 00": "W638589014300.png",
+        "638 589 03 15 00": "W638589031500.png",
+        "638 589 05 63 00": "W638589056300.png",
+        "638 589 07 33 00": "W638589073300.png",
+        "639 589 00 09 00": "W639589000900.png",
+        "639 589 00 63 00": "W639589006300.png",
+        "639 589 00 91 00": "W639589009100.png",
+        "639 589 01 62 00": "W639589016200.png",
+        "639 589 02 63 00": "W639589026300.png",
+        "639 589 03 43 00": "W639589034300.png",
+        "639 589 03 62 00": "W639589036200.png",
+        "639 589 05 63 00": "W639589056300.png",
+        "639 589 09 62 00": "W639589096200.png",
+        "639 589 11 63 00": "W639589116300.png",
+        "640 589 00 63 00": "W640589006300.png",
+        "640 589 00 91 00": "W640589009100.png",
+        "642 589 00 09 00": "W642589000900.png",
+        "642 589 00 14 00": "W642589001400.png",
+        "642 589 00 21 00": "W642589002100.png",
+        "642 589 00 31 00": "W642589003100.png",
+        "642 589 00 40 00": "W642589004000.png",
+        "642 589 00 63 00": "W642589006300.png",
+        "642 589 01 33 00": "W642589013300.png",
+        "642 589 01 40 00": "W642589014000.png",
+        "642 589 01 63 00": "W642589016300.png",
+        "642 589 01 91 00": "W642589019100.png",
+        "642 589 02 63 00": "W642589026300.png",
+        "642 589 02 63 08": "W642589026308.png",
+        "642 589 03 63 00": "W642589036300.png",
+        "642 589 04 40 00": "W642589044000.png",
+        "646 589 00 63 00": "W646589006300.png",
+        "646 589 00 91 00": "W646589009100.png",
+        "646 589 01 63 00": "W646589016300.png",
+        "646 589 02 21 00": "W646589022100.png",
+        "646 589 02 63 00": "W646589026300.png",
+        "646 589 03 63 00": "W646589036300.png",
+        "646 589 04 63 00": "W646589046300.png",
+        "651 589 00 07 00": "W651589000700.png",
+        "651 589 00 09 00": "W651589000900.png",
+        "651 589 00 33 00": "W651589003300.png",
+        "651 589 00 40 00": "W651589004000.png",
+        "651 589 00 61 00": "W651589006100.png",
+        "651 589 00 63 00": "W651589006300.png",
+        "651 589 01 40 00": "W651589014000.png",
+        "651 589 01 61 00": "W651589016100.png",
+        "651 589 01 63 00": "W651589016300.png",
+        "651 589 01 68 00": "W651589016800.png",
+        "651 589 01 91 00": "W651589019100.png",
+        "651 589 02 40 00": "W651589024000.png",
+        "651 589 02 91 00": "W651589029100.png",
+        "651 589 04 40 00": "W651589044000.png",
+        "651 589 05 40 00": "W651589054000.png",
+        "651 589 05 63 00": "W651589056300.png",
+        "651 589 06 40 00": "W651589064000.png",
+        "651 589 06 63 00": "W651589066300.png",
+        "651 589 07 40 00": "W651589074000.png",
+        "651 589 09 40 00": "W651589094000.png",
+        "651 589 10 40 00": "W651589104000.png",
+        "651 589 11 63 00": "W651589116300.png",
+        "651 589 13 63 00": "W651589136300.png",
+        "651 589 14 63 00": "W651589146300.png",
+        "652 589 00 33 00": "W652589003300.png",
+        "652 589 00 33 11": "W652589003311.png",
+        "654 589 00 09 00": "W654589000900.png",
+        "654 589 00 14 00": "W654589001400.png",
+        "654 589 00 21 00": "W654589002100.png",
+        "654 589 00 31 00": "W654589003100.png",
+        "654 589 00 40 00": "W654589004000.png",
+        "654 589 00 43 00": "W654589004300.png",
+        "654 589 00 61 00": "W654589006100.png",
+        "654 589 01 21 00": "W654589012100.png",
+        "654 589 01 40 00": "W654589014000.png",
+        "654 589 01 43 00": "W654589014300.png",
+        "654 589 02 63 00": "W654589026300.png",
+        "654 589 03 21 00": "W654589032100.png",
+        "654 589 03 40 00": "W654589034000.png",
+        "655 589 00 61 00": "W655589006100.png",
+        "668 589 00 34 00": "W668589003400.png",
+        "668 589 00 63 00": "W668589006300.png",
+        "668 589 00 68 00": "W668589006800.png",
+        "699 589 00 05 00": "W699589000500.png",
+        "699 589 00 15 00": "W699589001500.png",
+        "699 589 03 40 00": "W699589034000.png",
+        "700 589 00 90 00": "W700589009000.png",
+        "700 589 01 33 00": "W700589013300.png",
+        "700 589 01 90 00": "W700589019000.png",
+        "700 589 02 33 00": "W700589023300.png",
+        "700 589 08 15 00": "W700589081500.png",
+        "700 589 08 43 00": "W700589084300.png",
+        "700 589 09 15 00": "W700589091500.png",
+        "700 589 09 63 00": "W700589096300.png",
+        "700 589 11 15 00": "W700589111500.png",
+        "700 589 13 15 00": "W700589131500.png",
+        "700 589 14 15 00": "W700589141500.png",
+        "700 589 15 15 00": "W700589151500.png",
+        "700 589 16 15 00": "W700589161500.png",
+        "700 589 17 15 00": "W700589171500.png",
+        "700 589 18 15 00": "W700589181500.png",
+        "711 589 00 23 00": "W711589002300.png",
+        "711 589 00 34 00": "W711589003400.png",
+        "711 589 01 34 00": "W711589013400.png",
+        "711 589 07 15 00": "W711589071500.png",
+        "711 589 19 15 00": "W711589191500.png",
+        "711 589 20 15 00": "W711589201500.png",
+        "715 589 00 37 00": "W715589003700.png",
+        "715 589 09 15 00": "W715589091500.png",
+        "716 589 00 09 00": "W716589000900.png",
+        "716 589 00 23 00": "W716589002300.png",
+        "716 589 00 43 00": "W716589004300.png",
+        "716 589 06 33 00": "W716589063300.png",
+        "716 589 09 15 00": "W716589091500.png",
+        "716 589 11 15 00": "W716589111500.png",
+        "717 589 00 31 00": "W717589003100.png",
+        "722 589 03 09 00": "W722589030900.png",
+        "722 589 03 15 00": "W722589031500.png",
+        "722 589 04 15 00": "W722589041500.png",
+        "722 589 09 15 00": "W722589091500.png",
+        "724 589 00 21 00": "W724589002100.png",
+        "724 589 01 09 00": "W724589010900.png",
+        "724 589 02 09 00": "W724589020900.png",
+        "724 589 02 63 00": "W724589026300.png",
+        "724 589 05 15 00": "W724589051500.png",
+        "725 589 00 09 00": "W725589000900.png",
+        "725 589 00 90 00": "W725589009000.png",
+        "725 589 02 90 00": "W725589029000.png",
+        "725 589 03 90 00": "W725589039000.png",
+        "730 589 00 07 00": "W730589000700.png",
+        "730 589 01 15 00": "W730589011500.png",
+        "730 589 01 43 00": "W730589014300.png",
+        "730 589 02 33 00": "W730589023300.png",
+        "730 589 02 43 00": "W730589024300.png",
+        "730 589 05 15 00": "W730589051500.png",
+        "730 589 06 15 00": "W730589061500.png",
+        "740 589 00 07 00": "W740589000700.png",
+        "740 589 00 15 00": "W740589001500.png",
+        "741 589 01 15 00": "W741589011500.png",
+        "741 589 02 15 00": "W741589021500.png",
+        "741 589 03 15 00": "W741589031500.png",
+        "741 589 06 15 00": "W741589061500.png",
+        "742 589 01 07 00": "W742589010700.png",
+        "742 589 01 15 00": "W742589011500.png",
+        "742 589 01 63 00": "W742589016300.png",
+        "763 589 00 01 00": "W763589000100.png",
+        "901 589 00 31 00": "W901589003100.png",
+        "903 589 01 63 00": "W903589016300.png",
+        "904 589 01 21 00": "W904589012100.png",
+        "904 589 03 14 00": "W904589031400.png",
+        "904 589 04 15 00": "W904589041500.png",
+        "904 589 04 63 00": "W904589046300.png",
+        "904 589 07 63 00": "W904589076300.png",
+        "906 589 00 07 00": "W906589000700.png",
+        "906 589 00 31 00": "W906589003100.png",
+        "906 589 00 40 00": "W906589004000.png",
+        "906 589 00 61 00": "W906589006100.png",
+        "906 589 01 23 00": "W906589012300.png",
+        "906 589 01 61 00": "W906589016100.png",
+        "906 589 01 62 00": "W906589016200.png",
+        "906 589 04 63 00": "W906589046300.png",
+        "906 589 04 63 01": "W906589046301.png",
+        "906 589 05 62 00": "W906589056200.png",
+        "907 589 00 09 00": "W907589000900.png",
+        "910 589 00 63 00": "W910589006300.png",
+        "936 589 02 61 00": "W936589026100.png",
+
+        // ← PLAK HIER DE REST (vergeet de komma op de laatste regel te verwijderen!)
+      };
+
+      // FOTO FUNCTIES
+      function hasPhoto(gereedschapNr) {
+        return PHOTO_MAPPING.hasOwnProperty(gereedschapNr);
+      }
+
+      function getPhotoPath(gereedschapNr) {
+        if (hasPhoto(gereedschapNr)) {
+          return `images/${PHOTO_MAPPING[gereedschapNr]}`;
+        }
+        return null;
+      }
+
+      function togglePhoto(gereedschapNr, locatie) {
+        const uniqueId = `photo-${gereedschapNr.replace(
+          /\s/g,
+          "-"
+        )}-${locatie.replace(/[^a-zA-Z0-9]/g, "-")}`;
+        const container = document.getElementById(uniqueId);
+        const button = document.getElementById(`btn-${uniqueId}`);
+
+        if (!container || !button) return;
+
+        if (container.classList.contains("show")) {
+          container.classList.remove("show");
+          button.classList.remove("active");
+          button.textContent = "📷";
+        } else {
+          container.classList.add("show");
+          button.classList.add("active");
+          button.textContent = "❌";
+        }
+      }
+
+      // TOKEN FUNCTIES
       function showTokenSetup() {
         const currentToken = localStorage.getItem("MB_TOOLS_TOKEN") || "";
         const message = currentToken
           ? "⚙️ Huidige token wijzigen:\n(laat leeg om te behouden)"
           : "🔑 Voer de GitHub Personal Access Token in:\n(Dit hoeft maar 1x)";
-      
+
         const token = prompt(message, currentToken ? "••••••••••••••••" : "");
-      
+
         if (token && token !== "••••••••••••••••") {
           localStorage.setItem("MB_TOOLS_TOKEN", token);
           GITHUB_TOKEN = token;
@@ -2493,50 +3162,23 @@
           );
         }
       }
-      
-      // ═══════════════════════════════════════════════════════════
-      // REFRESH FUNCTIE
-      // ═══════════════════════════════════════════════════════════
+
       function refreshPage() {
-        // Voeg draai-animatie toe aan de knop
         const btn = document.querySelector(".refresh-btn");
         btn.style.transform = "rotate(720deg)";
         btn.style.transition = "transform 1s ease";
-      
-        // Wacht even en herlaad dan de pagina
-        setTimeout(() => {
-          location.reload();
-        }, 500);
+        setTimeout(() => location.reload(), 500);
       }
-      
-      // ═══════════════════════════════════════════════════════════
-      // ABOUT FUNCTIE
-      // ═══════════════════════════════════════════════════════════ 
+
       function showAboutModal() {
-          document.getElementById('aboutModal').classList.add('show');
-          document.body.style.overflow = 'hidden';
-        }
-        
-        function closeAboutModal() {
-          document.getElementById('aboutModal').classList.remove('show');
-          document.body.style.overflow = '';
-        }
-      
-      // Close modal when clicking Escape key
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-          closeAboutModal();
-        }
-        });
-      
-      // ═══════════════════════════════════════════════════════════
+        alert("📋 MB Tools Ninove\nVersie 2.0\n\n© 2025 Joeri Van Melkebeke");
+      }
+
       // FILTER STATE
-      // ═══════════════════════════════════════════════════════════
       let currentFilter = "all";
-      
-      // GITHUB API FUNCTIES
-      // ═══════════════════════════════════════════════════════════
-      
+      let currentSearch = "";
+
+      // GITHUB API
       async function loadStatus() {
         try {
           const response = await fetch(
@@ -2548,12 +3190,12 @@
               },
             }
           );
-      
+
           if (!response.ok) {
-            console.warn("Status bestand niet gevonden, maak nieuwe aan");
+            console.warn("Status bestand niet gevonden");
             return { content: { metadata: {}, gereedschap: {} }, sha: null };
           }
-      
+
           const data = await response.json();
           const content = JSON.parse(atob(data.content));
           return { content: content, sha: data.sha };
@@ -2562,23 +3204,21 @@
           return { content: { metadata: {}, gereedschap: {} }, sha: null };
         }
       }
-      
+
       async function saveStatus(statusData, sha) {
         try {
           const content = btoa(
             unescape(encodeURIComponent(JSON.stringify(statusData, null, 2)))
           );
-      
+
           const body = {
             message: "Update gereedschap status",
             content: content,
             branch: GITHUB_BRANCH,
           };
-      
-          if (sha) {
-            body.sha = sha;
-          }
-      
+
+          if (sha) body.sha = sha;
+
           const response = await fetch(
             `https://api.github.com/repos/${GITHUB_REPO}/contents/${STATUS_FILE}?ref=${GITHUB_BRANCH}`,
             {
@@ -2591,7 +3231,7 @@
               body: JSON.stringify(body),
             }
           );
-      
+
           if (!response.ok) {
             const errorData = await response.json();
             console.error("GitHub API error:", errorData);
@@ -2604,18 +3244,16 @@
           return false;
         }
       }
-      
+
       async function leenUit(gereedschapNr, locatie, gebruiker) {
         if (!gebruiker || gebruiker.trim() === "") {
           alert("⚠️ Geen geldige gebruiker geselecteerd");
           return;
         }
-      
+
         const { content, sha } = await loadStatus();
-      
-        // Maak een unieke key met nummer + locatie
         const uniqueKey = `${gereedschapNr}||${locatie}`;
-      
+
         content.gereedschap[uniqueKey] = {
           status: "uitgeleend",
           gebruiker: gebruiker,
@@ -2624,110 +3262,125 @@
           locatie: locatie,
           geschiedenis: content.gereedschap[uniqueKey]?.geschiedenis || [],
         };
-      
+
         content.metadata = content.metadata || {};
         content.metadata.laatste_update = new Date().toISOString();
-      
+
         const success = await saveStatus(content, sha);
         if (success) {
-          alert(`🟢 Gereedschap ${gereedschapNr}\nLocatie: ${locatie}\nIn gebruik door ${gebruiker}`);
+          alert(
+            `🟢 Gereedschap ${gereedschapNr}\nLocatie: ${locatie}\nIn gebruik door ${gebruiker}`
+          );
           location.reload();
         }
       }
-      
+
       async function brengTerug(gereedschapNr, locatie) {
-        if (!confirm(`Wil je gereedschap ${gereedschapNr} terugbrengen?\nLocatie: ${locatie}`)) {
+        if (
+          !confirm(
+            `Wil je gereedschap ${gereedschapNr} terugbrengen?\nLocatie: ${locatie}`
+          )
+        )
           return;
-        }
-      
+
         const { content, sha } = await loadStatus();
-      
-        // Maak dezelfde unieke key
         const uniqueKey = `${gereedschapNr}||${locatie}`;
-      
+
         if (content.gereedschap[uniqueKey]) {
           if (!content.gereedschap[uniqueKey].geschiedenis) {
             content.gereedschap[uniqueKey].geschiedenis = [];
           }
-      
+
           content.gereedschap[uniqueKey].geschiedenis.push({
             gebruiker: content.gereedschap[uniqueKey].gebruiker,
             van: content.gereedschap[uniqueKey].sinds,
             tot: new Date().toISOString(),
           });
-      
+
           content.gereedschap[uniqueKey].status = "beschikbaar";
           delete content.gereedschap[uniqueKey].gebruiker;
           delete content.gereedschap[uniqueKey].sinds;
         }
-      
+
         content.metadata = content.metadata || {};
         content.metadata.laatste_update = new Date().toISOString();
-      
+
         const success = await saveStatus(content, sha);
         if (success) {
-          alert(`✅ Gereedschap ${gereedschapNr}\nLocatie: ${locatie}\nTerug beschikbaar`);
+          alert(
+            `✅ Gereedschap ${gereedschapNr}\nLocatie: ${locatie}\nTerug beschikbaar`
+          );
           location.reload();
         }
       }
-      
-      // Globale variabelen voor modal
+
+      // MODAL FUNCTIES
       let currentModalGereedschap = null;
       let currentModalLocatie = null;
-      
+
       function toonUitleenPopup(gereedschapNr, locatie) {
-      // Bewaar gegevens
-      currentModalGereedschap = gereedschapNr;
-      currentModalLocatie = locatie;
-      
-      // Toon gereedschapnummer in header
-      document.getElementById('modalHeaderGereedschapNr').textContent = gereedschapNr;
-      
-      // Toon locatie in body
-      document.getElementById('modalLocatie').textContent = locatie;
-      
-      // Maak gebruiker buttons
-      const buttonsContainer = document.getElementById('modalUserButtons');
-      buttonsContainer.innerHTML = GEBRUIKERS.map((naam, index) => 
-      `<button class="modal-user-btn" onclick="selectUser('${naam}')">
-      ${naam}
-      </button>`
-      ).join('');
-      
-      // Toon modal
-      document.getElementById('customUserModal').classList.add('show');
-      
-      // Prevent body scroll
-      document.body.style.overflow = 'hidden';
+        currentModalGereedschap = gereedschapNr;
+        currentModalLocatie = locatie;
+
+        document.getElementById("modalHeaderGereedschapNr").textContent =
+          gereedschapNr;
+        document.getElementById("modalLocatie").textContent = locatie;
+
+        const buttonsContainer = document.getElementById("modalUserButtons");
+        buttonsContainer.innerHTML = GEBRUIKERS.map(
+          (naam) =>
+            `<button class="modal-user-btn" onclick="selectUser('${naam}')">${naam}</button>`
+        ).join("");
+
+        document.getElementById("customUserModal").classList.add("show");
+        document.body.style.overflow = "hidden";
       }
-      
+
       function closeCustomModal() {
-      document.getElementById('customUserModal').classList.remove('show');
-      document.body.style.overflow = '';
-      currentModalGereedschap = null;
-      currentModalLocatie = null;
+        document.getElementById("customUserModal").classList.remove("show");
+        document.body.style.overflow = "";
+        currentModalGereedschap = null;
+        currentModalLocatie = null;
       }
-      
+
       function selectUser(gebruiker) {
         const gereedschap = currentModalGereedschap;
         const locatie = currentModalLocatie;
         closeCustomModal();
         leenUit(gereedschap, locatie, gebruiker);
       }
-      
-      // ═══════════════════════════════════════════════════════════
-      // ZOEK & DISPLAY FUNCTIES
-      // ═══════════════════════════════════════════════════════════
-      
-      let currentSearch = "";
-      
+
+      // ✅ WELKOMSTBERICHT FUNCTIE - DIT IS DE BELANGRIJKSTE WIJZIGING!
+      function displayWelcomeMessage() {
+        const resultsList = document.getElementById("resultsList");
+        const resultCount = document.getElementById("resultCount");
+
+        resultCount.textContent = "0";
+
+        resultsList.innerHTML = `
+          <div class="no-results" style="padding: 4rem 2rem; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+            <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: #1a1a1a;">
+              Welkom bij MB Tools Ninove
+            </p>
+            <p style="font-size: 1.125rem; color: #6b7280; margin-bottom: 1.5rem;">
+              Gebruik de zoekfunctie hierboven om een gereedschap te vinden
+            </p>
+            <p style="font-size: 0.95rem; color: #9ca3af; background: #f3f4f6; padding: 1rem; border-radius: 8px; display: inline-block;">
+              💡 <strong>Tip:</strong> Voer het gereedschapsnummer in (met of zonder spaties)
+            </p>
+          </div>
+        `;
+      }
+
+      // ZOEK FUNCTIES
       document.addEventListener("DOMContentLoaded", () => {
-        displayResults(gereedschapData);
+        displayWelcomeMessage(); // ✅ TOON WELKOMSTBERICHT BIJ LADEN
+
         document
           .getElementById("searchInput")
           .addEventListener("input", handleSearch);
-      
-        // Filter button event listeners
+
         document.querySelectorAll(".filter-btn").forEach((btn) => {
           btn.addEventListener("click", (e) => {
             document
@@ -2739,69 +3392,69 @@
           });
         });
       });
-      
+
       function handleSearch(e) {
         currentSearch = e.target.value;
         filterAndDisplay();
       }
-      
+
       async function filterAndDisplay() {
         const searchNormalized = currentSearch.replace(/\s/g, "").toLowerCase();
-      
-        // Laad eerst de status data
+
+        // ✅ BELANGRIJK: Als geen zoekterm, toon welkomstbericht
+        if (searchNormalized === "") {
+          displayWelcomeMessage();
+          return; // STOP HIER!
+        }
+
+        // Laad status data
         const { content } = await loadStatus();
         const statusData = content.gereedschap || {};
-      
+
         let filtered = gereedschapData.filter((item) => {
           const itemNormalized = item[0].replace(/\s/g, "").toLowerCase();
-          return (
-            searchNormalized === "" || itemNormalized.includes(searchNormalized)
-          );
+          return itemNormalized.includes(searchNormalized);
         });
-      
-        // Pas status filter toe
+
+        // Filter op status
         if (currentFilter === "beschikbaar") {
           filtered = filtered.filter((item) => {
-            const gereedschapNr = item[0];
-            const locatie = item[1];
-            const uniqueKey = `${gereedschapNr}||${locatie}`;
+            const uniqueKey = `${item[0]}||${item[1]}`;
             const status = statusData[uniqueKey];
             return !status || status.status !== "uitgeleend";
           });
         } else if (currentFilter === "ingebruik") {
           filtered = filtered.filter((item) => {
-            const gereedschapNr = item[0];
-            const locatie = item[1];
-            const uniqueKey = `${gereedschapNr}||${locatie}`;
+            const uniqueKey = `${item[0]}||${item[1]}`;
             const status = statusData[uniqueKey];
             return status && status.status === "uitgeleend";
           });
         }
-      
+
         displayResults(filtered);
       }
-      
+
       async function displayResults(items) {
         const resultsList = document.getElementById("resultsList");
         const resultCount = document.getElementById("resultCount");
-      
+
         resultsList.innerHTML = '<div class="loading">⏳ Status laden...</div>';
-      
+
         const { content } = await loadStatus();
         const statusData = content.gereedschap || {};
-      
+
         resultCount.textContent = items.length;
-      
+
         if (items.length === 0) {
           resultsList.innerHTML = `
-                    <div class="no-results">
-                        <p style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Geen resultaten gevonden</p>
-                        <p>Probeer een andere zoekopdracht</p>
-                    </div>
-                `;
+            <div class="no-results">
+              <p style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Geen resultaten gevonden</p>
+              <p>Probeer een andere zoekopdracht</p>
+            </div>
+          `;
           return;
         }
-      
+
         resultsList.innerHTML = items
           .map((item) => {
             const gereedschapNr = item[0];
@@ -2809,17 +3462,48 @@
             const uniqueKey = `${gereedschapNr}||${locatie}`;
             const status = statusData[uniqueKey];
             const isInGebruik = status && status.status === "uitgeleend";
-      
+
+            // FOTO SYSTEEM
+            const photoPath = getPhotoPath(gereedschapNr);
+            const hasPhotoAvailable = photoPath !== null;
+            const uniqueId = `photo-${gereedschapNr.replace(
+              /\s/g,
+              "-"
+            )}-${locatie.replace(/[^a-zA-Z0-9]/g, "-")}`;
+
+            let photoHTML = "";
+            if (hasPhotoAvailable) {
+              photoHTML = `
+              <div id="${uniqueId}" class="photo-container">
+                <div class="photo-wrapper">
+                  <img src="${photoPath}" alt="Gereedschap ${gereedschapNr}" loading="lazy" />
+                </div>
+              </div>
+            `;
+            }
+
+            let photoButtonHTML = "";
+            if (hasPhotoAvailable) {
+              photoButtonHTML = `
+              <button 
+                id="btn-${uniqueId}"
+                class="photo-btn" 
+                onclick="togglePhoto('${gereedschapNr}', '${locatie}')"
+                title="Toon/verberg foto">
+                📷
+              </button>
+            `;
+            }
+
             const isMagazijn = locatie.includes("Magazijn");
             const locatieClass = isMagazijn
               ? "locatie-magazijn"
               : "locatie-werkplaats";
             const locatieIcon = isMagazijn ? "📦" : "🔧";
-      
+
             let statusButton = "";
             let detailHTML = "";
-            let geschiedenisHTML = "";
-      
+
             if (isInGebruik) {
               const sinds = new Date(status.sinds);
               const tijd = sinds.toLocaleString("nl-BE", {
@@ -2828,220 +3512,32 @@
                 hour: "2-digit",
                 minute: "2-digit",
               });
-      
+
               statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}', '${locatie}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
               detailHTML = `<div class="detail-text">Door: <strong>${status.gebruiker}</strong> • Sinds: ${tijd}</div>`;
-      
-              if (status.geschiedenis && status.geschiedenis.length > 0) {
-                const laatste3 = status.geschiedenis.slice(-3).reverse();
-                geschiedenisHTML = `
-                            <div class="geschiedenis-section">
-                                <div class="geschiedenis-title">📜 Recente Geschiedenis</div>
-                                ${laatste3
-                                  .map((h) => {
-                                    const van = new Date(
-                                      h.van
-                                    ).toLocaleDateString("nl-BE", {
-                                      day: "2-digit",
-                                      month: "short",
-                                    });
-                                    const tot = new Date(
-                                      h.tot
-                                    ).toLocaleDateString("nl-BE", {
-                                      day: "2-digit",
-                                      month: "short",
-                                    });
-                                    return `<div class="geschiedenis-item">🔧 <strong>${h.gebruiker}</strong> (${van} → ${tot})</div>`;
-                                  })
-                                  .join("")}
-                            </div>
-                        `;
-              }
             } else {
               statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}', '${locatie}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
-      
-              if (
-                status &&
-                status.geschiedenis &&
-                status.geschiedenis.length > 0
-              ) {
-                const laatste3 = status.geschiedenis.slice(-3).reverse();
-                const laatsteGebruiker = laatste3[0];
-                const laatsteDatum = new Date(
-                  laatsteGebruiker.tot
-                ).toLocaleDateString("nl-BE", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                });
-      
-                geschiedenisHTML = `
-                            <div class="geschiedenis-section">
-                                <div class="geschiedenis-title">📜 Recente Geschiedenis</div>
-                                ${laatste3
-                                  .map((h) => {
-                                    const van = new Date(
-                                      h.van
-                                    ).toLocaleDateString("nl-BE", {
-                                      day: "2-digit",
-                                      month: "short",
-                                    });
-                                    const tot = new Date(
-                                      h.tot
-                                    ).toLocaleDateString("nl-BE", {
-                                      day: "2-digit",
-                                      month: "short",
-                                    });
-                                    return `<div class="geschiedenis-item">🔧 <strong>${h.gebruiker}</strong> (${van} → ${tot})</div>`;
-                                  })
-                                  .join("")}
-                            </div>
-                        `;
-              }
             }
-      
+
             return `
-                    <div class="result-item">
-                        <div class="gereedschap-header">
-                            <div class="gereedschap-nummer">${gereedschapNr}</div>
-                            ${statusButton}
-                        </div>
-                        <div class="locatie-badge ${locatieClass}">
-                            ${locatieIcon} ${locatie}
-                        </div>
-                        ${detailHTML}
-                        ${geschiedenisHTML}
-                    </div>
-                `;
+            <div class="result-item">
+              <div class="gereedschap-header">
+                <div class="gereedschap-nummer">
+                  <span>${gereedschapNr}</span>
+                  ${photoButtonHTML}
+                </div>
+                ${statusButton}
+              </div>
+              ${photoHTML}
+              <div class="locatie-badge ${locatieClass}">
+                ${locatieIcon} ${locatie}
+              </div>
+              ${detailHTML}
+            </div>
+          `;
           })
           .join("");
       }
     </script>
-    <!-- Custom Modal voor gebruiker selectie -->
-    <div id="customUserModal" class="custom-modal">
-      <div class="custom-modal-overlay" onclick="closeCustomModal()"></div>
-      <div class="custom-modal-content">
-        <div class="custom-modal-header">
-          <h3>Gereedschapnummer</h3>
-          <h3 id="modalHeaderGereedschapNr">Gereedschap uitlenen</h3>
-          <button class="custom-modal-close" onclick="closeCustomModal()">✕</button>
-        </div>
-        <div class="custom-modal-body">
-          <p class="modal-locatie" id="modalLocatie"></p>
-          <p class="modal-label">Selecteer gebruiker:</p>
-          <div class="modal-user-buttons" id="modalUserButtons"></div>
-        </div>
-        <div class="custom-modal-footer">
-          <button class="modal-btn modal-btn-cancel" onclick="closeCustomModal()">Annuleren</button>
-        </div>
-      </div>
-    </div>
-    <!-- About/License Modal -->
-    <div id="aboutModal" class="about-modal">
-      <div class="about-modal-overlay" onclick="closeAboutModal()"></div>
-      <div class="about-modal-content">
-        <div class="about-modal-header">
-          <h2>📋 Over deze Applicatie</h2>
-          <p>MB Tools Inventory System</p>
-        </div>
-        <div class="about-modal-body">
-          <!-- Copyright Section -->
-          <div class="about-section">
-            <div class="copyright-box">
-              <div class="copyright-symbol">©</div>
-              <div class="copyright-year">2025</div>
-              <div class="copyright-owner">Joeri Van Melkebeke</div>
-              <div class="copyright-text">
-                Alle rechten voorbehouden.<br>
-                Ongeautoriseerd gebruik, reproductie of distributie is verboden.
-              </div>
-            </div>
-          </div>
-          <!-- System Info -->
-          <div class="about-section">
-            <h3>🛠️ Applicatie Informatie</h3>
-            <div class="info-grid">
-              <div class="info-item">
-                <div class="info-label">Naam</div>
-                <div class="info-value">MB Tools</div>
-              </div>
-              <div class="info-item">
-                <div class="info-label">Versie</div>
-                <div class="info-value">2.0</div>
-              </div>
-              <div class="info-item">
-                <div class="info-label">Type</div>
-                <div class="info-value">Inventory System</div>
-              </div>
-              <div class="info-item">
-                <div class="info-label">Jaar</div>
-                <div class="info-value">2025</div>
-              </div>
-            </div>
-          </div>
-          <!-- Developer Info -->
-          <div class="about-section">
-            <h3>👨‍💻 Ontwikkelaar</h3>
-            <p>
-              Deze applicatie is volledig ontworpen en ontwikkeld door<br> 
-              <strong>Joeri Van Melkebeke</strong>.
-            </p>
-            <p>
-              Het systeem beheert het speciale gereedschap inventaris en
-              maakt gebruik van moderne webtechnologieën 
-              voor een optimale gebruikerservaring.
-            </p>
-          </div>
-          <!-- License Info -->
-          <div class="about-section">
-            <h3>⚖️ Licentie & Gebruik</h3>
-            <p>
-              Dit systeem, inclusief alle code, design en documentatie, is 
-              <strong>intellectueel eigendom</strong> van Joeri Van Melkebeke.
-            </p>
-            <p>
-              <strong>Toegestaan gebruik:</strong><br>
-              ✅ Intern gebruik, met toestemming van de eigenaar<br>
-              ✅ Raadplegen en bijwerken van gereedschap status
-            </p>
-            <p>
-              <strong>Niet toegestaan zonder toestemming:</strong><br>
-              ❌ Reproductie of kopiëren van de code<br>
-              ❌ Distributie aan derden<br>
-              ❌ Commercieel gebruik zowel binnen als buiten de organisatie<br>
-              ❌ Wijzigen en doorverkopen
-            </p>
-          </div>
-          <!-- Technical Info -->
-          <div class="about-section">
-            <h3>💻 Technische Details</h3>
-            <p>
-              <strong>Platform:</strong> Progressive Web App (PWA)<br>
-              <strong>Compatibiliteit:</strong> Alle moderne browsers, iOS, Android<br>
-              <strong>Laatste update:</strong> November 2025
-            </p>
-          </div>
-          <!-- Contact Info -->
-          <div class="about-section">
-            <h3>📞 Contact & Support</h3>
-            <p>
-              Voor vragen, problemen of feature requests met betrekking tot 
-              deze applicatie, neem contact op met de ontwikkelaar.
-            </p>
-            <p>
-              <strong>Ontwikkelaar:</strong> Joeri Van Melkebeke<br>
-              <strong>E-mail:</strong> 
-              <E-mail>joerivanmelkebeke@hotmail.com</E-mail>
-              <br>
-            </p>
-          </div>
-        </div>
-        <div class="about-modal-footer">
-          <button class="about-close-btn" onclick="closeAboutModal()">
-          Sluiten
-          </button>
-        </div>
-      </div>
-    </div>
   </body>
 </html>
