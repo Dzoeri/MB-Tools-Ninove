@@ -3640,7 +3640,7 @@
         const searchNormalized = currentSearch.replace(/\s/g, "").toLowerCase();
 
         // ✅ BELANGRIJK: Als geen zoekterm, toon welkomstbericht
-        if (searchNormalized === "") {
+        if (searchNormalized === "" && currentFilter === "all") {
           displayWelcomeMessage();
           return; // STOP HIER!
         }
@@ -3650,6 +3650,7 @@
         const statusData = content.gereedschap || {};
 
         let filtered = gereedschapData.filter((item) => {
+          if (searchNormalized === "") return true; // Geen zoekterm = alles tonen
           const itemNormalized = item[0].replace(/\s/g, "").toLowerCase();
           return itemNormalized.includes(searchNormalized);
         });
