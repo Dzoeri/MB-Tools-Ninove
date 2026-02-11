@@ -2,7 +2,10 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
     <meta
       name="description"
       content="Mercedes-Benz Speciaal Gereedschap Database Ninove"
@@ -35,7 +38,7 @@
         -ms-text-size-adjust: 100%;
         text-size-adjust: 100%;
       }
-      
+
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, sans-serif;
@@ -3379,7 +3382,7 @@
       });
 
       // FILTER STATE
-      let currentFilter = "all";
+      let currentFilter = localStorage.getItem("MB_TOOLS_FILTER") || "all";
       let currentSearch = "";
 
       // GITHUB API
@@ -3577,18 +3580,42 @@
       // ZOEK FUNCTIES
       document.addEventListener("DOMContentLoaded", () => {
         displayWelcomeMessage(); // ✅ TOON WELKOMSTBERICHT BIJ LADEN
-
+        // Restore filter state
+        const savedFilter = localStorage.getItem("MB_TOOLS_FILTER");
+        if (savedFilter && savedFilter !== "all") {
+          const filterBtn = document.querySelector(
+            `.filter-btn[data-filter="${savedFilter}"]`
+          );
+          if (filterBtn) {
+            document
+              .querySelectorAll(".filter-btn")
+              .forEach((b) => b.classList.remove("active"));
+            filterBtn.classList.add("active");
+            currentFilter = savedFilter;
+          }
+        }
         document
           .getElementById("searchInput")
           .addEventListener("input", handleSearch);
 
         document.querySelectorAll(".filter-btn").forEach((btn) => {
           btn.addEventListener("click", (e) => {
-            document
-              .querySelectorAll(".filter-btn")
-              .forEach((b) => b.classList.remove("active"));
-            e.currentTarget.classList.add("active");
-            currentFilter = e.currentTarget.dataset.filter;
+            const clickedFilter = e.currentTarget.dataset.filter;
+
+            // Toggle: als al actief, deactiveer
+            if (currentFilter === clickedFilter) {
+              e.currentTarget.classList.remove("active");
+              currentFilter = "all";
+              localStorage.setItem("MB_TOOLS_FILTER", "all");
+            } else {
+              document
+                .querySelectorAll(".filter-btn")
+                .forEach((b) => b.classList.remove("active"));
+              e.currentTarget.classList.add("active");
+              currentFilter = clickedFilter;
+              localStorage.setItem("MB_TOOLS_FILTER", clickedFilter);
+            }
+
             filterAndDisplay();
           });
         });
@@ -3600,9 +3627,12 @@
         // Reset filter bij zoeken
         if (currentSearch.trim() !== "") {
           currentFilter = "all";
-          document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+          localStorage.setItem("MB_TOOLS_FILTER", "all");
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
         }
-        
+
         filterAndDisplay();
       }
 
