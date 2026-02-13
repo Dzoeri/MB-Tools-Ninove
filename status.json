@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-02-11T21:46:06.155Z",
+    "laatste_update": "2026-02-13T13:12:40.026Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -104,6 +104,14 @@
       "sinds": "2026-02-11T09:54:39.440Z",
       "nummer": "000 589 21 99 00",
       "locatie": "Magazijn: Rek 1522 - Schap 0305",
+      "geschiedenis": []
+    },
+    "272 589 01 33 00||Magazijn: Rek 1522 - Schap 0107 - Bak 2": {
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2026-02-13T13:12:40.025Z",
+      "nummer": "272 589 01 33 00",
+      "locatie": "Magazijn: Rek 1522 - Schap 0107 - Bak 2",
       "geschiedenis": []
     }
   }
