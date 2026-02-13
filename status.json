@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-02-13T13:12:40.026Z",
+    "laatste_update": "2026-02-13T15:53:56.490Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -107,12 +107,16 @@
       "geschiedenis": []
     },
     "272 589 01 33 00||Magazijn: Rek 1522 - Schap 0107 - Bak 2": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-02-13T13:12:40.025Z",
+      "status": "beschikbaar",
       "nummer": "272 589 01 33 00",
       "locatie": "Magazijn: Rek 1522 - Schap 0107 - Bak 2",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Joeri",
+          "van": "2026-02-13T13:12:40.025Z",
+          "tot": "2026-02-13T15:53:56.490Z"
+        }
+      ]
     }
   }
 }
