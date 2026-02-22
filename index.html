@@ -266,6 +266,35 @@
         color: #92400e;
         border-left: 3px solid #f59e0b;
       }
+      .detail-text {
+        font-size: 0.875rem;
+        color: #991b1b;
+        margin-bottom: 0.75rem;
+      }
+      .detail-text.beschikbaar {
+        color: #6b7280;
+      }
+      .geschiedenis-section {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e5e7eb;
+      }
+      .geschiedenis-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #6b7280;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .geschiedenis-item {
+        font-size: 0.8rem;
+        color: #6b7280;
+        padding: 0.25rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
       .no-results {
         padding: 4rem 2rem;
         text-align: center;
@@ -763,7 +792,7 @@
     </main>
 
     <footer class="footer">
-      <p>© 2025 JVM • Speciaal Gereedschap Database</p>
+      <p>© 2026 JVM • Speciaal Gereedschap Database</p>
       <p style="color: #6b7280; margin-top: 0.5rem">
         Voor intern gebruik • Beheerd door Joeri Van Melkebeke
       </p>
@@ -3742,6 +3771,7 @@
 
             let statusButton = "";
             let detailHTML = "";
+            let geschiedenisHTML = "";
 
             if (isInGebruik) {
               const sinds = new Date(status.sinds);
@@ -3754,8 +3784,68 @@
 
               statusButton = `<button class="status-button ingebruik" onclick="brengTerug('${gereedschapNr}', '${locatie}')">🔴 IN GEBRUIK - Klik om terug te brengen</button>`;
               detailHTML = `<div class="detail-text">Door: <strong>${status.gebruiker}</strong> • Sinds: ${tijd}</div>`;
+
+              if (status.geschiedenis && status.geschiedenis.length > 0) {
+                const laatste3 = status.geschiedenis.slice(-3).reverse();
+                geschiedenisHTML = `
+                  <div class="geschiedenis-section">
+                    <div class="geschiedenis-title">📜 Recente Geschiedenis</div>
+                    ${laatste3
+                      .map((h) => {
+                        const van = new Date(h.van).toLocaleDateString(
+                          "nl-BE",
+                          {
+                            day: "2-digit",
+                            month: "short",
+                          }
+                        );
+                        const tot = new Date(h.tot).toLocaleDateString(
+                          "nl-BE",
+                          {
+                            day: "2-digit",
+                            month: "short",
+                          }
+                        );
+                        return `<div class="geschiedenis-item">🔧 <strong>${h.gebruiker}</strong> (${van} → ${tot})</div>`;
+                      })
+                      .join("")}
+                  </div>
+                `;
+              }
             } else {
               statusButton = `<button class="status-button beschikbaar" onclick="toonUitleenPopup('${gereedschapNr}', '${locatie}')">🟢 BESCHIKBAAR - Klik om te gebruiken</button>`;
+
+              if (
+                status &&
+                status.geschiedenis &&
+                status.geschiedenis.length > 0
+              ) {
+                const laatste3 = status.geschiedenis.slice(-3).reverse();
+                geschiedenisHTML = `
+                  <div class="geschiedenis-section">
+                    <div class="geschiedenis-title">📜 Recente Geschiedenis</div>
+                    ${laatste3
+                      .map((h) => {
+                        const van = new Date(h.van).toLocaleDateString(
+                          "nl-BE",
+                          {
+                            day: "2-digit",
+                            month: "short",
+                          }
+                        );
+                        const tot = new Date(h.tot).toLocaleDateString(
+                          "nl-BE",
+                          {
+                            day: "2-digit",
+                            month: "short",
+                          }
+                        );
+                        return `<div class="geschiedenis-item">🔧 <strong>${h.gebruiker}</strong> (${van} → ${tot})</div>`;
+                      })
+                      .join("")}
+                  </div>
+                `;
+              }
             }
 
             return `
@@ -3772,6 +3862,7 @@
                 ${locatieIcon} ${locatie}
               </div>
               ${detailHTML}
+              ${geschiedenisHTML}
             </div>
           `;
           })
