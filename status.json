@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-02-24T14:49:58.309Z",
+    "laatste_update": "2026-03-03T14:33:23.751Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -121,6 +121,14 @@
           "tot": "2026-02-13T15:53:56.490Z"
         }
       ]
+    },
+    "001 589 65 09 00||Werkplaats: PKW - Bord C": {
+      "status": "uitgeleend",
+      "gebruiker": "Maxime",
+      "sinds": "2026-03-03T14:33:23.751Z",
+      "nummer": "001 589 65 09 00",
+      "locatie": "Werkplaats: PKW - Bord C",
+      "geschiedenis": []
     }
   }
 }
