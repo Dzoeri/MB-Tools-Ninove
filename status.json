@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-06T10:08:04.625Z",
+    "laatste_update": "2026-03-06T11:02:48.134Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -131,12 +131,16 @@
       "geschiedenis": []
     },
     "168 589 01 21 00||Magazijn: Rek 1508 - Schap 0107": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-03-06T10:08:04.625Z",
+      "status": "beschikbaar",
       "nummer": "168 589 01 21 00",
       "locatie": "Magazijn: Rek 1508 - Schap 0107",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Joeri",
+          "van": "2026-03-06T10:08:04.625Z",
+          "tot": "2026-03-06T11:02:48.134Z"
+        }
+      ]
     }
   }
 }
