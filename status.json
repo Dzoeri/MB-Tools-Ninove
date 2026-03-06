@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-03T14:33:23.751Z",
+    "laatste_update": "2026-03-06T10:08:04.625Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -128,6 +128,14 @@
       "sinds": "2026-03-03T14:33:23.751Z",
       "nummer": "001 589 65 09 00",
       "locatie": "Werkplaats: PKW - Bord C",
+      "geschiedenis": []
+    },
+    "168 589 01 21 00||Magazijn: Rek 1508 - Schap 0107": {
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2026-03-06T10:08:04.625Z",
+      "nummer": "168 589 01 21 00",
+      "locatie": "Magazijn: Rek 1508 - Schap 0107",
       "geschiedenis": []
     }
   }
