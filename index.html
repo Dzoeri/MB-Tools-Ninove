@@ -535,6 +535,93 @@
           opacity: 1;
         }
       }
+      /* EXTERN Modal Styling */
+      .extern-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+      }
+      .extern-modal.show {
+        display: flex;
+      }
+      .extern-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+      }
+      .extern-modal-content {
+        position: relative;
+        background: white;
+        border-radius: 16px;
+        width: 90%;
+        max-width: 460px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideUp 0.3s ease;
+        overflow: hidden;
+      }
+      .extern-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        background: linear-gradient(to right, #b45309, #d97706);
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .extern-modal-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+      }
+      .extern-modal-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .extern-field-label {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #4b5563;
+        margin-bottom: 0.4rem;
+      }
+      .extern-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .extern-input:focus {
+        border-color: #d97706;
+      }
+      .extern-modal-footer {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #e5e7eb;
+        background: #f9fafb;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+      }
+      .modal-btn-confirm {
+        background: #d97706;
+        color: white;
+      }
+      .modal-btn-confirm:hover {
+        background: #b45309;
+      }
       /* About Modal Styling */
       .about-modal {
         display: none;
@@ -824,6 +911,53 @@
       </div>
     </div>
 
+    <!-- Modal voor EXTERN uitlenen -->
+    <div id="externModal" class="extern-modal">
+      <div class="extern-modal-overlay" onclick="sluitExternModal()"></div>
+      <div class="extern-modal-content">
+        <div class="extern-modal-header">
+          <h3>🚚 Uitlenen aan externe vestiging</h3>
+          <button class="custom-modal-close" onclick="sluitExternModal()">
+            ✕
+          </button>
+        </div>
+        <div class="extern-modal-body">
+          <div>
+            <p class="extern-field-label">📍 Naar welke vestiging?</p>
+            <input
+              class="extern-input"
+              id="externVestiging"
+              type="text"
+              placeholder="bv. Vestiging Aalst..."
+            />
+          </div>
+          <div>
+            <p class="extern-field-label">👤 Jouw naam (wie leent uit)?</p>
+            <input
+              class="extern-input"
+              id="externUitlener"
+              type="text"
+              placeholder="bv. Jan..."
+            />
+          </div>
+        </div>
+        <div class="extern-modal-footer">
+          <button
+            class="modal-btn modal-btn-cancel"
+            onclick="sluitExternModal()"
+          >
+            Annuleren
+          </button>
+          <button
+            class="modal-btn modal-btn-confirm"
+            onclick="bevestigExtern()"
+          >
+            Bevestigen
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
       // CONFIGURATIE
       let GITHUB_TOKEN = localStorage.getItem("MB_TOOLS_TOKEN");
@@ -1030,7 +1164,11 @@
         ["112 589 03 31 00", "Magazijn: Rek 1522 - Schap 0402"],
         ["112 589 03 40 00", "Magazijn: Rek 1522 - Schap 0105"],
         ["112 589 03 40 00", "Magazijn: Rek 1518 - Schap 0107"],
-        ["112 589 09 61 00", "Werkplaats: NFZ /MAGAZIJN - Rek 1523 - Schap 0106 - Bak 3"],
+        [
+          "112 589 09 61 00",
+          "Werkplaats: NFZ /MAGAZIJN - Rek 1523 - Schap 0106 - Bak 3",
+        ],
+        ["112 589 09 61 00", "Magazijn: Rek 1523 - Schap 0106 - Bak 3"],
         ["112 589 09 61 00", "Magazijn: Rek 1518 - Schap 0107"],
         ["112 589 10 61 00", "Magazijn: Rek 1518 - Schap 0107"],
         ["113 589 00 01 00", "Werkplaats: NFZ - Rek 1522 - Schap 0105 - Bak 1"],
@@ -3584,7 +3722,43 @@
         const gereedschap = currentModalGereedschap;
         const locatie = currentModalLocatie;
         closeCustomModal();
-        leenUit(gereedschap, locatie, gebruiker);
+        if (gebruiker === "EXTERN") {
+          toonExternModal();
+        } else {
+          leenUit(gereedschap, locatie, gebruiker);
+        }
+      }
+
+      function toonExternModal() {
+        document.getElementById("externVestiging").value = "";
+        document.getElementById("externUitlener").value = "";
+        document.getElementById("externModal").classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function sluitExternModal() {
+        document.getElementById("externModal").classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      function bevestigExtern() {
+        const vestiging = document
+          .getElementById("externVestiging")
+          .value.trim();
+        const uitlener = document.getElementById("externUitlener").value.trim();
+
+        if (!vestiging) {
+          alert("⚠️ Vul de naam van de vestiging in.");
+          return;
+        }
+        if (!uitlener) {
+          alert("⚠️ Vul jouw naam in.");
+          return;
+        }
+
+        const gebruikerLabel = `EXTERN – ${vestiging} (${uitlener})`;
+        sluitExternModal();
+        leenUit(currentModalGereedschap, currentModalLocatie, gebruikerLabel);
       }
 
       // ✅ WELKOMSTBERICHT FUNCTIE - DIT IS DE BELANGRIJKSTE WIJZIGING!
