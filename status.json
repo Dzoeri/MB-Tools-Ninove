@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-11T20:24:15.628Z",
+    "laatste_update": "2026-03-11T20:42:30.911Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -145,6 +145,14 @@
           "tot": "2026-03-06T11:02:48.134Z"
         }
       ]
+    },
+    "208 589 00 77 00||Magazijn: Rek 1522 - Schap 0209": {
+      "status": "uitgeleend",
+      "gebruiker": "Joeri - EXTERN - Aalst",
+      "sinds": "2026-03-11T20:42:30.910Z",
+      "nummer": "208 589 00 77 00",
+      "locatie": "Magazijn: Rek 1522 - Schap 0209",
+      "geschiedenis": []
     }
   }
 }
