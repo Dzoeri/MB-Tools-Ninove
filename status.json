@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-11T08:36:40.420Z",
+    "laatste_update": "2026-03-11T19:50:44.728Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -157,6 +157,14 @@
           "tot": "2026-03-11T08:36:40.420Z"
         }
       ]
+    },
+    "null||null": {
+      "status": "uitgeleend",
+      "gebruiker": "EXTERN – Aalst (Joeri)",
+      "sinds": "2026-03-11T19:50:44.728Z",
+      "nummer": null,
+      "locatie": null,
+      "geschiedenis": []
     }
   }
 }
