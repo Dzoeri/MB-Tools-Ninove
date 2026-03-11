@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-10T10:03:37.923Z",
+    "laatste_update": "2026-03-11T08:36:40.420Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -147,12 +147,16 @@
       ]
     },
     "223 589 01 63 00||Magazijn: Rek 1523 - Schap 0201": {
-      "status": "uitgeleend",
-      "gebruiker": "EXTERN",
-      "sinds": "2026-03-10T09:47:23.516Z",
+      "status": "beschikbaar",
       "nummer": "223 589 01 63 00",
       "locatie": "Magazijn: Rek 1523 - Schap 0201",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "EXTERN",
+          "van": "2026-03-10T09:47:23.516Z",
+          "tot": "2026-03-11T08:36:40.420Z"
+        }
+      ]
     }
   }
 }
