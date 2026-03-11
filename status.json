@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-11T20:23:54.011Z",
+    "laatste_update": "2026-03-11T20:24:15.628Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -160,19 +160,21 @@
     },
     "null||null": {
       "status": "uitgeleend",
-      "gebruiker": "EXTERN Ã¢ÂÂ Aalst (Joeri)",
+      "gebruiker": "EXTERN ÃÂ¢ÃÂÃÂ Aalst (Joeri)",
       "sinds": "2026-03-11T19:52:02.125Z",
       "nummer": null,
       "locatie": null,
       "geschiedenis": []
     },
     "208 589 00 77 00||Magazijn: Rek 1522 - Schap 0209": {
-      "status": "beschikbaar",
+      "status": "uitgeleend",
+      "gebruiker": "Joeri - EXTERN - Aalst",
+      "sinds": "2026-03-11T20:24:15.628Z",
       "nummer": "208 589 00 77 00",
       "locatie": "Magazijn: Rek 1522 - Schap 0209",
       "geschiedenis": [
         {
-          "gebruiker": "EXTERN â Aalst (Joeri)",
+          "gebruiker": "EXTERN Ã¢ÂÂ Aalst (Joeri)",
           "van": "2026-03-11T20:05:55.661Z",
           "tot": "2026-03-11T20:23:54.011Z"
         }
