@@ -3552,6 +3552,8 @@
       // FILTER STATE
       let currentFilter = localStorage.getItem("MB_TOOLS_FILTER") || "all";
       let currentSearch = "";
+      let currentExternGereedschap = null;
+      let currentExternLocatie = null;
 
       // GITHUB API
       async function loadStatus() {
@@ -3723,6 +3725,8 @@
         const locatie = currentModalLocatie;
         closeCustomModal();
         if (gebruiker === "EXTERN") {
+          currentExternGereedschap = gereedschap;
+          currentExternLocatie = locatie;
           toonExternModal();
         } else {
           leenUit(gereedschap, locatie, gebruiker);
@@ -3758,7 +3762,7 @@
 
         const gebruikerLabel = `EXTERN – ${vestiging} (${uitlener})`;
         sluitExternModal();
-        leenUit(currentModalGereedschap, currentModalLocatie, gebruikerLabel);
+        leenUit(currentExternGereedschap, currentExternLocatie, gebruikerLabel);
       }
 
       // ✅ WELKOMSTBERICHT FUNCTIE - DIT IS DE BELANGRIJKSTE WIJZIGING!
