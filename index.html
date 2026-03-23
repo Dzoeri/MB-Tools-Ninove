@@ -968,6 +968,8 @@
       const GITHUB_REPO = "dzoeri/MB-Tools-Ninove";
       const GITHUB_BRANCH = "main";
       const STATUS_FILE = "status.json";
+      const TOOLS_FILE = "tools.json";
+      let allGereedschapData = [];
 
       const GEBRUIKERS = [
         "Albin",
@@ -3556,6 +3558,26 @@
       let currentExternLocatie = null;
 
       // GITHUB API
+      async function loadTools() {
+        try {
+          const response = await fetch(
+            `https://api.github.com/repos/${GITHUB_REPO}/contents/${TOOLS_FILE}?ref=${GITHUB_BRANCH}`,
+            {
+              headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+                Accept: "application/vnd.github.v3+json",
+              },
+            }
+          );
+          if (!response.ok) return [];
+          const data = await response.json();
+          const content = JSON.parse(atob(data.content));
+          return content.map((item) => [item.nummer, item.locatie]);
+        } catch (error) {
+          console.error("Error loading tools:", error);
+          return [];
+        }
+      }
       async function loadStatus() {
         try {
           const response = await fetch(
@@ -3786,7 +3808,8 @@
       }
 
       // ZOEK FUNCTIES
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("DOMContentLoaded", async () => {
+        allGereedschapData = await loadTools();
         displayWelcomeMessage(); // ✅ TOON WELKOMSTBERICHT BIJ LADEN
         // Restore filter state
         const savedFilter = localStorage.getItem("MB_TOOLS_FILTER");
@@ -3857,7 +3880,7 @@
         const { content } = await loadStatus();
         const statusData = content.gereedschap || {};
 
-        let filtered = gereedschapData.filter((item) => {
+        let filtered = allGereedschapData.filter((item) => {
           if (searchNormalized === "") return true; // Geen zoekterm = alles tonen
           const itemNormalized = item[0].replace(/\s/g, "").toLowerCase();
           return itemNormalized.includes(searchNormalized);
