@@ -365,6 +365,41 @@
       .toevoegen-btn {
         margin-left: auto;
       }
+      .locatie-keuze-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.25rem;
+      }
+      .locatie-keuze-btn {
+        padding: 0.6rem 1rem;
+        border: 2px solid #e5e7eb;
+        background: white;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #1a1a1a;
+      }
+      .locatie-keuze-btn:hover {
+        border-color: #d97706;
+        background: #fef3c7;
+      }
+      .locatie-keuze-btn.actief {
+        background: #d97706;
+        color: white;
+        border-color: #d97706;
+      }
+      .locatie-preview-box {
+        background: #fef3c7;
+        border: 2px solid #d97706;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #92400e;
+      }
       .filter-btn {
         padding: 0.75rem 1.5rem;
         border: 2px solid #e5e7eb;
@@ -2442,6 +2477,100 @@
           })
           .join("");
       }
+      // LOCATIE BUILDER
+      let gekozenType = "";
+      let gekozenStap2 = "";
+      let gekozenStap3 = "";
+
+      const MAGAZIJN_REKKEN = ["Rek 1508", "Rek 1518", "Rek 1522", "Rek 1523", "Rek 1524"];
+      const MAGAZIJN_SCHAPPEN = {
+        "Rek 1508": ["Schap 0104","Schap 0105","Schap 0106","Schap 0107","Schap 0108","Schap 0109","Schap 0110"],
+        "Rek 1518": ["Schap 0101","Schap 0102","Schap 0103","Schap 0104","Schap 0105","Schap 0106","Schap 0107","Schap 0108","Schap 0109","Schap 0110","Schap 0406","Schap 0407","Schap 0408","Schap 0409","Schap 0410","Schap 0501","Schap 0502","Schap 0503","Schap 0504","Schap 0505","Schap 0506","Schap 0507","Schap 0508","Schap 0509","Schap 0601","Schap 0602","Schap 0603","Schap 0604","Schap 0605","Schap 0606","Schap 0607"],
+        "Rek 1522": ["Schap 0102","Schap 0103","Schap 0104","Schap 0105","Schap 0106","Schap 0107","Schap 0108","Schap 0109","Schap 0202","Schap 0203","Schap 0204","Schap 0205","Schap 0206","Schap 0207","Schap 0208","Schap 0209","Schap 0302","Schap 0304","Schap 0305","Schap 0307","Schap 0309","Schap 0310","Schap 0402","Schap 0403","Schap 0404","Schap 0405","Schap 0406","Schap 0407","Schap 0408","Schap 0504","Schap 0505","Schap 0506","Schap 0507","Schap 0508","Schap 0602","Schap 0604","Schap 0605","Schap 0606","Schap 0608","Schap 0609"],
+        "Rek 1523": ["Schap 0106","Schap 0107","Schap 0108","Schap 0109","Schap 0110","Schap 0201","Schap 0305","Schap 0401","Schap 0402","Schap 0403","Schap 0404","Schap 0405","Schap 0406","Schap 0407","Schap 0408","Schap 0501","Schap 0503","Schap 0504","Schap 0506","Schap 0507","Schap 0508","Schap 0509","Schap 0601","Schap 0603","Schap 0605","Schap 0606","Schap 0607","Schap 0608"],
+        "Rek 1524": ["Schap 0601"],
+      };
+      const PKW_LOCATIES = ["Bord A", "Bord B", "Bord C", "Kast 2", "Kast Rij 5"];
+      const NFZ_LOCATIES = ["Rek 1", "Rek 2", "Rek 3", "Rek 4", "Rek 5", "Rek 6", "Rek 7", "Kast Rij 1", "Kast Rij 2", "Kast Rij 3", "Kast Rij 4", "Kast Rij 5", "Kast Rij 6", "Kast Rij 7", "Bord A", "Bord B", "Bord C", "Bureau Luc", "Tafel Boormachine", "Rek Kleine Werkbank"];
+
+      function resetLocatieBouwer() {
+        gekozenType = ""; gekozenStap2 = ""; gekozenStap3 = "";
+        document.querySelectorAll(".locatie-keuze-btn").forEach(b => b.classList.remove("actief"));
+        document.getElementById("stap2").style.display = "none";
+        document.getElementById("stap3").style.display = "none";
+        document.getElementById("stap4").style.display = "none";
+        document.getElementById("locatiePreview").style.display = "none";
+        document.getElementById("locatiePreviewText").textContent = "";
+      }
+
+      function selecteerType(type) {
+        gekozenType = type; gekozenStap2 = ""; gekozenStap3 = "";
+        document.querySelectorAll("#keuzeType .locatie-keuze-btn").forEach(b => b.classList.remove("actief"));
+        event.target.classList.add("actief");
+        document.getElementById("stap3").style.display = "none";
+        document.getElementById("stap4").style.display = "none";
+        document.getElementById("locatiePreview").style.display = "none";
+
+        const stap2 = document.getElementById("stap2");
+        const grid = document.getElementById("keuzeStap2");
+        let opties = [];
+        if (type === "Magazijn") opties = MAGAZIJN_REKKEN;
+        if (type === "Werkplaats: PKW") opties = PKW_LOCATIES;
+        if (type === "Werkplaats: NFZ") opties = NFZ_LOCATIES;
+
+        grid.innerHTML = opties.map(o =>
+          `<button class="locatie-keuze-btn" onclick="selecteerStap2('${o}')">${o}</button>`
+        ).join("");
+        stap2.style.display = "block";
+      }
+
+      function selecteerStap2(keuze) {
+        gekozenStap2 = keuze; gekozenStap3 = "";
+        document.querySelectorAll("#keuzeStap2 .locatie-keuze-btn").forEach(b => b.classList.remove("actief"));
+        event.target.classList.add("actief");
+        document.getElementById("stap4").style.display = "none";
+        document.getElementById("locatiePreview").style.display = "none";
+
+        if (gekozenType === "Magazijn") {
+          const schappen = MAGAZIJN_SCHAPPEN[keuze] || [];
+          const grid = document.getElementById("keuzeStap3");
+          grid.innerHTML = schappen.map(s =>
+            `<button class="locatie-keuze-btn" onclick="selecteerStap3('${s}')">${s}</button>`
+          ).join("");
+          document.getElementById("stap3").style.display = "block";
+        } else {
+          document.getElementById("stap3").style.display = "none";
+          updatePreview();
+        }
+      }
+
+      function selecteerStap3(keuze) {
+        gekozenStap3 = keuze;
+        document.querySelectorAll("#keuzeStap3 .locatie-keuze-btn").forEach(b => b.classList.remove("actief"));
+        event.target.classList.add("actief");
+        document.getElementById("stap4").style.display = "block";
+        updatePreview();
+      }
+
+      function selecteerBak(bak) {
+        document.querySelectorAll("#keuzeStap4 .locatie-keuze-btn").forEach(b => b.classList.remove("actief"));
+        event.target.classList.add("actief");
+        gekozenStap3 = gekozenStap3.split(" - Bak")[0];
+        if (bak) gekozenStap3 += ` - ${bak}`;
+        updatePreview();
+      }
+
+      function updatePreview() {
+        let locatie = "";
+        if (gekozenType === "Magazijn") {
+          locatie = `Magazijn: ${gekozenStap2}`;
+          if (gekozenStap3) locatie += ` - ${gekozenStap3}`;
+        } else {
+          locatie = `${gekozenType} - ${gekozenStap2}`;
+        }
+        document.getElementById("locatiePreviewText").textContent = locatie;
+        document.getElementById("locatiePreview").style.display = "block";
+      }
       // GEREEDSCHAP TOEVOEGEN
       const MAGAZIJNIER_PIN = "9620";
 
@@ -2460,12 +2589,12 @@
         document.getElementById("toevoegenModal").classList.remove("show");
         document.body.style.overflow = "";
         document.getElementById("nieuwNummer").value = "";
-        document.getElementById("nieuweLocatie").value = "";
+        resetLocatieBouwer();
       }
 
       async function bevestigToevoegen() {
         const nummer = document.getElementById("nieuwNummer").value.trim();
-        const locatie = document.getElementById("nieuweLocatie").value.trim();
+        const locatie = document.getElementById("locatiePreviewText").textContent.trim();
 
         if (!nummer) {
           alert("⚠️ Vul het gereedschapsnummer in.");
@@ -2542,8 +2671,34 @@
             <input class="extern-input" id="nieuwNummer" type="text" placeholder="bv. 123 589 00 15 00..." />
           </div>
           <div>
-            <p class="extern-field-label">📍 Locatie</p>
-            <input class="extern-input" id="nieuweLocatie" type="text" placeholder="bv. Magazijn: Rek 1518 - Schap 0101..." />
+            <p class="extern-field-label">📍 Stap 1 — Type locatie</p>
+            <div class="locatie-keuze-grid" id="keuzeType">
+              <button class="locatie-keuze-btn" onclick="selecteerType('Magazijn')">📦 Magazijn</button>
+              <button class="locatie-keuze-btn" onclick="selecteerType('Werkplaats: PKW')">🔧 Werkplaats: PKW</button>
+              <button class="locatie-keuze-btn" onclick="selecteerType('Werkplaats: NFZ')">🔧 Werkplaats: NFZ</button>
+            </div>
+          </div>
+          <div id="stap2" style="display:none;">
+            <p class="extern-field-label">📍 Stap 2 — Kies locatie</p>
+            <div class="locatie-keuze-grid" id="keuzeStap2"></div>
+          </div>
+          <div id="stap3" style="display:none;">
+            <p class="extern-field-label">📍 Stap 3 — Kies schap</p>
+            <div class="locatie-keuze-grid" id="keuzeStap3"></div>
+          </div>
+          <div id="stap4" style="display:none;">
+            <p class="extern-field-label">📍 Stap 4 — Kies bak (optioneel)</p>
+            <div class="locatie-keuze-grid" id="keuzeStap4">
+              <button class="locatie-keuze-btn" onclick="selecteerBak('')">❌ Geen bak</button>
+              <button class="locatie-keuze-btn" onclick="selecteerBak('Bak 1')">Bak 1</button>
+              <button class="locatie-keuze-btn" onclick="selecteerBak('Bak 2')">Bak 2</button>
+              <button class="locatie-keuze-btn" onclick="selecteerBak('Bak 3')">Bak 3</button>
+              <button class="locatie-keuze-btn" onclick="selecteerBak('Bak 4')">Bak 4</button>
+            </div>
+          </div>
+          <div id="locatiePreview" style="display:none;">
+            <p class="extern-field-label">✅ Samengestelde locatie</p>
+            <div class="locatie-preview-box" id="locatiePreviewText"></div>
           </div>
         </div>
         <div class="extern-modal-footer">
