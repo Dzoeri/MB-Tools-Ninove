@@ -359,6 +359,27 @@
         gap: 0.75rem;
         flex-wrap: wrap;
         margin-top: 1rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .toevoegen-btn {
+        padding: 0.75rem 1.5rem;
+        color: #1a1a1a;
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: auto;
+      }
+      .toevoegen-btn:hover {
+        border-color: #60a5fa;
+        background: #eff6ff;
       }
       .filter-btn {
         padding: 0.75rem 1.5rem;
@@ -865,8 +886,10 @@
           <button class="filter-btn" data-filter="ingebruik">
             🔴 Toon gereedschap in gebruik
           </button>
+          <button class="toevoegen-btn" onclick="toonToevoegenModal()">
+            ➕ Gereedschap Toevoegen
+          </button>
         </div>
-      </div>
 
       <div class="results-container">
         <div class="results-header">
@@ -2435,7 +2458,116 @@
           })
           .join("");
       }
+      // GEREEDSCHAP TOEVOEGEN
+      const MAGAZIJNIER_PIN = "9620";
+
+      function toonToevoegenModal() {
+        const pin = prompt("🔒 Voer de magazijnier pincode in:");
+        if (pin === null) return;
+        if (pin !== MAGAZIJNIER_PIN) {
+          alert("❌ Verkeerde pincode. Toegang geweigerd.");
+          return;
+        }
+        document.getElementById("toevoegenModal").classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function sluitToevoegenModal() {
+        document.getElementById("toevoegenModal").classList.remove("show");
+        document.body.style.overflow = "";
+        document.getElementById("nieuwNummer").value = "";
+        document.getElementById("nieuweLocatie").value = "";
+      }
+
+      async function bevestigToevoegen() {
+        const nummer = document.getElementById("nieuwNummer").value.trim();
+        const locatie = document.getElementById("nieuweLocatie").value.trim();
+
+        if (!nummer) {
+          alert("⚠️ Vul het gereedschapsnummer in.");
+          return;
+        }
+        if (!locatie) {
+          alert("⚠️ Vul de locatie in.");
+          return;
+        }
+
+        const bevestig = confirm(`✅ Gereedschap toevoegen?\n\nNummer: ${nummer}\nLocatie: ${locatie}`);
+        if (!bevestig) return;
+
+        try {
+          // Laad huidige tools.json
+          const response = await fetch(
+            `https://api.github.com/repos/${GITHUB_REPO}/contents/${TOOLS_FILE}?ref=${GITHUB_BRANCH}`,
+            {
+              headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+                Accept: "application/vnd.github.v3+json",
+              },
+            }
+          );
+          const data = await response.json();
+          const huidigeLijst = JSON.parse(atob(data.content));
+
+          // Nieuw gereedschap toevoegen
+          huidigeLijst.push({ nummer: nummer, locatie: locatie });
+
+          // Opslaan naar GitHub
+          const nieuweContent = btoa(unescape(encodeURIComponent(JSON.stringify(huidigeLijst, null, 2))));
+          await fetch(
+            `https://api.github.com/repos/${GITHUB_REPO}/contents/${TOOLS_FILE}?ref=${GITHUB_BRANCH}`,
+            {
+              method: "PUT",
+              headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+                Accept: "application/vnd.github.v3+json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                message: `Nieuw gereedschap toegevoegd: ${nummer}`,
+                content: nieuweContent,
+                sha: data.sha,
+                branch: GITHUB_BRANCH,
+              }),
+            }
+          );
+
+          // Lokaal ook toevoegen zodat het meteen zichtbaar is
+          allGereedschapData.push([nummer, locatie]);
+
+          sluitToevoegenModal();
+          alert(`✅ Gereedschap ${nummer} succesvol toegevoegd!`);
+
+        } catch (error) {
+          console.error("Fout bij toevoegen:", error);
+          alert("❌ Er liep iets fout. Probeer opnieuw.");
+        }
+      }
     </script>
+    <!-- Modal Gereedschap Toevoegen -->
+    <div id="toevoegenModal" class="extern-modal">
+      <div class="extern-modal-overlay" onclick="sluitToevoegenModal()"></div>
+      <div class="extern-modal-content">
+        <div class="extern-modal-header" style="background: linear-gradient(to right, #1a1a1a, #2d2d2d);">
+          <h3>➕ Nieuw Gereedschap Toevoegen</h3>
+          <button class="custom-modal-close" onclick="sluitToevoegenModal()">✕</button>
+        </div>
+        <div class="extern-modal-body">
+          <div>
+            <p class="extern-field-label">🔧 Gereedschapsnummer</p>
+            <input class="extern-input" id="nieuwNummer" type="text" placeholder="bv. 123 589 00 15 00..." />
+          </div>
+          <div>
+            <p class="extern-field-label">📍 Locatie</p>
+            <input class="extern-input" id="nieuweLocatie" type="text" placeholder="bv. Magazijn: Rek 1518 - Schap 0101..." />
+          </div>
+        </div>
+        <div class="extern-modal-footer">
+          <button class="modal-btn modal-btn-cancel" onclick="sluitToevoegenModal()">Annuleren</button>
+          <button class="modal-btn modal-btn-confirm" style="background: #1a1a1a;" onclick="bevestigToevoegen()">✅ Toevoegen</button>
+        </div>
+      </div>
+    </div>
     <!-- About/License Modal -->
     <div id="aboutModal" class="about-modal">
       <div class="about-modal-overlay" onclick="closeAboutModal()"></div>
