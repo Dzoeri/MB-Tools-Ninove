@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-23T10:53:10.948Z",
+    "laatste_update": "2026-03-23T10:53:38.196Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -147,9 +147,7 @@
       ]
     },
     "208 589 00 77 00||Magazijn: Rek 1522 - Schap 0209": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri - EXTERN - Vestiging Sint-Niklaas",
-      "sinds": "2026-03-12T19:14:47.433Z",
+      "status": "beschikbaar",
       "nummer": "208 589 00 77 00",
       "locatie": "Magazijn: Rek 1522 - Schap 0209",
       "geschiedenis": [
@@ -157,6 +155,11 @@
           "gebruiker": "Joeri - EXTERN - Aalst",
           "van": "2026-03-11T20:42:30.910Z",
           "tot": "2026-03-12T18:02:42.657Z"
+        },
+        {
+          "gebruiker": "Joeri - EXTERN - Vestiging Sint-Niklaas",
+          "van": "2026-03-12T19:14:47.433Z",
+          "tot": "2026-03-23T10:53:38.196Z"
         }
       ]
     },
