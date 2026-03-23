@@ -363,23 +363,7 @@
         justify-content: space-between;
       }
       .toevoegen-btn {
-        padding: 0.75rem 1.5rem;
-        color: #1a1a1a;
-        background: white;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
         margin-left: auto;
-      }
-      .toevoegen-btn:hover {
-        border-color: #60a5fa;
-        background: #eff6ff;
       }
       .filter-btn {
         padding: 0.75rem 1.5rem;
@@ -886,7 +870,7 @@
           <button class="filter-btn" data-filter="ingebruik">
             🔴 Toon gereedschap in gebruik
           </button>
-          <button class="toevoegen-btn" onclick="toonToevoegenModal()">
+          <button class="filter-btn toevoegen-btn" onclick="toonToevoegenModal()">
             ➕ Gereedschap Toevoegen
           </button>
         </div>
