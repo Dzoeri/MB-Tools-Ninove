@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-25T07:42:12.584Z",
+    "laatste_update": "2026-03-25T07:42:26.670Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -224,12 +224,16 @@
       ]
     },
     "172 589 00 63 00||Magazijn: Rek 1518 - Schap 0601": {
-      "status": "uitgeleend",
-      "gebruiker": "Flip - EXTERN - Pascal",
-      "sinds": "2026-03-23T10:47:42.594Z",
+      "status": "beschikbaar",
       "nummer": "172 589 00 63 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0601",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Flip - EXTERN - Pascal",
+          "van": "2026-03-23T10:47:42.594Z",
+          "tot": "2026-03-25T07:42:26.670Z"
+        }
+      ]
     }
   }
 }
