@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-03-25T07:41:39.057Z",
+    "laatste_update": "2026-03-25T07:41:49.679Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -184,12 +184,16 @@
       "geschiedenis": []
     },
     "204 589 02 63 00||Magazijn: Rek 1518 - Schap 0602": {
-      "status": "uitgeleend",
-      "gebruiker": "Flip - EXTERN - Pascal",
-      "sinds": "2026-03-23T10:46:38.761Z",
+      "status": "beschikbaar",
       "nummer": "204 589 02 63 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0602",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Flip - EXTERN - Pascal",
+          "van": "2026-03-23T10:46:38.761Z",
+          "tot": "2026-03-25T07:41:49.679Z"
+        }
+      ]
     },
     "204 589 00 63 00||Magazijn: Rek 1518 - Schap 0602": {
       "status": "beschikbaar",
