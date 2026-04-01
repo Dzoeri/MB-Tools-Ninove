@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-04-01T09:51:25.688Z",
+    "laatste_update": "2026-04-01T09:54:00.109Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -241,12 +241,16 @@
       ]
     },
     "213 589 00 90 00||Magazijn: Rek 1523 - Schap 0405": {
-      "status": "uitgeleend",
-      "gebruiker": "Albin",
-      "sinds": "2026-04-01T09:51:25.688Z",
+      "status": "beschikbaar",
       "nummer": "213 589 00 90 00",
       "locatie": "Magazijn: Rek 1523 - Schap 0405",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Albin",
+          "van": "2026-04-01T09:51:25.688Z",
+          "tot": "2026-04-01T09:54:00.109Z"
+        }
+      ]
     }
   }
 }
