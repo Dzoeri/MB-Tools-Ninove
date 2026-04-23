@@ -2479,6 +2479,19 @@
           })
           .join("");
       }
+      
+      // GEREEDSCHAP NUMMER FORMATTER
+      function formateerGereedschapNummer(input) {
+        let waarde = input.value.replace(/\s/g, "");
+        let geformatteerd = "";
+        if (waarde.length > 0) geformatteerd += waarde.substring(0, 3);
+        if (waarde.length > 3) geformatteerd += " " + waarde.substring(3, 6);
+        if (waarde.length > 6) geformatteerd += " " + waarde.substring(6, 8);
+        if (waarde.length > 8) geformatteerd += " " + waarde.substring(8, 10);
+        if (waarde.length > 10) geformatteerd += " " + waarde.substring(10, 12);
+        input.value = geformatteerd;
+      }
+
       // LOCATIE BUILDER
       let gekozenType = "";
       let gekozenStap2 = "";
@@ -2625,7 +2638,8 @@
           const huidigeLijst = JSON.parse(atob(data.content));
 
           // Nieuw gereedschap toevoegen
-          huidigeLijst.push({ nummer: nummer, locatie: locatie });
+          const vandaag = new Date().toISOString().split("T")[0];
+          huidigeLijst.push({ nummer: nummer, locatie: locatie, toegevoegd: vandaag });
 
           // Opslaan naar GitHub
           const nieuweContent = btoa(unescape(encodeURIComponent(JSON.stringify(huidigeLijst, null, 2))));
@@ -2670,7 +2684,7 @@
         <div class="extern-modal-body">
           <div>
             <p class="extern-field-label">🔧 Gereedschapsnummer</p>
-            <input class="extern-input" id="nieuwNummer" type="text" placeholder="bv. 123 589 00 15 00..." />
+            <input class="extern-input" id="nieuwNummer" type="text" placeholder="bv. 123 589 00 15 00..." oninput="formateerGereedschapNummer(this)" maxlength="17" />
           </div>
           <div>
             <p class="extern-field-label">📍 Stap 1 — Type locatie</p>
@@ -2792,7 +2806,7 @@
               <strong>Platform:</strong> Progressive Web App (PWA)<br />
               <strong>Compatibiliteit:</strong> Alle moderne browsers, iOS,
               Android<br />
-              <strong>Laatste update:</strong> Februari 2026
+              <strong>Laatste update:</strong> Maart 2026
             </p>
           </div>
           <!-- Contact Info -->
