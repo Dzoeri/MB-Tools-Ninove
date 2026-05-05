@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-04-13T13:53:40.768Z",
+    "laatste_update": "2026-05-05T12:34:50.021Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -258,6 +258,14 @@
       "sinds": "2026-04-13T13:53:40.767Z",
       "nummer": "651 589 01 63 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0504",
+      "geschiedenis": []
+    },
+    "000 588 09 19 00||Magazijn: Rek 1518 - Schap 0101": {
+      "status": "uitgeleend",
+      "gebruiker": "Filip Watté - EXTERN - Maldegem. Thierry Lescrauwaert",
+      "sinds": "2026-05-05T12:34:50.021Z",
+      "nummer": "000 588 09 19 00",
+      "locatie": "Magazijn: Rek 1518 - Schap 0101",
       "geschiedenis": []
     }
   }
