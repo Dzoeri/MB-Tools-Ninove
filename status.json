@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-05-08T14:01:50.828Z",
+    "laatste_update": "2026-05-08T14:48:09.908Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -258,16 +258,20 @@
       ]
     },
     "651 589 01 63 00||Magazijn: Rek 1518 - Schap 0504": {
-      "status": "uitgeleend",
-      "gebruiker": "Chris",
-      "sinds": "2026-04-13T13:53:40.767Z",
+      "status": "beschikbaar",
       "nummer": "651 589 01 63 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0504",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Chris",
+          "van": "2026-04-13T13:53:40.767Z",
+          "tot": "2026-05-08T14:48:09.908Z"
+        }
+      ]
     },
     "000 588 09 19 00||Magazijn: Rek 1518 - Schap 0101": {
       "status": "uitgeleend",
-      "gebruiker": "Filip WattÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© - EXTERN - Maldegem. Thierry Lescrauwaert",
+      "gebruiker": "Filip WattÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© - EXTERN - Maldegem. Thierry Lescrauwaert",
       "sinds": "2026-05-05T12:34:50.021Z",
       "nummer": "000 588 09 19 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0101",
