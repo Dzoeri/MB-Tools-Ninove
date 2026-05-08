@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-05-07T08:41:47.806Z",
+    "laatste_update": "2026-05-08T14:00:54.766Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -123,9 +123,7 @@
       ]
     },
     "001 589 65 09 00||Werkplaats: PKW - Bord C": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-05-07T08:41:47.806Z",
+      "status": "beschikbaar",
       "nummer": "001 589 65 09 00",
       "locatie": "Werkplaats: PKW - Bord C",
       "geschiedenis": [
@@ -133,6 +131,11 @@
           "gebruiker": "Maxime",
           "van": "2026-03-03T14:33:23.751Z",
           "tot": "2026-03-10T10:03:37.923Z"
+        },
+        {
+          "gebruiker": "Joeri",
+          "van": "2026-05-07T08:41:47.806Z",
+          "tot": "2026-05-08T14:00:54.765Z"
         }
       ]
     },
@@ -264,7 +267,7 @@
     },
     "000 588 09 19 00||Magazijn: Rek 1518 - Schap 0101": {
       "status": "uitgeleend",
-      "gebruiker": "Filip WattÃÂÃÂ© - EXTERN - Maldegem. Thierry Lescrauwaert",
+      "gebruiker": "Filip WattÃÂÃÂÃÂÃÂ© - EXTERN - Maldegem. Thierry Lescrauwaert",
       "sinds": "2026-05-05T12:34:50.021Z",
       "nummer": "000 588 09 19 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0101",
