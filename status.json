@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-05-08T14:01:42.309Z",
+    "laatste_update": "2026-05-08T14:01:50.828Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -267,19 +267,23 @@
     },
     "000 588 09 19 00||Magazijn: Rek 1518 - Schap 0101": {
       "status": "uitgeleend",
-      "gebruiker": "Filip WattÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© - EXTERN - Maldegem. Thierry Lescrauwaert",
+      "gebruiker": "Filip WattÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© - EXTERN - Maldegem. Thierry Lescrauwaert",
       "sinds": "2026-05-05T12:34:50.021Z",
       "nummer": "000 588 09 19 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0101",
       "geschiedenis": []
     },
     "607 589 00 15 00||Magazijn: Rek 1523 - Schap 0507": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-05-07T08:38:09.721Z",
+      "status": "beschikbaar",
       "nummer": "607 589 00 15 00",
       "locatie": "Magazijn: Rek 1523 - Schap 0507",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Joeri",
+          "van": "2026-05-07T08:38:09.721Z",
+          "tot": "2026-05-08T14:01:50.828Z"
+        }
+      ]
     },
     "607 589 01 15 00||Magazijn: Rek 1523 - Schap 0507": {
       "status": "beschikbaar",
