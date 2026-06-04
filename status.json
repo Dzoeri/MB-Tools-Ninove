@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-05-08T14:48:09.908Z",
+    "laatste_update": "2026-06-04T15:11:56.213Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -169,7 +169,9 @@
       ]
     },
     "202 589 00 07 00||Magazijn: Rek 1518 - Schap 0210": {
-      "status": "beschikbaar",
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2026-06-04T15:11:56.213Z",
       "nummer": "202 589 00 07 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0210",
       "geschiedenis": [
