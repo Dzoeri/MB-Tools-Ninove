@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-06-04T15:16:00.342Z",
+    "laatste_update": "2026-11-12T13:42:06.876Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -305,6 +305,14 @@
           "tot": "2026-05-08T14:01:42.309Z"
         }
       ]
+    },
+    "724 589 00 21 00||Magazijn: Rek 1518 - Schap 0508": {
+      "status": "uitgeleend",
+      "gebruiker": "Joeri",
+      "sinds": "2026-11-12T13:42:06.876Z",
+      "nummer": "724 589 00 21 00",
+      "locatie": "Magazijn: Rek 1518 - Schap 0508",
+      "geschiedenis": []
     }
   }
 }
