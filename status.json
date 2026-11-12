@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "laatste_update": "2026-11-12T13:42:15.424Z",
+    "laatste_update": "2026-11-12T15:48:50.224Z",
     "versie": "2.0"
   },
   "gereedschap": {
@@ -311,12 +311,16 @@
       ]
     },
     "724 589 00 21 00||Magazijn: Rek 1518 - Schap 0508": {
-      "status": "uitgeleend",
-      "gebruiker": "Joeri",
-      "sinds": "2026-11-12T13:42:06.876Z",
+      "status": "beschikbaar",
       "nummer": "724 589 00 21 00",
       "locatie": "Magazijn: Rek 1518 - Schap 0508",
-      "geschiedenis": []
+      "geschiedenis": [
+        {
+          "gebruiker": "Joeri",
+          "van": "2026-11-12T13:42:06.876Z",
+          "tot": "2026-11-12T15:48:50.224Z"
+        }
+      ]
     }
   }
 }
